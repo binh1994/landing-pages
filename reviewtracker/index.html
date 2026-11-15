@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>ReviewTracker — Google Reviews for Trades, $37/mo</title>
+<meta name="description" content="ReviewTracker helps HVAC, plumbing, electrical and home-service shops ask for Google reviews, track who replied, and draft replies in the owner's voice. $37/mo — about half of NiceJob Starter at $75/mo." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f7f8f5;
+    --bg-2:#eef2ec;
+    --surface:#ffffff;
+    --surface-2:#f1f5ef;
+    --ink:#14211b;
+    --ink-2:#3d4f45;
+    --ink-3:#66796e;
+    --line:#d9e2d8;
+    --brand:#0f5132;
+    --brand-2:#177a4c;
+    --brand-soft:#dff2e4;
+    --amber:#d98e04;
+    --amber-soft:#fdf0d0;
+    --amber-ink:#7a5200;
+    --red:#b42318;
+    --red-soft:#fdecea;
+    --teal:#0e7a6b;
+    --shadow:0 10px 30px rgba(15,81,50,.10);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0c1210;
+      --bg-2:#101814;
+      --surface:#141d18;
+      --surface-2:#1a2620;
+      --ink:#eef4ef;
+      --ink-2:#c2d1c6;
+      --ink-3:#8ea295;
+      --line:#2a3a30;
+      --brand:#4ade80;
+      --brand-2:#6ee7a0;
+      --brand-soft:#173527;
+      --amber:#f2b63d;
+      --amber-soft:#3a2f10;
+      --amber-ink:#ffd97a;
+      --red:#f08a80;
+      --red-soft:#3d1d1a;
+      --teal:#4ec9b6;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.6}
+  h1,h2,h3{font-family:"Archivo",system-ui,sans-serif;line-height:1.08;letter-spacing:-.02em;margin:0}
+  a{color:var(--brand-2)}
+  button,[role="button"],select,input,textarea{font:inherit}
+  button,select,input[type="text"],input[type="email"],input[type="number"]{min-height:44px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  /* Top bar */
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .topbar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Archivo",sans-serif;font-weight:900;font-size:1.15rem;color:var(--ink);text-decoration:none}
+  .logo-mark{width:36px;height:36px;border-radius:9px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:1.05rem;flex:none}
+  @media (prefers-color-scheme: dark){.logo-mark{color:#0c1210}}
+  .nav{display:none;gap:26px;font-size:.95rem;font-weight:600}
+  .nav a{color:var(--ink-2);text-decoration:none;padding:8px 2px}
+  @media(min-width:820px){.nav{display:flex}}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 22px;font-weight:700;text-decoration:none;border:1.5px solid transparent;cursor:pointer;min-height:48px;font-size:1rem;transition:transform .12s ease,background .12s ease}
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:var(--brand);color:#fff}
+  @media (prefers-color-scheme: dark){.btn-primary{color:#0c1210}}
+  .btn-primary:hover{background:var(--brand-2)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--brand)}
+  .btn-small{padding:9px 16px;min-height:44px;font-size:.95rem}
+  /* Hero */
+  .hero{padding:52px 0 36px;background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+  .hero-grid{display:grid;gap:36px}
+  @media(min-width:920px){.hero-grid{grid-template-columns:1.05fr .95fr;align-items:start}}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--brand-soft);color:var(--brand);font-weight:700;font-size:.88rem;padding:7px 13px;border-radius:999px;margin-bottom:18px}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--brand-2)}
+  h1{font-size:2.55rem;font-weight:900}
+  @media(min-width:720px){h1{font-size:3.4rem}}
+  h1 .hl{color:var(--brand-2)}
+  .hero-sub{font-size:1.13rem;color:var(--ink-2);margin:18px 0 0;max-width:34rem}
+  .price-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:24px 0 6px}
+  .price-big{font-family:"Archivo",sans-serif;font-size:2.6rem;font-weight:900;line-height:1}
+  .price-per{color:var(--ink-3);font-weight:600}
+  .price-vs{font-weight:700;color:var(--amber-ink);background:var(--amber-soft);padding:5px 11px;border-radius:999px;font-size:.9rem}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+  .hero-note{font-size:.9rem;color:var(--ink-3);margin-top:14px}
+  .stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:30px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px}
+  .stat b{display:block;font-family:"Archivo",sans-serif;font-size:1.45rem;line-height:1.1}
+  .stat span{font-size:.82rem;color:var(--ink-3);line-height:1.35;display:block;margin-top:4px}
+  @media(max-width:560px){.stat-row{grid-template-columns:1fr}}
+  /* Demo card */
+  .demo-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .demo-head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .demo-head strong{font-family:"Archivo",sans-serif}
+  .stars{color:var(--amber);letter-spacing:2px;font-size:1.05rem;white-space:nowrap}
+  .demo-body{padding:20px}
+  .demo-body label{font-weight:700;font-size:.9rem;display:block;margin:14px 0 6px}
+  .demo-body label:first-child{margin-top:0}
+  .demo-body input[type="text"],.demo-body select,.demo-body textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--surface);color:var(--ink)}
+  .demo-body textarea{min-height:78px;resize:vertical}
+  .seg{display:flex;gap:8px;flex-wrap:wrap}
+  .seg button{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 15px;font-weight:700;cursor:pointer;min-height:44px}
+  .seg button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+  @media (prefers-color-scheme: dark){.seg button[aria-pressed="true"]{color:#0c1210}}
+  .draft-box{background:var(--surface-2);border:1px dashed var(--line);border-radius:12px;padding:16px;margin-top:16px;font-size:.97rem}
+  .draft-box p{margin:0}
+  .demo-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+  .copy-ok{font-size:.88rem;color:var(--brand-2);font-weight:700;align-self:center}
+  /* Sections */
+  section{padding:52px 0}
+  .kicker{font-weight:800;text-transform:uppercase;letter-spacing:.09em;font-size:.8rem;color:var(--brand-2);margin:0 0 10px}
+  h2{font-size:2rem;font-weight:900}
+  @media(min-width:720px){h2{font-size:2.45rem}}
+  .lead{color:var(--ink-2);font-size:1.08rem;max-width:44rem;margin:12px 0 0}
+  .steps{display:grid;gap:16px;margin-top:30px}
+  @media(min-width:820px){.steps{grid-template-columns:repeat(3,1fr)}}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .step-num{width:38px;height:38px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-family:"Archivo",sans-serif;font-weight:900;margin-bottom:12px}
+  .step h3{font-size:1.15rem;margin-bottom:7px}
+  .step p{margin:0;color:var(--ink-2);font-size:.97rem}
+  /* Tracker demo */
+  .tracker{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin-top:30px;overflow:hidden}
+  .tracker-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+  .tracker-summary{display:flex;gap:18px;flex-wrap:wrap;font-size:.92rem;color:var(--ink-2)}
+  .tracker-summary b{color:var(--ink);font-family:"Archivo",sans-serif;font-size:1.1rem}
+  .trow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line)}
+  .trow:last-child{border-bottom:none}
+  .trow .who{min-width:180px;flex:1}
+  .trow .who b{display:block}
+  .trow .who span{font-size:.86rem;color:var(--ink-3)}
+  .badge{font-size:.8rem;font-weight:800;padding:5px 10px;border-radius:999px}
+  .badge-wait{background:var(--amber-soft);color:var(--amber-ink)}
+  .badge-done{background:var(--brand-soft);color:var(--brand)}
+  .badge-none{background:var(--surface-2);color:var(--ink-3)}
+  .trow .acts{display:flex;gap:8px;flex-wrap:wrap}
+  .mini-btn{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.88rem;cursor:pointer;min-height:40px}
+  .mini-btn:hover{border-color:var(--brand)}
+  .mini-btn:disabled{opacity:.45;cursor:default}
+  .add-row{display:flex;gap:10px;flex-wrap:wrap;padding:16px 20px;background:var(--surface-2)}
+  .add-row input{flex:1;min-width:180px;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--surface);color:var(--ink)}
+  /* Calculator */
+  .calc-grid{display:grid;gap:24px;margin-top:30px}
+  @media(min-width:880px){.calc-grid{grid-template-columns:1fr 1fr}}
+  .calc-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+  .calc-row{display:grid;grid-template-columns:64px 1fr 64px;gap:12px;align-items:center;margin:12px 0}
+  .calc-row label{font-weight:700}
+  .calc-row input[type="range"]{width:100%;accent-color:var(--brand-2);min-height:36px}
+  .calc-row output{font-family:"Archivo",sans-serif;font-weight:800;text-align:right}
+  .calc-result{text-align:center;padding:10px 0}
+  .calc-avg{font-family:"Archivo",sans-serif;font-size:4rem;font-weight:900;line-height:1}
+  .calc-verdict{font-weight:700;margin-top:10px}
+  .calc-verdict.bad{color:var(--red)}
+  .calc-verdict.good{color:var(--brand-2)}
+  .calc-note{font-size:.9rem;color:var(--ink-3)}
+  /* Features */
+  .feat-grid{display:grid;gap:16px;margin-top:30px}
+  @media(min-width:720px){.feat-grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:1020px){.feat-grid{grid-template-columns:repeat(3,1fr)}}
+  .feat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .feat .ic{font-size:1.5rem;margin-bottom:10px}
+  .feat h3{font-size:1.08rem;margin-bottom:6px}
+  .feat p{margin:0;color:var(--ink-2);font-size:.95rem}
+  /* Compare */
+  .cmp{display:grid;gap:12px;margin-top:30px}
+  .cmp-row{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;display:grid;gap:6px}
+  @media(min-width:820px){.cmp-row{grid-template-columns:1.2fr .7fr 1.6fr;align-items:center;gap:18px}}
+  .cmp-row.us{border:2px solid var(--brand);background:var(--brand-soft)}
+  .cmp-row .name{font-family:"Archivo",sans-serif;font-weight:800;font-size:1.05rem}
+  .cmp-row .price{font-family:"Archivo",sans-serif;font-weight:900;font-size:1.3rem}
+  .cmp-row .price small{font-size:.85rem;color:var(--ink-3);font-weight:600}
+  .cmp-row .note{color:var(--ink-2);font-size:.93rem}
+  .fineprint{font-size:.87rem;color:var(--ink-3);margin-top:14px;max-width:46rem}
+  /* Pricing */
+  .pricing-card{background:var(--brand);color:#fff;border-radius:20px;padding:34px 28px;margin-top:30px;display:grid;gap:28px}
+  @media (prefers-color-scheme: dark){.pricing-card{background:#173527;color:var(--ink)}}
+  @media(min-width:880px){.pricing-card{grid-template-columns:1fr 1fr}}
+  .pricing-card h3{font-size:1.6rem;color:#fff}
+  @media (prefers-color-scheme: dark){.pricing-card h3{color:var(--ink)}}
+  .pricing-card .p-big{font-family:"Archivo",sans-serif;font-size:3.4rem;font-weight:900;line-height:1;margin:10px 0 4px}
+  .pricing-card ul{margin:0;padding:0;list-style:none}
+  .pricing-card li{padding:8px 0 8px 30px;position:relative;border-bottom:1px solid rgba(255,255,255,.18)}
+  @media (prefers-color-scheme: dark){.pricing-card li{border-color:var(--line)}}
+  .pricing-card li::before{content:"✓";position:absolute;left:2px;font-weight:900;color:var(--amber)}
+  .pricing-card .btn{background:#fff;color:var(--brand)}
+  @media (prefers-color-scheme: dark){.pricing-card .btn{background:var(--brand);color:#0c1210}}
+  .honest{background:var(--amber-soft);border-radius:var(--radius);padding:20px 22px;margin-top:20px;color:var(--ink)}
+  .honest h3{font-size:1.05rem;margin-bottom:6px}
+  .honest p{margin:0;font-size:.95rem;color:var(--ink-2)}
+  @media (prefers-color-scheme: dark){.honest p{color:var(--ink-2)}}
+  /* FAQ */
+  details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-top:12px}
+  summary{padding:18px 20px;font-weight:700;cursor:pointer;min-height:44px}
+  details p{margin:0;padding:0 20px 18px;color:var(--ink-2)}
+  /* Signup */
+  .signup{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);margin-top:30px}
+  .signup form{display:grid;gap:14px}
+  @media(min-width:720px){.signup form{grid-template-columns:1fr 1fr}}
+  .signup label{font-weight:700;font-size:.92rem;display:block}
+  .signup input,.signup select{width:100%;margin-top:6px;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--surface);color:var(--ink)}
+  .signup .full{grid-column:1/-1}
+  footer{border-top:1px solid var(--line);padding:34px 0 44px;color:var(--ink-3);font-size:.9rem}
+  footer a{color:var(--ink-2)}
+  .src-list{margin:10px 0 0;padding-left:18px}
+  .src-list li{margin:5px 0;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">★</span>ReviewTracker</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#tracker">Tracker</a>
+      <a href="#compare">Compare prices</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="pill"><span class="dot"></span>Built for HVAC, plumbing, electrical &amp; home-service shops</span>
+        <h1>More Google reviews.<br />Replies that sound <span class="hl">like you.</span></h1>
+        <p class="hero-sub">ReviewTracker tracks who you asked, who actually left a review, and drafts every reply in your voice — so a happy $400 repair turns into the 5-star review that wins the next job. No enterprise suite. No per-location penalty.</p>
+        <div class="price-line">
+          <span class="price-big">$37</span><span class="price-per">/month, flat</span>
+          <span class="price-vs">≈ 51% below NiceJob Starter ($75/mo)</span>
+        </div>
+        <p class="hero-note">One location or five — same price. No contract. Cancel anytime.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a>
+          <a class="btn btn-ghost" href="#reply-tool">Try the reply drafter ↓</a>
+        </div>
+        <p class="hero-note">Prefer PayPal.me? Pay at <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">paypal.com/paypalme/RenewGuard</a></p>
+        <div class="stat-row">
+          <div class="stat"><b>68%</b><span>of consumers refuse a business rated below 4 stars — BrightLocal 2026 Local Consumer Review Survey</span></div>
+          <div class="stat"><b>111k+</b><span>US plumbing, heating &amp; A/C establishments alone (Census CBP 2023) — reviews decide who gets the call</span></div>
+          <div class="stat"><b>$37</b><span>flat per month, vs. $75–$399/mo for the big review platforms below</span></div>
+        </div>
+      </div>
+
+      <!-- Reply drafter demo -->
+      <div class="demo-card" id="reply-tool">
+        <div class="demo-head">
+          <strong>Try it: reply drafter</strong>
+          <span class="stars" aria-hidden="true">★★★★★</span>
+        </div>
+        <div class="demo-body">
+          <label for="rv-name">Reviewer first name</label>
+          <input type="text" id="rv-name" value="Marcus" autocomplete="off" />
+          <label>Star rating</label>
+          <div class="seg" role="group" aria-label="Star rating" id="rv-stars">
+            <button type="button" data-stars="5" aria-pressed="true">5 ★</button>
+            <button type="button" data-stars="4" aria-pressed="false">4 ★</button>
+            <button type="button" data-stars="3" aria-pressed="false">3 ★</button>
+            <button type="button" data-stars="2" aria-pressed="false">2 ★</button>
+            <button type="button" data-stars="1" aria-pressed="false">1 ★</button>
+          </div>
+          <label for="rv-job">What was the job?</label>
+          <input type="text" id="rv-job" value="same-day AC repair" autocomplete="off" />
+          <label for="rv-text">Paste the review (optional)</label>
+          <textarea id="rv-text">Tech showed up on time, fixed the AC in an hour and the price matched the quote. Will call again.</textarea>
+          <div class="draft-box" aria-live="polite">
+            <p id="rv-draft"></p>
+          </div>
+          <div class="demo-actions">
+            <button type="button" class="btn btn-primary btn-small" id="rv-new">New draft</button>
+            <button type="button" class="btn btn-ghost btn-small" id="rv-copy">Copy reply</button>
+            <span class="copy-ok" id="rv-copied" hidden>Copied ✓</span>
+          </div>
+          <p class="hero-note">This is the real tool, running right here: pick a rating, get a reply in a working owner's voice — edit two words and post it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="wrap">
+      <p class="kicker">How it works</p>
+      <h2>Three steps, about 30 seconds per job</h2>
+      <p class="lead">No Google API approval to wait for, no integration project. You paste your Google review link once — ReviewTracker handles the tracking and the wording; you send each ask from your own email or phone, in about 30 seconds.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Log the finished job</h3>
+          <p>Add the customer's name and the job when you close the ticket — "Garcia — water heater install." That's the whole setup, per job.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Send the ask</h3>
+          <p>Send a ready-made email or text template with your review link from your own email or phone — or print the QR code for the invoice and the truck. One tap in the tracker logs who was asked, and when.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Reply in your voice</h3>
+          <p>When a review lands, paste it into the drafter and get a reply written the way a shop owner actually talks — specific, grateful, no corporate filler. Approve, tweak, post.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACKER DEMO -->
+  <section id="tracker" style="background:var(--bg-2)">
+    <div class="wrap">
+      <p class="kicker">The tracker</p>
+      <h2>Know exactly who you asked — and who went quiet</h2>
+      <p class="lead">Most shops ask once, forget, and never follow up. This is the screen that fixes that. Try it — add a customer, send the ask, mark the review when it comes in.</p>
+
+      <div class="tracker" aria-label="Interactive tracker demo">
+        <div class="tracker-head">
+          <strong style="font-family:'Archivo',sans-serif">This week's jobs — Demo Heating &amp; Air</strong>
+          <div class="tracker-summary">
+            <span><b id="t-asked">0</b> asked</span>
+            <span><b id="t-got">0</b> reviews in</span>
+            <span><b id="t-rate">—</b> response rate</span>
+          </div>
+        </div>
+        <div id="t-rows"></div>
+        <div class="add-row">
+          <input type="text" id="t-new" placeholder="Add a customer — e.g. Nguyen — furnace tune-up" aria-label="New customer and job" />
+          <button type="button" class="btn btn-primary btn-small" id="t-add">Add job</button>
+        </div>
+      </div>
+      <p class="fineprint">Demo data only, shown to illustrate the workflow — it resets when you reload and nothing is stored or sent anywhere.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section id="calculator">
+    <div class="wrap">
+      <p class="kicker">Check your rating</p>
+      <h2>Are you above the 4-star line?</h2>
+      <p class="lead">BrightLocal's 2026 survey found 68% of consumers refuse a business rated below 4 stars. Slide in your review mix and see where you stand — and how many 5-star reviews it takes to climb back.</p>
+      <div class="calc-grid">
+        <div class="calc-card">
+          <div class="calc-row"><label for="c5">5 ★</label><input type="range" id="c5" min="0" max="100" value="22" /><output id="o5">22</output></div>
+          <div class="calc-row"><label for="c4">4 ★</label><input type="range" id="c4" min="0" max="100" value="6" /><output id="o4">6</output></div>
+          <div class="calc-row"><label for="c3">3 ★</label><input type="range" id="c3" min="0" max="100" value="3" /><output id="o3">3</output></div>
+          <div class="calc-row"><label for="c2">2 ★</label><input type="range" id="c2" min="0" max="100" value="2" /><output id="o2">2</output></div>
+          <div class="calc-row"><label for="c1">1 ★</label><input type="range" id="c1" min="0" max="100" value="4" /><output id="o1">4</output></div>
+        </div>
+        <div class="calc-card calc-result">
+          <div class="stars" style="font-size:1.4rem" aria-hidden="true">★★★★★</div>
+          <div class="calc-avg" id="calc-avg">4.2</div>
+          <p class="calc-verdict" id="calc-verdict"></p>
+          <p class="calc-note" id="calc-need"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" style="background:var(--bg-2)">
+    <div class="wrap">
+      <p class="kicker">What's included</p>
+      <h2>Everything a small shop needs. Nothing enterprise.</h2>
+      <div class="feat-grid">
+        <div class="feat"><div class="ic" aria-hidden="true">📋</div><h3>Ask tracker</h3><p>Every job, every ask, every outcome in one list — who was asked, who replied, who needs one polite nudge. No more reviews lost to memory.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">✍️</div><h3>Reply drafts in your voice</h3><p>Drafts that mention the actual job and sound like the owner wrote them — including calm, professional replies to 1- and 2-star reviews.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🔗</div><h3>Review link + QR kit</h3><p>Your Google review link, a printable QR for invoices, tech cards and the truck, plus email and text ask templates that are ready to send.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">⭐</div><h3>Star-count watch</h3><p>Your current average and total at a glance, with a heads-up when a bad week drags you toward the 4-star line customers filter on.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🏢</div><h3>No per-location penalty</h3><p>One flat $37/mo whether you run one shop or several crews. The big platforms charge per location — we don't.</p></div>
+        <div class="feat"><div class="ic" aria-hidden="true">🔧</div><h3>Made for trades, not everyone</h3><p>Templates written for repairs, installs and service calls — not restaurants or retail. Your asks reference the job, so customers actually respond.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section id="compare">
+    <div class="wrap">
+      <p class="kicker">Honest price comparison</p>
+      <h2>Same job. About half the price of NiceJob.</h2>
+      <p class="lead">Competitor prices below are from published pricing and comparison checks in October–November 2026 — sources at the bottom of this page. Check a vendor's own page before you quote us on it; prices move.</p>
+      <div class="cmp">
+        <div class="cmp-row us">
+          <span class="name">ReviewTracker (this page)</span>
+          <span class="price">$37<small> /mo flat</small></span>
+          <span class="note">Ask tracker + reply drafts in your voice + QR/link kit. No per-location fee, no contract.</span>
+        </div>
+        <div class="cmp-row">
+          <span class="name">NiceJob — Starter / Pro</span>
+          <span class="price">$75–$125<small> /mo</small></span>
+          <span class="note">The closest like-for-like competitor. Solid product — you're paying roughly double for it.</span>
+        </div>
+        <div class="cmp-row">
+          <span class="name">GatherUp</span>
+          <span class="price">$99<small> /mo, 1 location</small></span>
+          <span class="note">Per-location pricing: a second shop means a second bill.</span>
+        </div>
+        <div class="cmp-row">
+          <span class="name">Podium Core / Birdeye</span>
+          <span class="price">$399 / $299<small> /mo (reported)</small></span>
+          <span class="note">Enterprise suites with messaging, payments and more. Powerful — and priced for companies with a marketing department.</span>
+        </div>
+        <div class="cmp-row">
+          <span class="name">Tradeloper</span>
+          <span class="price">~$19<small> /mo</small></span>
+          <span class="note">Cheaper than us — and we'll say so. It's email-only review requests for solo operators: no reply drafts, no ask-by-ask tracker. If that's all you need, it's a fair pick.</span>
+        </div>
+      </div>
+      <p class="fineprint">We don't claim to beat everyone on price. We beat NiceJob — the tool most small shops actually compare us to — on price, and the $19 email-only tools on replies and tracking.</p>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" style="background:var(--bg-2)">
+    <div class="wrap">
+      <p class="kicker">Pricing</p>
+      <h2>One plan. $37 a month.</h2>
+      <div class="pricing-card">
+        <div>
+          <h3>ReviewTracker for Trades</h3>
+          <div class="p-big">$37<span style="font-size:1.2rem;font-weight:700">/mo</span></div>
+          <p style="margin:0;opacity:.9">14-day free trial · No card to start · No contract · Cancel anytime<br />NiceJob Starter is $75/mo. Same core job, about half the money.</p>
+          <p style="margin-top:20px"><a class="btn" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a></p>
+          <p style="margin-top:14px;font-size:.95rem;opacity:.95">Or pay via PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline">https://www.paypal.com/paypalme/RenewGuard</a></p>
+        </div>
+        <ul>
+          <li>Ask tracker for unlimited jobs &amp; customers</li>
+          <li>AI reply drafts in your voice, incl. negative reviews</li>
+          <li>Email &amp; text ask templates, ready to send</li>
+          <li>Review link + printable QR kit</li>
+          <li>Star average &amp; review-count watch</li>
+          <li>All locations included — no per-location fee</li>
+          <li>Free 1-page review health check before you pay anything</li>
+        </ul>
+      </div>
+      <div class="honest">
+        <h3>Straight talk on how v1 works</h3>
+        <p>ReviewTracker v1 is a tracker plus drafts, not full automation: you paste your Google review link once, send asks from your own email or phone using our templates, and paste new reviews in to get a reply draft. Fully automatic sending and live Google sync require Google API approval and a paid messaging carrier, and we won't pretend otherwise or charge you enterprise money for it. If you want hands-off automation later, we'll tell you exactly what it costs before you commit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <p class="kicker">FAQ</p>
+      <h2>Questions shop owners ask</h2>
+      <details>
+        <summary>Is $37 really the whole price?</summary>
+        <p>Yes — $37/mo flat, all locations, no setup fee, no contract. It's priced at about half of NiceJob Starter ($75/mo, checked Oct–Nov 2026). If we ever change pricing, existing customers keep their rate for 12 months.</p>
+      </details>
+      <details>
+        <summary>Do you send the review requests automatically?</summary>
+        <p>Not in v1 — and that's deliberate honesty, not a missing checkbox. Automatic sending needs Google API approval and a registered messaging carrier, which costs real money per message. In v1 you send from your own email/phone with our templates (about 30 seconds), and ReviewTracker tracks everything and drafts every reply. Owners who send personally also tend to get warmer reviews.</p>
+      </details>
+      <details>
+        <summary>What about bad reviews?</summary>
+        <p>They're where reply drafts matter most. ReviewTracker drafts a calm, specific, non-defensive reply that future customers — who read your response more than the complaint — will judge you by. You always approve before anything is posted; nothing is ever posted automatically.</p>
+      </details>
+      <details>
+        <summary>I have two locations. Do I pay twice?</summary>
+        <p>No. $37 covers all your locations. GatherUp charges $99/mo for one location; per-location pricing is exactly the model we built this against.</p>
+      </details>
+      <details>
+        <summary>There's a $19 tool. Why pay $37?</summary>
+        <p>Fair question. Tradeloper (~$19/mo) sends email review requests, and if that's all you need, buy it. ReviewTracker adds the two things that turn requests into a system: an ask-by-ask tracker so nobody slips through, and reply drafts in your voice for every review — including the bad ones.</p>
+      </details>
+      <details>
+        <summary>Can I try it before paying?</summary>
+        <p>Yes — a 14-day free trial, plus a free 1-page review health check (your current rating, review count, and the three fastest fixes) with no card required. Use the form below.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- SIGNUP -->
+  <section id="signup" style="background:var(--bg-2)">
+    <div class="wrap">
+      <p class="kicker">Get started</p>
+      <h2>Start your free trial — or get the free health check first</h2>
+      <p class="lead">Fill this in and we'll open your trial request in your email app, addressed to us with everything pre-written. No card, no obligation.</p>
+      <div class="signup">
+        <form id="signup-form">
+          <div>
+            <label for="s-biz">Business name</label>
+            <input type="text" id="s-biz" placeholder="e.g. Demo Heating &amp; Air" required />
+          </div>
+          <div>
+            <label for="s-name">Your name</label>
+            <input type="text" id="s-name" placeholder="e.g. Dana Ruiz" required />
+          </div>
+          <div>
+            <label for="s-trade">Trade</label>
+            <select id="s-trade">
+              <option>HVAC</option><option>Plumbing</option><option>Electrical</option>
+              <option>Garage doors</option><option>Roofing</option><option>Other home service</option>
+            </select>
+          </div>
+          <div>
+            <label for="s-city">City &amp; state</label>
+            <input type="text" id="s-city" placeholder="e.g. Houston, TX" />
+          </div>
+          <div class="full">
+            <label for="s-want">What do you want first?</label>
+            <select id="s-want">
+              <option>Start my 14-day free trial ($37/mo after, cancel anytime)</option>
+              <option>Free 1-page review health check first</option>
+              <option>Both — health check, then the trial</option>
+            </select>
+          </div>
+          <div class="full">
+            <button type="submit" class="btn btn-primary" style="width:100%">Send my request by email →</button>
+            <p class="hero-note" style="margin-top:10px">This opens your email app with the request pre-written — you review it and press send. Nothing is submitted silently, and we reply within one business day.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong style="color:var(--ink)">ReviewTracker</strong> — Google review tracking &amp; reply drafts for HVAC, plumbing, electrical and home-service shops. $37/mo flat.</p>
+    <p>Pay via PayPal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo</a> · PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">https://www.paypal.com/paypalme/RenewGuard</a></p>
+    <p>Sources for figures on this page (checked Oct–Nov 2026; competitor prices are snapshots and move — verify on the vendor's page):</p>
+    <ul class="src-list">
+      <li>68% of consumers refuse a business rated below 4 stars — BrightLocal 2026 Local Consumer Review Survey, via <a href="https://www.alpn.ai/blog/best-review-management-tools-outdoor-operators/" target="_blank" rel="noopener">alpn.ai — best review management tools</a></li>
+      <li>NiceJob Starter $75/mo / Pro $125/mo, GatherUp $99/mo (1 location), Podium Core $399/mo (reported), Birdeye $299/mo (reported), Tradeloper ~$19/mo — <a href="https://tradeloper.com/blog/best-review-software-for-home-service-businesses" target="_blank" rel="noopener">tradeloper.com — best review software for home-service businesses</a> and <a href="https://www.feedback-guru.com/pricing-guides/review-management-software-pricing" target="_blank" rel="noopener">feedback-guru.com — review management software pricing</a></li>
+      <li>111,207 US plumbing, heating &amp; A/C establishments — Census County Business Patterns 2023 (NAICS 238220).</li>
+    </ul>
+    <p style="margin-top:16px">© 2026 ReviewTracker. Built for small shops, priced for small shops.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  /* ---------- Reply drafter ---------- */
+  var stars = 5, variant = 0;
+  var nameEl = document.getElementById('rv-name');
+  var jobEl = document.getElementById('rv-job');
+  var textEl = document.getElementById('rv-text');
+  var draftEl = document.getElementById('rv-draft');
+  var copiedEl = document.getElementById('rv-copied');
+  var starBtns = document.querySelectorAll('#rv-stars button');
+
+  var drafts = {
+    5: [
+      "Thanks so much, {name} — really appreciate you saying that. Glad we could get your {job} sorted and the price matched what we quoted. We're here whenever you need us. — The crew",
+      "{name}, thank you! {job} is exactly the kind of call we want to get right — on time, fixed properly, no surprises on the bill. Thanks for trusting us with your home.",
+      "Appreciate the kind words, {name}. We'll pass this on to the tech who handled your {job} — it'll make his day. Thanks for choosing a local shop."
+    ],
+    4: [
+      "Thanks, {name} — glad the {job} went well overall. If there's one thing we could have done better, we'd genuinely like to hear it. Call us anytime.",
+      "Appreciate the review, {name}. Happy you're pleased with the {job}. We're always working on the small stuff, so thanks for the honest feedback."
+    ],
+    3: [
+      "Thanks for the honest feedback, {name}. Sounds like the {job} itself was fine but we didn't fully earn your trust — that's on us. If you'll give us another shot, we'll make it right.",
+      "{name}, we appreciate you telling us straight. A 3-star experience isn't what we aim for. The owner reads every one of these — thank you for helping us do better."
+    ],
+    2: [
+      "We're sorry, {name} — that's not the experience we want anyone to have with a {job}. The owner would like to hear what happened and make it right. Please call the shop and ask for the owner directly.",
+      "{name}, thank you for saying something instead of just staying frustrated. We dropped the ball here. We'd like the chance to fix it — please reach out and we'll take care of it."
+    ],
+    1: [
+      "{name}, we're sorry — full stop. Nobody should come away from a {job} feeling like this. The owner is reviewing your visit today and will reach out personally. If we don't connect, please call the shop and ask for the owner by name.",
+      "We hear you, {name}, and we apologise. This isn't the standard we hold ourselves to. We'd rather fix this than argue about it — the owner will be in touch today."
+    ]
+  };
+  function fill(t){
+    var name = (nameEl.value || 'friend').trim() || 'friend';
+    var job = (jobEl.value || 'service call').trim() || 'service call';
+    return t.replace(/\{name\}/g, name).replace(/\{job\}/g, job);
+  }
+  function renderDraft(){
+    var list = drafts[stars];
+    draftEl.textContent = fill(list[variant % list.length]);
+    copiedEl.hidden = true;
+  }
+  starBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      stars = parseInt(b.getAttribute('data-stars'), 10);
+      variant = 0;
+      starBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      renderDraft();
+    });
+  });
+  [nameEl, jobEl, textEl].forEach(function(el){ el.addEventListener('input', renderDraft); });
+  document.getElementById('rv-new').addEventListener('click', function(){ variant++; renderDraft(); });
+  document.getElementById('rv-copy').addEventListener('click', function(){
+    var t = draftEl.textContent;
+    function done(){ copiedEl.hidden = false; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(t).then(done, done);
+    } else {
+      var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta); done();
+    }
+  });
+  renderDraft();
+
+  /* ---------- Tracker demo ---------- */
+  var jobs = [
+    { who: 'Garcia', job: 'Water heater install', status: 'got', stars: 5 },
+    { who: 'Thompson', job: 'AC capacitor repair', status: 'asked', stars: 0 },
+    { who: 'Nguyen', job: 'Furnace tune-up', status: 'none', stars: 0 },
+    { who: 'Brooks', job: 'Drain clearing', status: 'got', stars: 5 }
+  ];
+  var rowsEl = document.getElementById('t-rows');
+  function badge(j){
+    if (j.status === 'got') return '<span class="badge badge-done">★ ' + j.stars + ' review in</span>';
+    if (j.status === 'asked') return '<span class="badge badge-wait">Asked — waiting</span>';
+    return '<span class="badge badge-none">Not asked yet</span>';
+  }
+  function renderTracker(){
+    rowsEl.innerHTML = '';
+    var asked = 0, got = 0;
+    jobs.forEach(function(j, i){
+      if (j.status !== 'none') asked++;
+      if (j.status === 'got') got++;
+      var row = document.createElement('div');
+      row.className = 'trow';
+      var askBtn = '<button type="button" class="mini-btn" data-act="ask" data-i="' + i + '"' + (j.status !== 'none' ? ' disabled' : '') + '>Send ask</button>';
+      var gotBtn = '<button type="button" class="mini-btn" data-act="got" data-i="' + i + '"' + (j.status !== 'asked' ? ' disabled' : '') + '>Mark 5★ received</button>';
+      row.innerHTML = '<div class="who"><b></b><span></span></div><div>' + badge(j) + '</div><div class="acts">' + askBtn + gotBtn + '</div>';
+      row.querySelector('.who b').textContent = j.who;
+      row.querySelector('.who span').textContent = j.job;
+      rowsEl.appendChild(row);
+    });
+    document.getElementById('t-asked').textContent = asked;
+    document.getElementById('t-got').textContent = got;
+    document.getElementById('t-rate').textContent = asked ? Math.round(got / asked * 100) + '%' : '—';
+    rowsEl.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){
+        var i = parseInt(b.getAttribute('data-i'), 10);
+        if (b.getAttribute('data-act') === 'ask') jobs[i].status = 'asked';
+        if (b.getAttribute('data-act') === 'got') { jobs[i].status = 'got'; jobs[i].stars = 5; }
+        renderTracker();
+      });
+    });
+  }
+  document.getElementById('t-add').addEventListener('click', function(){
+    var v = document.getElementById('t-new').value.trim();
+    if (!v) return;
+    var parts = v.split('—');
+    if (parts.length < 2) parts = v.split('-');
+    jobs.push({ who: (parts[0] || v).trim(), job: (parts[1] || 'Service call').trim(), status: 'none', stars: 0 });
+    document.getElementById('t-new').value = '';
+    renderTracker();
+  });
+  renderTracker();
+
+  /* ---------- Rating calculator ---------- */
+  var ids = [5,4,3,2,1];
+  function calc(){
+    var total = 0, sum = 0, counts = {};
+    ids.forEach(function(s){
+      var v = parseInt(document.getElementById('c' + s).value, 10);
+      counts[s] = v; total += v; sum += v * s;
+      document.getElementById('o' + s).textContent = v;
+    });
+    var avgEl = document.getElementById('calc-avg');
+    var verdictEl = document.getElementById('calc-verdict');
+    var needEl = document.getElementById('calc-need');
+    if (!total) { avgEl.textContent = '—'; verdictEl.textContent = 'Add some reviews to see your average.'; verdictEl.className = 'calc-verdict'; needEl.textContent = ''; return; }
+    var avg = sum / total;
+    avgEl.textContent = avg.toFixed(1);
+    if (avg < 4.0) {
+      verdictEl.textContent = 'Below 4.0 — the zone 68% of consumers filter out (BrightLocal 2026).';
+      verdictEl.className = 'calc-verdict bad';
+      var need = Math.ceil((4.0 * total - sum) / (5 - 4.0)) + 1;
+      if (need < 1) need = 1;
+      needEl.textContent = 'At your current mix, roughly ' + need + ' new 5-star reviews (with no new low ones) would pull you back above 4.0. That is exactly the pipeline ReviewTracker builds, one finished job at a time.';
+    } else {
+      verdictEl.textContent = 'Above the 4-star line. Now the job is volume — more reviews, more proof, more calls.';
+      verdictEl.className = 'calc-verdict good';
+      needEl.textContent = 'Shops that keep asking after every job hold this line. Shops that stop asking drift down the first time a rough week lands.';
+    }
+  }
+  ids.forEach(function(s){ document.getElementById('c' + s).addEventListener('input', calc); });
+  calc();
+
+  /* ---------- Signup (mailto — nothing faked) ---------- */
+  document.getElementById('signup-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var biz = document.getElementById('s-biz').value.trim();
+    var name = document.getElementById('s-name').value.trim();
+    var trade = document.getElementById('s-trade').value;
+    var city = document.getElementById('s-city').value.trim();
+    var want = document.getElementById('s-want').value;
+    var subject = encodeURIComponent('ReviewTracker request — ' + biz);
+    var body = encodeURIComponent(
+      'Hi ReviewTracker team,\n\n' +
+      'Business: ' + biz + '\n' +
+      'Name: ' + name + '\n' +
+      'Trade: ' + trade + '\n' +
+      'City: ' + (city || '—') + '\n' +
+      'I want: ' + want + '\n\n' +
+      'Plan I saw: $37/mo flat, vs NiceJob Starter $75/mo. Please reply with next steps.\n'
+    );
+    var link = document.createElement('a');
+    link.href = 'mailto:hello@reviewtracker.example?subject=' + subject + '&body=' + body;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+})();
+</script>
+</body>
+</html>
