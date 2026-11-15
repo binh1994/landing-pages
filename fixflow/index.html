@@ -866,8 +866,7 @@ footer a:hover{color:var(--green)}
           document.getElementById("vendor-list").textContent = data.vendors.length ? data.vendors.map(function (v) { return v.name + (v.trade ? " (" + v.trade + ")" : ""); }).join(" · ") : "No vendors yet.";
         }
 
-        function render() {
-          renderSelectors();
+        function updateStats() {
           var open = data.jobs.filter(function (j) { return j.stage !== "Done"; }).length;
           var est = data.jobs.reduce(function (s, j) { return s + (Number(j.est) || 0); }, 0);
           var act = data.jobs.reduce(function (s, j) { return s + (Number(j.actual) || 0); }, 0);
@@ -877,6 +876,10 @@ footer a:hover{color:var(--green)}
             '<span class="try-stat">Estimated <b>' + money(est) + "</b></span>" +
             '<span class="try-stat">Actual so far <b>' + money(act) + "</b></span>" +
             '<span class="try-stat"><b>' + data.properties.length + "</b> properties · <b>" + data.vendors.length + "</b> vendors</span>";
+        }
+        function render() {
+          renderSelectors();
+          updateStats();
           document.getElementById("try-empty").hidden = data.jobs.length !== 0;
           board.innerHTML = "";
           STAGES.forEach(function (stage, si) {
@@ -914,8 +917,13 @@ footer a:hover{color:var(--green)}
                 data.jobs = data.jobs.filter(function (j) { return j.id !== job.id; }); save(); render();
               });
               card.querySelector(".vsel").addEventListener("change", function () { job.vendorId = this.value; save(); render(); });
-              card.querySelector(".cost-est").addEventListener("change", function () { job.est = Number(this.value) || 0; save(); render(); });
-              card.querySelector(".cost-act").addEventListener("change", function () { job.actual = Number(this.value) || 0; save(); render(); });
+              // NOTE (QA 2026-11-15): cost edits must NOT full-render the board.
+              // A full render() replaces the card DOM; when the user edits a cost and
+              // then clicks Next, the blur fires change -> render() swaps the DOM ->
+              // the Next button under the pointer is detached and the click is lost.
+              // updateStats() refreshes the totals without touching the cards.
+              card.querySelector(".cost-est").addEventListener("change", function () { job.est = Number(this.value) || 0; save(); updateStats(); });
+              card.querySelector(".cost-act").addEventListener("change", function () { job.actual = Number(this.value) || 0; save(); updateStats(); });
               col.appendChild(card);
             });
             col.addEventListener("dragover", function (ev) { ev.preventDefault(); col.classList.add("drag-over"); });
