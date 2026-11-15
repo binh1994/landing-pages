@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>QuoteChaser — We chase your open quotes until they reply</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5f0; --bg2:#ffffff; --ink:#131a22; --muted:#5b6773; --line:#e2ddd2;
+  --amber:#d97706; --amber2:#f59e0b; --amber-bg:#fef3c7; --navy:#0f2439; --navy2:#162f4a;
+  --green:#15803d; --green-bg:#dcfce7; --red:#b91c1c; --card:#ffffff; --shadow:0 10px 30px rgba(19,26,34,.08);
+  --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0d1319; --bg2:#121a23; --ink:#eef2f6; --muted:#9aa8b5; --line:#243140; --card:#151f2b; --amber-bg:#3a2a08; --green-bg:#123524; --shadow:0 10px 30px rgba(0,0,0,.35); }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Barlow",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+a{color:inherit}
+button,[role="button"],input,select,summary{min-height:44px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.topbar{background:var(--navy);color:#fff}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
+.logo{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.02em;font-size:24px;line-height:1}
+.logo span{color:var(--amber2)}
+.logo small{display:block;font-family:"Barlow",sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:#b9c7d6;margin-top:4px}
+.nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:999px;color:#dbe6f0}
+.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;border-radius:999px;padding:13px 20px;border:1px solid transparent;cursor:pointer;font-size:16px;line-height:1}
+.btn-amber{background:var(--amber);color:#fff}
+.btn-amber:hover{background:#b45309}
+.btn-outline{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-white{background:#fff;color:var(--navy)}
+.btn-ghostw{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
+.hero{background:var(--navy);color:#fff;padding:18px 0 56px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:auto -120px -180px auto;width:520px;height:520px;background:radial-gradient(circle,rgba(245,158,11,.28),transparent 65%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start;position:relative}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.02em}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block}
+h1{font-family:"Archivo",sans-serif;font-weight:900;line-height:.95;letter-spacing:-.03em;font-size:clamp(42px,6vw,68px);margin:18px 0 16px}
+h1 em{font-style:normal;color:var(--amber2)}
+.lead{font-size:19px;color:#d3dee9;max-width:620px;margin:0 0 22px}
+.price-strip{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.pill{background:#fff;color:var(--navy);border-radius:12px;padding:12px 14px;min-width:150px}
+.pill b{display:block;font-family:"JetBrains Mono",monospace;font-size:22px;line-height:1}
+.pill span{font-size:13px;color:#5b6773;font-weight:600}
+.pill.dim{background:rgba(255,255,255,.1);color:#fff;border:1px dashed rgba(255,255,255,.3)}
+.pill.dim span{color:#b9c7d6}
+.pill.dim b{text-decoration:line-through;text-decoration-color:#f87171;text-decoration-thickness:2px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.hero-note{font-size:13.5px;color:#9fb0c1;margin-top:14px;max-width:560px}
+.board{background:var(--card);color:var(--ink);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
+.board-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.board-head b{font-family:"Archivo",sans-serif}
+.badge{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--amber-bg);color:#92400e}
+@media (prefers-color-scheme: dark){.badge{color:#fcd34d}}
+.qrow{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:6px 12px}
+.qrow:last-child{border-bottom:0}
+.qrow .who{font-weight:700}
+.qrow .meta{color:var(--muted);font-size:14px}
+.qrow .amt{font-family:"JetBrains Mono",monospace;font-weight:700;text-align:right}
+.status{font-size:12px;font-weight:800;padding:5px 8px;border-radius:999px;justify-self:end}
+.s-book{background:var(--green-bg);color:var(--green)}
+.s-wait{background:var(--amber-bg);color:#92400e}
+@media (prefers-color-scheme: dark){.s-wait{color:#fcd34d}}
+.s-new{background:#e0e7ff;color:#3730a3}
+.board-foot{padding:14px 18px;background:var(--bg);font-size:14px;color:var(--muted)}
+section{padding:56px 0}
+h2{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.02em;line-height:1.05;font-size:clamp(30px,4vw,42px);margin:0 0 12px}
+.sub{color:var(--muted);font-size:17px;max-width:720px;margin:0 0 28px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.card h3{margin:0 0 8px;font-size:19px}
+.card p{margin:0;color:var(--muted)}
+.num{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--amber);font-size:13px;letter-spacing:.08em}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.step{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:12px;padding:18px}
+.step b.day{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber)}
+.step h3{margin:8px 0 6px;font-size:17px}
+.step p{margin:0;color:var(--muted);font-size:15px}
+.calc{background:var(--navy);color:#fff;border-radius:20px;padding:28px}
+.calc h2{color:#fff}
+.calc .sub{color:#b9c7d6}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
+input[type="number"],input[type="text"],input[type="email"],textarea,select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit}
+.calc input{background:#fff;color:#131a22;border-color:transparent}
+.field{margin-bottom:16px}
+.result{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:20px}
+.result .big{font-family:"Archivo",sans-serif;font-weight:900;font-size:36px;line-height:1;color:var(--amber2)}
+.result p{color:#d3dee9;margin:8px 0 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer}
+.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.email-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
+.email-box pre{white-space:pre-wrap;font-family:"Barlow",sans-serif;font-size:16px;line-height:1.6;margin:0;color:var(--ink)}
+.compare{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;align-items:stretch}
+.comp{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card)}
+.comp.hot{border:2px solid var(--amber);background:var(--card);position:relative}
+.comp .price{font-family:"Archivo",sans-serif;font-weight:900;font-size:38px;line-height:1;margin:10px 0 4px}
+.comp ul{margin:14px 0 0;padding-left:18px;color:var(--muted)}
+.comp li{margin:7px 0}
+.tag{position:absolute;top:-13px;left:18px;background:var(--amber);color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
+.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.dayrow{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.dayrow .d{flex:0 0 52px;height:52px;border-radius:12px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;text-align:center;line-height:1.1}
+.dayrow h3{margin:0 0 4px;font-size:16px}
+.dayrow p{margin:0;color:var(--muted);font-size:14.5px}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:12px 0}
+details p{color:var(--muted);margin:0 0 16px}
+.cta-band{background:var(--amber);color:#1a1200;border-radius:20px;padding:28px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+.cta-band h2{margin-bottom:8px}
+.cta-band p{margin:0;opacity:.85}
+footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+footer a{text-decoration:underline}
+.sources{font-size:13px;line-height:1.7}
+@media (max-width:860px){
+  .hero-grid,.grid2,.calc-grid,.cta-band{grid-template-columns:1fr}
+  .grid3,.timeline{grid-template-columns:1fr 1fr}
+  .compare,.days{grid-template-columns:1fr}
+}
+@media (max-width:520px){
+  .grid3,.timeline{grid-template-columns:1fr}
+  h1{font-size:44px}
+  .topbar .wrap{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="logo">Quote<span>Chaser</span><small>For HVAC · Plumbing · Electrical</small></div>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a><a href="#calculator">ROI calculator</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="color:#fff">Start — $99/mo via PayPal</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><i></i> Email-first quote follow-up for trades</span>
+      <h1>You sent the quote.<br>Then <em>silence.</em></h1>
+      <p class="lead">QuoteChaser chases your open estimates on Day 1, 3, 7 and 14 — by email, in your name — until the customer replies, books the job, or says no. You stop losing jobs you already quoted.</p>
+      <div class="price-strip">
+        <div class="pill"><b>$99/mo</b><span>QuoteChaser · no launch fee</span></div>
+        <div class="pill dim"><b>$199/mo</b><span>Aplos + $349 launch fee</span></div>
+        <div class="pill"><b>1 job = 20 mo</b><span>One recovered $2,000 job pays for ~20 months</span></div>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener">Subscribe — $99/mo via PayPal →</a>
+        <a class="btn btn-ghostw" href="#sequence">See the email sequence</a>
+      </div>
+      <p class="hero-note">Pay securely with PayPal — $99/month subscription, cancel anytime. Prefer PayPal.me? <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;font-weight:700">paypal.me/RenewGuard</a></p>
+      <p class="hero-note">Built for the long tail on paper &amp; QuickBooks — the shops Jobber and ServiceTitan don’t reach. No standalone market-size figure exists for quote-follow-up software; demand here is inferred from trade counts (see Sources), not invented.</p>
+    </div>
+    <div class="board" aria-label="Example open-quote tracker">
+      <div class="board-head"><b>Open quotes — this week</b><span class="badge">Sample tracker view</span></div>
+      <div class="qrow"><div><div class="who">Mrs. Nguyen — A/C replacement</div><div class="meta">Sent 6 days ago · Day 7 nudge due today</div></div><div><div class="amt">$4,800</div><span class="status s-wait">Chasing</span></div></div>
+      <div class="qrow"><div><div class="who">Johnson — Water heater</div><div class="meta">Replied after Day 3 email · “Can you do Thursday?”</div></div><div><div class="amt">$1,850</div><span class="status s-book">Booked ✓</span></div></div>
+      <div class="qrow"><div><div class="who">Garcia — Panel upgrade</div><div class="meta">Sent today · Day 1 check-in scheduled</div></div><div><div class="amt">$2,400</div><span class="status s-new">New</span></div></div>
+      <div class="qrow"><div><div class="who">Smith — Furnace repair</div><div class="meta">Day 14 final email sent · No reply = closed</div></div><div><div class="amt">$920</div><span class="status s-wait">Final</span></div></div>
+      <div class="board-foot">Example data for illustration. Your board shows your real quotes, amounts, and where each one sits in the sequence.</div>
+    </div>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2>The problem isn’t your price. It’s the follow-up.</h2>
+    <p class="sub">There are 111,207 plumbing, heating &amp; A/C establishments and 83,342 electrical establishments in the US (Census County Business Patterns 2023). Almost all of them send quotes. The ones with office staff chase them. Solo and 1–10-person shops — 76.8% of HVAC firms have fewer than 10 employees — usually don’t.</p>
+    <div class="grid3">
+      <div class="card"><div class="num">01 — THE LEAK</div><h3>Quotes go cold in 48 hours</h3><p>Homeowners get 2–3 quotes, get busy, and book whoever followed up. Silence reads as “they don’t want the job.”</p></div>
+      <div class="card"><div class="num">02 — THE FIX</div><h3>A sequence, not a reminder</h3><p>Four short, polite emails over 14 days. Each one makes replying easy: book, ask a question, or say no — all three end the guessing.</p></div>
+      <div class="card"><div class="num">03 — YOUR PART</div><h3>About 10 minutes a week</h3><p>Add the quote, customer, and amount. QuoteChaser tracks the schedule and pings <em>you</em> when a customer replies hot.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="how" style="padding-top:0">
+  <div class="wrap">
+    <h2>How it works — Day 1 / 3 / 7 / 14</h2>
+    <p class="sub">Email-first on purpose: no SMS API, no carrier approval wait at v1. If you later want texts, you connect your own Twilio — carrier usage typically runs under $15–$30/mo paid directly to your carrier.</p>
+    <div class="timeline">
+      <div class="step"><b class="day">DAY 1</b><h3>“Just checking it landed”</h3><p>Confirms they received the quote and can open it. Catches wrong-email and spam-folder losses early.</p></div>
+      <div class="step"><b class="day">DAY 3</b><h3>Answer the hidden objection</h3><p>Restates scope, warranty, and timing in plain words. Most “no replies” are really unasked questions.</p></div>
+      <div class="step"><b class="day">DAY 7</b><h3>Gentle deadline</h3><p>Notes that scheduling and parts pricing are held until a date. Honest urgency, no pressure tricks.</p></div>
+      <div class="step"><b class="day">DAY 14</b><h3>Clean close-out</h3><p>“Should I close this out?” — the email that gets the most replies, because saying no feels safe.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="sequence" style="padding-top:0">
+  <div class="wrap">
+    <h2>Read the actual sequence</h2>
+    <p class="sub">Tap a day to preview the email your customer receives. Your business name, job, and amount fill in automatically.</p>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-day="1">Day 1</button>
+      <button class="tab" data-day="3">Day 3</button>
+      <button class="tab" data-day="7">Day 7</button>
+      <button class="tab" data-day="14">Day 14</button>
+    </div>
+    <div class="email-box"><pre id="emailText"></pre></div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="calc" id="calculator">
+      <h2>Do the math on your own quotes</h2>
+      <p class="sub">No made-up recovery rate — you choose the assumption. Even recovering <strong>one</strong> extra job a month usually covers QuoteChaser many times over.</p>
+      <div class="calc-grid">
+        <div>
+          <div class="field"><label for="qpm">Quotes you send per month</label><input type="number" id="qpm" value="20" min="0"></div>
+          <div class="field"><label for="avg">Average job value ($)</label><input type="number" id="avg" value="2400" min="0"></div>
+          <div class="field"><label for="rec">If follow-up recovers just this % of silent quotes</label><input type="number" id="rec" value="10" min="0" max="100"></div>
+          <button class="btn btn-amber" id="calcBtn" style="width:100%">Calculate</button>
+        </div>
+        <div class="result">
+          <div style="font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12px;color:#b9c7d6">Extra revenue / month at your numbers</div>
+          <div class="big" id="calcBig">$4,800</div>
+          <p id="calcText">That’s 2 recovered jobs × $2,400. QuoteChaser is $99/mo — a $4,701 difference before job costs, at your own 10% assumption.</p>
+          <p style="font-size:13.5px">This is a calculator, not a promise. Your real recovery depends on your market, pricing, and how fast you reply when customers answer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <h2>Pricing — half the managed-service price, no launch fee</h2>
+    <p class="sub">Priced to compete hard: $99/mo is about 50% below Aplos Follow-Up &amp; Estimate Recovery at $199/mo — and Aplos adds a $349 launch fee. QuoteChaser charges none.</p>
+    <div class="compare">
+      <div class="comp hot"><span class="tag">QuoteChaser</span><div class="price">$99<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">No launch fee · Cancel anytime</div><ul><li>Open-quote tracker (customer, amount, date sent)</li><li>Day 1 / 3 / 7 / 14 email sequence in your name</li><li>Reply alerts to you the moment a customer answers</li><li>Status board: chasing / booked / closed</li><li>Works alongside QuickBooks, Jobber, or paper</li><li>Optional SMS later via your own Twilio</li></ul><a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="width:100%;margin-top:18px">Start with QuoteChaser — $99/mo via PayPal</a><p style="font-size:13.5px;color:var(--muted);margin-top:12px;text-align:center">Secure checkout on PayPal. Or use PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">https://www.paypal.com/paypalme/RenewGuard</a></p></div>
+      <div class="comp"><div style="font-weight:800">Aplos AI — Follow-Up</div><div class="price">$199<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">+ $349 launch fee</div><ul><li>Managed AI follow-up service</li><li>Launch fee before you start</li><li>Discloses 2 paying clients on its own pages (per research, Nov 2026)</li><li>SMS carrier costs on top</li></ul><p style="font-size:13px;color:var(--muted);margin-top:14px">Source: aplosai.com/quote-follow-up-automation (index check, Oct–Nov 2026). Re-check before quoting.</p></div>
+      <div class="comp"><div style="font-weight:800">Jobber (bundled)</div><div class="price">$29+<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">Core from $29/mo · follow-up is a feature, not the product</div><ul><li>Full field-service suite — powerful, but a bigger switch</li><li>Quote follow-up bundled on select plans</li><li>Best if you need scheduling, dispatch &amp; invoicing too</li><li>QuoteChaser is for shops that only need the chasing</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Your first 14 days — the plan, day by day</h2>
+    <p class="sub">No vague “onboarding.” Here is exactly what happens after you start.</p>
+    <div class="days">
+      <div class="dayrow"><div class="d">DAY<br>1</div><div><h3>Set up your board</h3><p>Add your business name, sender email, and logo. We load the 4-email sequence with your warranty and scheduling wording.</p></div></div>
+      <div class="dayrow"><div class="d">DAY<br>2</div><div><h3>Import open quotes</h3><p>Bring in every quote sent in the last 30 days that never got a reply — name, amount, date sent. These enter at the right step, not Day 1.</p></div></div>
+      <div class="dayrow"><div class="d">DAY<br>3–7</div><div><h3>First chases go out</h3><p>Day 3 and Day 7 emails go to your stalest quotes first. You get a ping for every reply; you handle booking like normal.</p></div></div>
+      <div class="dayrow"><div class="d">DAY<br>8–14</div><div><h3>Close-outs &amp; review</h3><p>Day 14 close-out emails clear the dead quotes off your board. On Day 14 we review together: sent, replied, booked — and tune the wording.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <h2>Honest answers</h2>
+    <p class="sub">The caveats are on the page, not in the fine print.</p>
+    <details open><summary>Is this email or text?</summary><p>Email-first at v1 — that’s how it stays $99 with no launch fee and no 2–3 week carrier approval wait. If you want SMS later, you connect your own Twilio number; carrier usage typically runs under $15–$30/mo, paid by you directly to the carrier.</p></details>
+    <details><summary>Do I have to switch off Jobber / ServiceTitan / QuickBooks?</summary><p>No. QuoteChaser is a standalone chaser for open quotes. Shops already on a full field-service suite with follow-up built in may not need it — it’s built for the long tail that isn’t on one.</p></details>
+    <details><summary>Will customers find the emails annoying?</summary><p>Four short emails over 14 days, each with an easy “no thanks” path, and the sequence stops the moment they reply. The Day 14 close-out exists specifically so nobody gets chased forever.</p></details>
+    <details><summary>What if it doesn’t recover a job for me?</summary><p>Cancel anytime — no contract, no launch fee to lose. Judge it on the Day 14 review: emails sent, replies, and bookings are all on your board.</p></details>
+    <details><summary>Who is this for?</summary><p>HVAC, plumbing, and electrical shops — especially 1–10-person firms in Texas and beyond — that send quotes by email, PDF, or paper and rarely follow up more than once.</p></details>
+  </div>
+</section>
+
+<section id="start" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div><h2>Start QuoteChaser — $99/mo</h2><p>Subscribe securely with PayPal, or send us your stalest quote first — we’ll show you exactly which email it would get today, free, before you pay anything.</p><div style="background:#fff;border-radius:14px;padding:18px;margin-top:18px;color:#131a22"><a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="width:100%">Buy / Start — $99/month via PayPal →</a><p style="font-size:14px;margin:12px 0 0;opacity:1">PayPal subscription checkout for QuoteChaser at $99/month. Cancel anytime in PayPal.</p><p style="font-size:14px;margin:8px 0 0;opacity:1">Also on PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">https://www.paypal.com/paypalme/RenewGuard</a></p></div></div>
+      <div>
+        <form id="leadForm">
+          <div class="field"><label for="biz">Business name</label><input type="text" id="biz" placeholder="e.g. CoolAir Texas" required></div>
+          <div class="field"><label for="quoteInfo">Your oldest unanswered quote</label><input type="text" id="quoteInfo" placeholder="e.g. A/C replacement, $4,800, sent 9 days ago" required></div>
+          <button class="btn" type="submit" style="background:var(--navy);color:#fff;width:100%">Show my sample chase →</button>
+          <p id="formNote" style="font-size:13px;margin-top:10px"></p>
+          <div id="sampleOut" style="display:none;background:#fff;border-radius:12px;padding:16px;margin-top:12px;white-space:pre-wrap;font-size:14.5px;line-height:1.6"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong style="color:var(--ink)">QuoteChaser</strong> — Quote &amp; estimate follow-up for HVAC, plumbing &amp; electrical contractors. $99/mo, no launch fee.</p>
+    <p>Pay with PayPal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener">Subscribe — $99/month</a> · PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">https://www.paypal.com/paypalme/RenewGuard</a></p>
+    <p class="sources">Sources &amp; caveats (researched 2026-11-15; prices are Oct–Nov 2026 snapshots — re-check vendor pages before quoting): Aplos Follow-Up &amp; Estimate Recovery $199/mo + $349 launch — <a href="https://aplosai.com/quote-follow-up-automation" target="_blank" rel="noopener">aplosai.com/quote-follow-up-automation</a>. Trade counts: Census County Business Patterns 2023 via <a href="https://www.brix.so/research/trades-business-statistics" target="_blank" rel="noopener">brix.so/research/trades-business-statistics</a> (111,207 plumbing/HVAC establishments; 83,342 electrical) and <a href="https://hyrehvac.com/statistics/hvac-industry/" target="_blank" rel="noopener">hyrehvac.com/statistics/hvac-industry</a> (76.8% of HVAC firms under 10 employees). SMS carrier cost note (“typically under $15–$30/mo paid directly to your carrier”) via Aplos, as cited in the research. No verified standalone market-size figure exists for quote-follow-up software — demand is inferred from trade counts. Board data above is illustrative example data.</p>
+  </div>
+</footer>
+
+<script>
+var emails={
+1:"Subject: Quick check — your A/C replacement quote ($4,800)\n\nHi Mrs. Nguyen,\n\nJust checking this landed okay — I sent your quote for the A/C replacement ($4,800) a day ago and wanted to make sure it didn't end up in spam.\n\nAny questions at all, just reply here. And if you've decided to go another way, no hard feelings — a quick \"no thanks\" helps me close the file.\n\nThanks,\n[Your name] · [Your business]",
+3:"Subject: Re: Your A/C replacement quote — what it includes\n\nHi Mrs. Nguyen,\n\nFollowing up on the $4,800 quote. Two things homeowners usually ask:\n\n• The price includes [parts, labour, and disposal of the old unit].\n• It's covered by [your warranty] and we can normally fit within [your lead time].\n\nWant me to walk you through it in 5 minutes? Just reply and I'll call at a time that suits you.\n\nThanks,\n[Your name] · [Your business]",
+7:"Subject: Holding your slot until Friday\n\nHi Mrs. Nguyen,\n\nQuick note: I can hold scheduling and the quoted $4,800 price until Friday. After that I'd need to re-check parts pricing before I can promise the same number.\n\nIf you'd like the slot, reply \"book it\" and we'll lock a day in. If not, no pressure at all.\n\nThanks,\n[Your name] · [Your business]",
+14:"Subject: Should I close this out?\n\nHi Mrs. Nguyen,\n\nI haven't heard back on the A/C replacement quote ($4,800), so I'll close the file at the end of today — no more emails from me on this one.\n\nIf you do still want it done, just reply before then and we'll pick it back up at the same price.\n\nEither way, thanks for considering us.\n\n[Your name] · [Your business]"
+};
+var emailText=document.getElementById('emailText');
+function showDay(d){ emailText.textContent=emails[d]; document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-day')==String(d)); }); }
+document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){ showDay(t.getAttribute('data-day')); }); });
+showDay(1);
+function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+function calc(){
+  var q=parseFloat(document.getElementById('qpm').value)||0;
+  var a=parseFloat(document.getElementById('avg').value)||0;
+  var r=parseFloat(document.getElementById('rec').value)||0;
+  var jobs=q*(r/100); var rev=jobs*a;
+  document.getElementById('calcBig').textContent=money(rev);
+  document.getElementById('calcText').textContent="That's "+(Math.round(jobs*10)/10)+" recovered jobs × "+money(a)+". QuoteChaser is $99/mo — a "+money(rev-99)+" difference before job costs, at your own "+r+"% assumption.";
+}
+document.getElementById('calcBtn').addEventListener('click',calc);
+['qpm','avg','rec'].forEach(function(id){ document.getElementById(id).addEventListener('input',calc); });
+calc();
+document.getElementById('leadForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var biz=document.getElementById('biz').value.trim()||'Your business';
+  var q=document.getElementById('quoteInfo').value.trim()||'your quote';
+  var out=document.getElementById('sampleOut');
+  out.style.display='block';
+  out.textContent='Subject: Should I close this out?\n\nHi there,\n\nI haven\'t heard back on '+q+', so I\'ll close the file at the end of today — no more emails from me on this one.\n\nIf you do still want it done, just reply before then and we\'ll pick it back up at the same price.\n\nEither way, thanks for considering us.\n\n— '+biz+'\n\nThis is the Day 14 close-out — the step that gets the most replies. On the paid plan, Days 1, 3 and 7 go out before it, automatically.';
+  document.getElementById('formNote').textContent='Here is your sample — generated from what you typed:';
+  out.scrollIntoView({behavior:'smooth',block:'nearest'});
+});
+</script>
+</body>
+</html>
