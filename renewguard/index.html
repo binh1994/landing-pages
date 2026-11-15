@@ -1014,7 +1014,12 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
     var rec = { name: name, type: $("licType").value, state: $("licState").value, holder: holder, expiry: expiry };
     var editId = $("licId").value;
     if(editId){
-      for(var i=0;i<licences.length;i++){ if(licences[i].id === editId){ rec.id = editId; licences[i] = rec; break; } }
+      var found = false;
+      for(var i=0;i<licences.length;i++){ if(licences[i].id === editId){ rec.id = editId; licences[i] = rec; found = true; break; } }
+      if(!found){
+        showLicStatus("<strong>That licence no longer exists.</strong> It may have been deleted — your changes were not saved. Clear the form (Cancel edit) to add it as a new licence.", false);
+        return;
+      }
       showLicStatus("<strong>Saved.</strong> “" + esc(name) + "” was updated.", true);
     } else {
       rec.id = "lic" + Date.now() + Math.floor(Math.random()*100000);
@@ -1078,12 +1083,13 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
     if(!shown.length){
       $("licListWrap").innerHTML = '<div class="trial-empty">No licences match that search / filter. Clear the search box or pick “All licences”.</div>';
     } else {
+    var rowDis = trialState() !== "active" ? " disabled" : "";
     $("licListWrap").innerHTML = '<div class="lic-list">' + shown.map(function(l){
       return '<div class="lic-row"><div class="grow"><b>' + esc(l.name) + '</b>' +
         '<span class="meta">' + esc(l.type) + ' · ' + esc(l.state) + ' · Holder: ' + esc(l.holder) + ' · Expires ' + fmtDate(l.expiry) + '</span></div>' +
         pillFor(daysLeft(l.expiry)) +
-        '<span class="rowbtns"><button type="button" class="chip-btn" data-edit="' + esc(l.id) + '">Edit</button>' +
-        '<button type="button" class="chip-btn del" data-del="' + esc(l.id) + '">Delete</button></span></div>';
+        '<span class="rowbtns"><button type="button" class="chip-btn" data-edit="' + esc(l.id) + '"' + rowDis + '>Edit</button>' +
+        '<button type="button" class="chip-btn del" data-del="' + esc(l.id) + '"' + rowDis + '>Delete</button></span></div>';
     }).join("") + '</div>';
     }
 
