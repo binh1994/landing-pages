@@ -1085,6 +1085,17 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
           }).catch(function () { /* offline or blocked — device limit still applies */ });
         }
       })();
+
+      // QA fix 2026-11-15: playing one sample video pauses the others, so
+      // two samples never play sound at once.
+      (function () {
+        var vids = Array.prototype.slice.call(document.querySelectorAll('video'));
+        vids.forEach(function (v) {
+          v.addEventListener('play', function () {
+            vids.forEach(function (other) { if (other !== v) other.pause(); }); // pause() on an already-paused video is a harmless no-op
+          });
+        });
+      })();
     </script>
   </body>
 </html>
