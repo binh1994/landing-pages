@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://binh1994.github.io/landing-pages/sitemap.xml
