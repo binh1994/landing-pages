@@ -453,7 +453,7 @@ function trialState(){
 function msLeft(){ return account? (account.startedAt+TRIAL_MS-Date.now()) : 0; }
 function fmtLeft(ms){
   if(ms<=0) return 'Trial: ended';
-  var s=Math.floor(ms/1000), d=Math.floor(s/86400), h=Math.floor((s%86400)/3600), m=Math.floor((s%3600)/60);
+  var totalMin=Math.ceil(ms/60000), d=Math.floor(totalMin/1440), h=Math.floor((totalMin%1440)/60), m=totalMin%60;
   if(d>0) return 'Trial: '+d+' day'+(d===1?'':'s')+' '+h+' hour'+(h===1?'':'s')+' left';
   if(h>0) return 'Trial: '+h+' hour'+(h===1?'':'s')+' '+m+' min left';
   return 'Trial: '+m+' min left';
@@ -626,7 +626,7 @@ function renderAccount(){
   else{
     bar.classList.add('show'); document.body.style.paddingBottom='58px';
     if(st==='active'){ $('trialBarText').textContent=fmtLeft(msLeft()); $('trialBarLinks').innerHTML='<a href="#trial" style="font-weight:700;text-decoration:underline">Open the app</a>'; }
-    else{ $('trialBarText').textContent='Trial ended — subscribe to continue'; $('trialBarLinks').innerHTML='<a class="btn btn-amber btn-sm" href="'+PAYPAL+'" target="_blank" rel="noopener" style="color:#fff">Subscribe — $99/mo via PayPal</a>'; }
+    else{ $('countdownText').textContent='Trial: ended'; $('trialBarText').textContent='Trial ended — subscribe to continue'; $('trialBarLinks').innerHTML='<a class="btn btn-amber btn-sm" href="'+PAYPAL+'" target="_blank" rel="noopener" style="color:#fff">Subscribe — $99/mo via PayPal</a>'; }
   }
   applyLock();
 }
