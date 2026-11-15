@@ -203,6 +203,61 @@
   details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-top:12px}
   summary{padding:18px 20px;font-weight:700;cursor:pointer;min-height:44px}
   details p{margin:0;padding:0 20px 18px;color:var(--ink-2)}
+  /* Trial app */
+  .trial-note{background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius);padding:16px 18px;margin-top:22px;color:var(--ink);font-size:.97rem}
+  .trial-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px}
+  .trial-status{font-size:.9rem;color:var(--brand-2);font-weight:700}
+  .trial-grid{display:grid;gap:18px;margin-top:22px}
+  @media(min-width:880px){.trial-grid{grid-template-columns:1fr 1fr}}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow);min-width:0}
+  .panel h3{font-size:1.2rem;margin-bottom:6px}
+  .panel-sub{color:var(--ink-3);font-size:.92rem;margin:0}
+  .panel label{font-weight:700;font-size:.9rem;display:block;margin:14px 0 6px}
+  .panel input[type="text"],.panel input[type="number"],.panel select,.panel textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--surface);color:var(--ink)}
+  .panel textarea{min-height:84px;resize:vertical}
+  .field-row{display:grid;gap:0 12px}
+  @media(min-width:520px){.field-row{grid-template-columns:1fr 1fr}}
+  .span2{grid-column:1/-1}
+  .biz-summary{margin-top:14px;background:var(--surface-2);border-radius:10px;padding:12px 14px;font-size:.95rem}
+  .biz-summary b{font-family:"Archivo",sans-serif}
+  .draft-cards{display:grid;gap:14px;margin-top:16px}
+  @media(min-width:880px){.draft-cards{grid-template-columns:repeat(3,1fr)}}
+  .draft-card{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+  .draft-card .tone{font-family:"Archivo",sans-serif;font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:var(--brand)}
+  .draft-card p{margin:0;font-size:.95rem;flex:1;overflow-wrap:anywhere}
+  .draft-card .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .sample-list{display:grid;gap:8px;margin-top:10px}
+  .sample-item{text-align:left;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:10px 13px;cursor:pointer;font-size:.92rem;min-height:44px}
+  .sample-item:hover{border-color:var(--brand)}
+  .sample-item b{display:block;font-size:.85rem;font-family:"Archivo",sans-serif}
+  .calc-table{width:100%;border-collapse:collapse;margin-top:14px}
+  .calc-table th,.calc-table td{padding:10px 6px;border-bottom:1px solid var(--line);text-align:left;font-size:.95rem;vertical-align:top}
+  .calc-table tr:last-child td{border-bottom:none}
+  .calc-table td.num{font-family:"Archivo",sans-serif;font-weight:800;text-align:right;white-space:nowrap}
+  .panel .trow{padding:12px 0}
+  .cust-empty{color:var(--ink-3);font-size:.95rem;padding:12px 0;margin:0}
+  .cust-summary{display:flex;gap:16px;flex-wrap:wrap;font-size:.92rem;color:var(--ink-2);margin-top:12px}
+  .cust-summary b{color:var(--ink);font-family:"Archivo",sans-serif}
+  /* Trial account + redesign cleanup */
+  .hero .hero-grid{grid-template-columns:1fr;max-width:840px}
+  .trust-row{display:flex;flex-wrap:wrap;gap:8px 22px;list-style:none;margin:20px 0 0;padding:0;font-size:.93rem;font-weight:600;color:var(--ink-2)}
+  .trust-row li{padding-left:24px;position:relative}
+  .trust-row li::before{content:"✓";position:absolute;left:0;color:var(--brand-2);font-weight:900}
+  .trial-chip{font-size:.82rem;font-weight:800;background:var(--amber-soft);color:var(--amber-ink);padding:6px 12px;border-radius:999px;white-space:nowrap}
+  .account-card{background:var(--surface);border:2px solid var(--brand);border-radius:18px;padding:24px;box-shadow:var(--shadow);margin-top:26px}
+  .account-card h3{font-size:1.3rem;margin-bottom:6px}
+  .account-card label{font-weight:700;font-size:.9rem;display:block;margin:14px 0 6px}
+  .account-card input[type="text"],.account-card input[type="email"],.account-card input[type="password"]{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;background:var(--surface);color:var(--ink);min-height:44px}
+  .countdown{font-family:"Archivo",sans-serif;font-weight:900;font-size:1.5rem;margin:12px 0 0;color:var(--brand)}
+  .countdown.ended{color:var(--red)}
+  .reg-err{color:var(--red);font-weight:700;font-size:.92rem;margin:10px 0 0}
+  #tr-app{position:relative}
+  #tr-lock{position:absolute;inset:0;z-index:6;display:grid;place-items:start center;padding:48px 16px;background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(3px);border-radius:18px}
+  #tr-lock[hidden]{display:none}
+  .lock-card{background:var(--surface);border:2px solid var(--brand);border-radius:18px;box-shadow:var(--shadow);padding:28px;max-width:30rem;text-align:center}
+  .lock-card h3{font-size:1.4rem;margin-bottom:8px}
+  .lock-card p{color:var(--ink-2);margin:0 0 18px}
+  #tr-app input:disabled,#tr-app select:disabled,#tr-app textarea:disabled,#tr-app button:disabled{opacity:.55}
   /* Signup */
   .signup{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow);margin-top:30px}
   .signup form{display:grid;gap:14px}
@@ -222,12 +277,13 @@
   <div class="wrap topbar-in">
     <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true">★</span>ReviewTracker</a>
     <nav class="nav" aria-label="Main">
+      <a href="#trial">Free trial</a>
       <a href="#how">How it works</a>
-      <a href="#tracker">Tracker</a>
       <a href="#compare">Compare prices</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
+    <span class="trial-chip" id="tr-chip" hidden></span>
     <a class="btn btn-primary btn-small" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo</a>
   </div>
 </header>
@@ -248,50 +304,206 @@
         <p class="hero-note">One location or five — same price. No contract. Cancel anytime.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a>
-          <a class="btn btn-ghost" href="#reply-tool">Try the reply drafter ↓</a>
+          <a class="btn btn-ghost" href="#trial">Start the free trial ↓</a>
         </div>
-        <p class="hero-note">Prefer PayPal.me? Pay at <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">paypal.com/paypalme/RenewGuard</a></p>
+        <ul class="trust-row">
+          <li>3-day free trial</li>
+          <li>No card required</li>
+          <li>Cancel anytime</li>
+          <li>Secure checkout via PayPal</li>
+        </ul>
         <div class="stat-row">
           <div class="stat"><b>68%</b><span>of consumers refuse a business rated below 4 stars — BrightLocal 2026 Local Consumer Review Survey</span></div>
           <div class="stat"><b>111k+</b><span>US plumbing, heating &amp; A/C establishments alone (Census CBP 2023) — reviews decide who gets the call</span></div>
           <div class="stat"><b>$37</b><span>flat per month, vs. $75–$399/mo for the big review platforms below</span></div>
         </div>
       </div>
-
-      <!-- Reply drafter demo -->
-      <div class="demo-card" id="reply-tool">
-        <div class="demo-head">
-          <strong>Try it: reply drafter</strong>
-          <span class="stars" aria-hidden="true">★★★★★</span>
-        </div>
-        <div class="demo-body">
-          <label for="rv-name">Reviewer first name</label>
-          <input type="text" id="rv-name" value="Marcus" autocomplete="off" />
-          <label>Star rating</label>
-          <div class="seg" role="group" aria-label="Star rating" id="rv-stars">
-            <button type="button" data-stars="5" aria-pressed="true">5 ★</button>
-            <button type="button" data-stars="4" aria-pressed="false">4 ★</button>
-            <button type="button" data-stars="3" aria-pressed="false">3 ★</button>
-            <button type="button" data-stars="2" aria-pressed="false">2 ★</button>
-            <button type="button" data-stars="1" aria-pressed="false">1 ★</button>
-          </div>
-          <label for="rv-job">What was the job?</label>
-          <input type="text" id="rv-job" value="same-day AC repair" autocomplete="off" />
-          <label for="rv-text">Paste the review (optional)</label>
-          <textarea id="rv-text">Tech showed up on time, fixed the AC in an hour and the price matched the quote. Will call again.</textarea>
-          <div class="draft-box" aria-live="polite">
-            <p id="rv-draft"></p>
-          </div>
-          <div class="demo-actions">
-            <button type="button" class="btn btn-primary btn-small" id="rv-new">New draft</button>
-            <button type="button" class="btn btn-ghost btn-small" id="rv-copy">Copy reply</button>
-            <span class="copy-ok" id="rv-copied" hidden>Copied ✓</span>
-          </div>
-          <p class="hero-note">This is the real tool, running right here: pick a rating, get a reply in a working owner's voice — edit two words and post it.</p>
-        </div>
-      </div>
     </div>
   </div>
+
+  <!-- FREE TRIAL APP -->
+  <section id="trial">
+    <div class="wrap">
+      <p class="kicker">Free trial — runs right here</p>
+      <h2>Try it free — 3-day trial</h2>
+      <p class="lead">This is the real ReviewTracker workflow, working on this page — the whole trial app below is visible to everyone, so you can look through it before you start. Editing unlocks after you start the trial: register just below with your name, email and a password to add your business, paste a real review and get reply drafts in three tones, track who you've asked for a review, and run the star-rating math. Your trial account and everything you type stay in this browser only (localStorage) — nothing is uploaded.</p>
+      <div class="account-card" id="tr-account">
+        <div id="tr-view-start">
+          <h3>Start your 3-day free trial</h3>
+          <p class="panel-sub">Two steps: <strong>1)</strong> create your trial account, <strong>2)</strong> use the full app below — reply drafts, ask tracker and star calculator — free for 3 days. No card required.</p>
+          <p style="margin-top:14px"><button type="button" class="btn btn-primary" id="tr-start-btn">Start 3-day free trial</button></p>
+          <form id="tr-reg-form" hidden>
+            <div class="field-row">
+              <div>
+                <label for="tr-acc-name">Your name</label>
+                <input type="text" id="tr-acc-name" autocomplete="name" placeholder="e.g. Dana Ruiz" />
+              </div>
+              <div>
+                <label for="tr-acc-email">Email</label>
+                <input type="email" id="tr-acc-email" autocomplete="email" placeholder="you@yourshop.com" />
+              </div>
+            </div>
+            <label for="tr-acc-pass">Password</label>
+            <input type="password" id="tr-acc-pass" autocomplete="new-password" placeholder="Any password — it never leaves this browser" />
+            <p class="panel-sub" style="margin-top:10px"><strong>Trial account is stored in this browser only</strong> — no server, no account anywhere else, nothing is sent to us. The 3-day clock starts when you create it.</p>
+            <p class="reg-err" id="tr-reg-err" hidden></p>
+            <p style="margin-top:12px"><button type="submit" class="btn btn-primary">Create trial account &amp; start →</button></p>
+          </form>
+        </div>
+        <div id="tr-view-active" hidden>
+          <h3>Trial active</h3>
+          <p class="panel-sub">Signed in as <b id="tr-acc-who"></b>. Everything below is unlocked.</p>
+          <p class="countdown" id="tr-countdown">Trial: —</p>
+          <p style="margin-top:10px"><button type="button" class="btn btn-ghost btn-small" data-logout>Log out / Clear trial account</button></p>
+        </div>
+        <div id="tr-view-expired" hidden>
+          <h3>Trial ended — subscribe to continue</h3>
+          <p class="panel-sub">Your 3 days are up and the app below is locked. Your trial data is still there, read-only — subscribe to pick up right where you left off.</p>
+          <p class="countdown ended">Trial: ended</p>
+          <p style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a>
+            <button type="button" class="btn btn-ghost" data-logout>Log out / Clear trial account</button>
+          </p>
+        </div>
+      </div>
+      <div class="trial-note" role="note"><strong>Please read:</strong> Trial replies are drafts only — nothing is posted to Google; review monitoring and asking are set up after you subscribe.</div>
+      <div id="tr-app">
+        <div id="tr-lock" hidden>
+          <div class="lock-card">
+            <h3>Trial ended — subscribe to continue</h3>
+            <p>Your 3-day free trial is over. Everything below stays visible, read-only. Subscribe to unlock editing and adding again.</p>
+            <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a>
+          </div>
+        </div>
+      <div class="trial-controls">
+        <button type="button" class="btn btn-primary btn-small" id="tr-sample">Load sample data</button>
+        <button type="button" class="btn btn-ghost btn-small" id="tr-clear">Clear trial data</button>
+        <span class="trial-status" id="tr-status" aria-live="polite"></span>
+      </div>
+
+      <div class="trial-grid">
+        <!-- Business -->
+        <div class="panel">
+          <h3>1 · Your business</h3>
+          <p class="panel-sub">Your current Google numbers. The calculator below uses these, and the reply drafts sign off with your shop's name.</p>
+          <label for="tr-biz-name">Business name</label>
+          <input type="text" id="tr-biz-name" placeholder="e.g. Demo Heating &amp; Air" autocomplete="off" />
+          <div class="field-row">
+            <div>
+              <label for="tr-biz-rating">Current star rating</label>
+              <input type="number" id="tr-biz-rating" min="1" max="5" step="0.1" placeholder="4.3" inputmode="decimal" />
+            </div>
+            <div>
+              <label for="tr-biz-count">Review count</label>
+              <input type="number" id="tr-biz-count" min="0" step="1" placeholder="37" inputmode="numeric" />
+            </div>
+          </div>
+          <p class="biz-summary" id="tr-biz-summary">Enter your rating and review count to see where you stand.</p>
+        </div>
+
+        <!-- Star calculator -->
+        <div class="panel">
+          <h3>2 · Star-rating calculator</h3>
+          <p class="panel-sub">How many new 5-star reviews you need to reach each target — assuming no new lower reviews land in the meantime.</p>
+          <div class="field-row">
+            <div>
+              <label for="tr-calc-rating">Current rating</label>
+              <input type="number" id="tr-calc-rating" min="1" max="5" step="0.1" placeholder="4.3" inputmode="decimal" />
+            </div>
+            <div>
+              <label for="tr-calc-count">Review count</label>
+              <input type="number" id="tr-calc-count" min="0" step="1" placeholder="37" inputmode="numeric" />
+            </div>
+          </div>
+          <table class="calc-table" aria-label="Five-star reviews needed per target rating">
+            <thead><tr><th scope="col">Target</th><th scope="col" style="text-align:right">5★ reviews needed</th></tr></thead>
+            <tbody>
+              <tr><td>Reach <b>4.0</b></td><td class="num" id="tr-need-40">—</td></tr>
+              <tr><td>Reach <b>4.5</b></td><td class="num" id="tr-need-45">—</td></tr>
+              <tr><td>Reach <b>5.0</b></td><td class="num" id="tr-need-50">—</td></tr>
+            </tbody>
+          </table>
+          <p class="panel-sub" id="tr-calc-note" style="margin-top:10px"></p>
+        </div>
+
+        <!-- Reply drafts -->
+        <div class="panel span2">
+          <h3>3 · Reply drafts in 3 tones</h3>
+          <p class="panel-sub">Paste a real review, hit generate, and copy the draft you like. Edit two words and post it yourself on Google — the trial never posts anything.</p>
+          <div id="tr-samples-wrap" hidden>
+            <label>Sample reviews — tap one to load it</label>
+            <div class="sample-list" id="tr-samples"></div>
+          </div>
+          <div class="field-row">
+            <div>
+              <label for="tr-rv-name">Reviewer first name</label>
+              <input type="text" id="tr-rv-name" placeholder="e.g. Marcus" autocomplete="off" />
+            </div>
+            <div>
+              <label for="tr-rv-stars">Review star rating</label>
+              <select id="tr-rv-stars">
+                <option value="5">5 ★</option>
+                <option value="4">4 ★</option>
+                <option value="3">3 ★</option>
+                <option value="2">2 ★</option>
+                <option value="1">1 ★</option>
+              </select>
+            </div>
+          </div>
+          <label for="tr-rv-text">Paste the review</label>
+          <textarea id="tr-rv-text" placeholder="Paste a review from your Google profile here…"></textarea>
+          <div class="demo-actions">
+            <button type="button" class="btn btn-primary btn-small" id="tr-generate">Generate 3 reply drafts</button>
+            <span class="copy-ok" id="tr-gen-note" hidden>Drafts ready — copy the one you like ↓</span>
+          </div>
+          <div class="draft-cards">
+            <div class="draft-card">
+              <span class="tone">Friendly</span>
+              <p id="tr-draft-friendly">Your friendly draft will appear here.</p>
+              <div class="row"><button type="button" class="mini-btn" data-copy="tr-draft-friendly">Copy</button><span class="copy-ok" hidden>Copied ✓</span></div>
+            </div>
+            <div class="draft-card">
+              <span class="tone">Professional</span>
+              <p id="tr-draft-professional">Your professional draft will appear here.</p>
+              <div class="row"><button type="button" class="mini-btn" data-copy="tr-draft-professional">Copy</button><span class="copy-ok" hidden>Copied ✓</span></div>
+            </div>
+            <div class="draft-card">
+              <span class="tone">Apologetic</span>
+              <p id="tr-draft-apologetic">Your apologetic draft will appear here.</p>
+              <div class="row"><button type="button" class="mini-btn" data-copy="tr-draft-apologetic">Copy</button><span class="copy-ok" hidden>Copied ✓</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ask tracker -->
+        <div class="panel span2">
+          <h3>4 · Ask-for-review tracker</h3>
+          <p class="panel-sub">Add customers as jobs finish, mark them asked, then mark reviewed when the review lands. Saved in this browser only.</p>
+          <div class="field-row">
+            <div>
+              <label for="tr-cust-name">Customer name</label>
+              <input type="text" id="tr-cust-name" placeholder="e.g. Garcia" autocomplete="off" />
+            </div>
+            <div>
+              <label for="tr-cust-job">Job (optional)</label>
+              <input type="text" id="tr-cust-job" placeholder="e.g. Water heater install" autocomplete="off" />
+            </div>
+          </div>
+          <div class="demo-actions">
+            <button type="button" class="btn btn-primary btn-small" id="tr-cust-add">Add customer</button>
+          </div>
+          <div id="tr-cust-list"></div>
+          <div class="cust-summary">
+            <span><b id="tr-c-asked">0</b> asked</span>
+            <span><b id="tr-c-reviewed">0</b> reviewed</span>
+            <span><b id="tr-c-waiting">0</b> still to ask</span>
+          </div>
+        </div>
+      </div>
+      </div>
+      <p class="fineprint">Trial data lives in this browser's localStorage and nowhere else. Clearing it removes everything you entered here. Subscribing ($37/mo, PayPal button above) is what sets up ongoing review monitoring and asking for your shop.</p>
+    </div>
+  </section>
 
   <!-- HOW IT WORKS -->
   <section id="how">
@@ -314,56 +526,6 @@
           <div class="step-num">3</div>
           <h3>Reply in your voice</h3>
           <p>When a review lands, paste it into the drafter and get a reply written the way a shop owner actually talks — specific, grateful, no corporate filler. Approve, tweak, post.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRACKER DEMO -->
-  <section id="tracker" style="background:var(--bg-2)">
-    <div class="wrap">
-      <p class="kicker">The tracker</p>
-      <h2>Know exactly who you asked — and who went quiet</h2>
-      <p class="lead">Most shops ask once, forget, and never follow up. This is the screen that fixes that. Try it — add a customer, send the ask, mark the review when it comes in.</p>
-
-      <div class="tracker" aria-label="Interactive tracker demo">
-        <div class="tracker-head">
-          <strong style="font-family:'Archivo',sans-serif">This week's jobs — Demo Heating &amp; Air</strong>
-          <div class="tracker-summary">
-            <span><b id="t-asked">0</b> asked</span>
-            <span><b id="t-got">0</b> reviews in</span>
-            <span><b id="t-rate">—</b> response rate</span>
-          </div>
-        </div>
-        <div id="t-rows"></div>
-        <div class="add-row">
-          <input type="text" id="t-new" placeholder="Add a customer — e.g. Nguyen — furnace tune-up" aria-label="New customer and job" />
-          <button type="button" class="btn btn-primary btn-small" id="t-add">Add job</button>
-        </div>
-      </div>
-      <p class="fineprint">Demo data only, shown to illustrate the workflow — it resets when you reload and nothing is stored or sent anywhere.</p>
-    </div>
-  </section>
-
-  <!-- CALCULATOR -->
-  <section id="calculator">
-    <div class="wrap">
-      <p class="kicker">Check your rating</p>
-      <h2>Are you above the 4-star line?</h2>
-      <p class="lead">BrightLocal's 2026 survey found 68% of consumers refuse a business rated below 4 stars. Slide in your review mix and see where you stand — and how many 5-star reviews it takes to climb back.</p>
-      <div class="calc-grid">
-        <div class="calc-card">
-          <div class="calc-row"><label for="c5">5 ★</label><input type="range" id="c5" min="0" max="100" value="22" /><output id="o5">22</output></div>
-          <div class="calc-row"><label for="c4">4 ★</label><input type="range" id="c4" min="0" max="100" value="6" /><output id="o4">6</output></div>
-          <div class="calc-row"><label for="c3">3 ★</label><input type="range" id="c3" min="0" max="100" value="3" /><output id="o3">3</output></div>
-          <div class="calc-row"><label for="c2">2 ★</label><input type="range" id="c2" min="0" max="100" value="2" /><output id="o2">2</output></div>
-          <div class="calc-row"><label for="c1">1 ★</label><input type="range" id="c1" min="0" max="100" value="4" /><output id="o1">4</output></div>
-        </div>
-        <div class="calc-card calc-result">
-          <div class="stars" style="font-size:1.4rem" aria-hidden="true">★★★★★</div>
-          <div class="calc-avg" id="calc-avg">4.2</div>
-          <p class="calc-verdict" id="calc-verdict"></p>
-          <p class="calc-note" id="calc-need"></p>
         </div>
       </div>
     </div>
@@ -431,7 +593,7 @@
         <div>
           <h3>ReviewTracker for Trades</h3>
           <div class="p-big">$37<span style="font-size:1.2rem;font-weight:700">/mo</span></div>
-          <p style="margin:0;opacity:.9">14-day free trial · No card to start · No contract · Cancel anytime<br />NiceJob Starter is $75/mo. Same core job, about half the money.</p>
+          <p style="margin:0;opacity:.9">3-day free trial · No card to start · No contract · Cancel anytime<br />NiceJob Starter is $75/mo. Same core job, about half the money.</p>
           <p style="margin-top:20px"><a class="btn" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a></p>
           <p style="margin-top:14px;font-size:.95rem;opacity:.95">Or pay via PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline">https://www.paypal.com/paypalme/RenewGuard</a></p>
         </div>
@@ -479,52 +641,22 @@
       </details>
       <details>
         <summary>Can I try it before paying?</summary>
-        <p>Yes — a 14-day free trial, plus a free 1-page review health check (your current rating, review count, and the three fastest fixes) with no card required. Use the form below.</p>
+        <p>Yes — a 3-day free trial, plus a free 1-page review health check (your current rating, review count, and the three fastest fixes) with no card required. Start the trial in the trial section above — the app is visible to everyone, and registering with your name, email and a password unlocks editing — or subscribe anytime with the PayPal button.</p>
       </details>
     </div>
   </section>
 
-  <!-- SIGNUP -->
+  <!-- GET STARTED -->
   <section id="signup" style="background:var(--bg-2)">
     <div class="wrap">
       <p class="kicker">Get started</p>
-      <h2>Start your free trial — or get the free health check first</h2>
-      <p class="lead">Fill this in and we'll open your trial request in your email app, addressed to us with everything pre-written. No card, no obligation.</p>
-      <div class="signup">
-        <form id="signup-form">
-          <div>
-            <label for="s-biz">Business name</label>
-            <input type="text" id="s-biz" placeholder="e.g. Demo Heating &amp; Air" required />
-          </div>
-          <div>
-            <label for="s-name">Your name</label>
-            <input type="text" id="s-name" placeholder="e.g. Dana Ruiz" required />
-          </div>
-          <div>
-            <label for="s-trade">Trade</label>
-            <select id="s-trade">
-              <option>HVAC</option><option>Plumbing</option><option>Electrical</option>
-              <option>Garage doors</option><option>Roofing</option><option>Other home service</option>
-            </select>
-          </div>
-          <div>
-            <label for="s-city">City &amp; state</label>
-            <input type="text" id="s-city" placeholder="e.g. Houston, TX" />
-          </div>
-          <div class="full">
-            <label for="s-want">What do you want first?</label>
-            <select id="s-want">
-              <option>Start my 14-day free trial ($37/mo after, cancel anytime)</option>
-              <option>Free 1-page review health check first</option>
-              <option>Both — health check, then the trial</option>
-            </select>
-          </div>
-          <div class="full">
-            <button type="submit" class="btn btn-primary" style="width:100%">Send my request by email →</button>
-            <p class="hero-note" style="margin-top:10px">This opens your email app with the request pre-written — you review it and press send. Nothing is submitted silently, and we reply within one business day.</p>
-          </div>
-        </form>
+      <h2>Start your 3-day free trial — or subscribe now</h2>
+      <p class="lead">Start the free trial by registering a trial account in the trial section above — the app is visible to everyone and editing unlocks as soon as you register — or skip the trial and subscribe now. No card is required for the trial.</p>
+      <div class="hero-ctas" style="margin-top:24px">
+        <a class="btn btn-primary" href="#trial">Start the 3-day free trial ↑</a>
+        <a class="btn btn-ghost" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8" target="_blank" rel="noopener">Subscribe — $37/mo via PayPal</a>
       </div>
+      <p class="hero-note">Trial accounts are stored in this browser only. After the 3 days, the app locks read-only until you subscribe — $37/mo, no contract, cancel anytime.</p>
     </div>
   </section>
 
@@ -547,177 +679,334 @@
 <script>
 (function(){
   "use strict";
-  /* ---------- Reply drafter ---------- */
-  var stars = 5, variant = 0;
-  var nameEl = document.getElementById('rv-name');
-  var jobEl = document.getElementById('rv-job');
-  var textEl = document.getElementById('rv-text');
-  var draftEl = document.getElementById('rv-draft');
-  var copiedEl = document.getElementById('rv-copied');
-  var starBtns = document.querySelectorAll('#rv-stars button');
+  var KEY = 'rtTrialV1';
+  var TRIAL_MS = 3 * 24 * 60 * 60 * 1000;
+  var PAYPAL = 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XZD5Q68DNMGD8';
 
-  var drafts = {
-    5: [
-      "Thanks so much, {name} — really appreciate you saying that. Glad we could get your {job} sorted and the price matched what we quoted. We're here whenever you need us. — The crew",
-      "{name}, thank you! {job} is exactly the kind of call we want to get right — on time, fixed properly, no surprises on the bill. Thanks for trusting us with your home.",
-      "Appreciate the kind words, {name}. We'll pass this on to the tech who handled your {job} — it'll make his day. Thanks for choosing a local shop."
-    ],
-    4: [
-      "Thanks, {name} — glad the {job} went well overall. If there's one thing we could have done better, we'd genuinely like to hear it. Call us anytime.",
-      "Appreciate the review, {name}. Happy you're pleased with the {job}. We're always working on the small stuff, so thanks for the honest feedback."
-    ],
-    3: [
-      "Thanks for the honest feedback, {name}. Sounds like the {job} itself was fine but we didn't fully earn your trust — that's on us. If you'll give us another shot, we'll make it right.",
-      "{name}, we appreciate you telling us straight. A 3-star experience isn't what we aim for. The owner reads every one of these — thank you for helping us do better."
-    ],
-    2: [
-      "We're sorry, {name} — that's not the experience we want anyone to have with a {job}. The owner would like to hear what happened and make it right. Please call the shop and ask for the owner directly.",
-      "{name}, thank you for saying something instead of just staying frustrated. We dropped the ball here. We'd like the chance to fix it — please reach out and we'll take care of it."
-    ],
-    1: [
-      "{name}, we're sorry — full stop. Nobody should come away from a {job} feeling like this. The owner is reviewing your visit today and will reach out personally. If we don't connect, please call the shop and ask for the owner by name.",
-      "We hear you, {name}, and we apologise. This isn't the standard we hold ourselves to. We'd rather fix this than argue about it — the owner will be in touch today."
-    ]
-  };
-  function fill(t){
-    var name = (nameEl.value || 'friend').trim() || 'friend';
-    var job = (jobEl.value || 'service call').trim() || 'service call';
-    return t.replace(/\{name\}/g, name).replace(/\{job\}/g, job);
+  function $(id){ return document.getElementById(id); }
+  function load(){
+    try { var raw = localStorage.getItem(KEY); if (raw) return JSON.parse(raw); } catch(e) {}
+    return null;
   }
-  function renderDraft(){
-    var list = drafts[stars];
-    draftEl.textContent = fill(list[variant % list.length]);
-    copiedEl.hidden = true;
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
   }
-  starBtns.forEach(function(b){
+  function wipe(){
+    try { localStorage.removeItem(KEY); } catch(e) {}
+  }
+
+  var state = load() || { account: null, biz: { name:'', rating:'', count:'' }, calc: { rating:'', count:'' }, customers: [], review: { name:'', stars:'5', text:'' } };
+  if (!state.customers) state.customers = [];
+  if (!state.biz) state.biz = { name:'', rating:'', count:'' };
+  if (!state.calc) state.calc = { rating:'', count:'' };
+  if (!state.review) state.review = { name:'', stars:'5', text:'' };
+
+  var statusEl = $('tr-status');
+  function setStatus(msg){ if (statusEl) statusEl.textContent = msg || ''; }
+
+  /* ---------- Account / trial clock ---------- */
+  function trialState(){
+    if (!state.account || !state.account.start) return 'none';
+    return (Date.now() - state.account.start < TRIAL_MS) ? 'active' : 'expired';
+  }
+  function fmtLeft(){
+    var left = state.account.start + TRIAL_MS - Date.now();
+    if (left <= 0) return 'Trial: ended';
+    var s = Math.floor(left / 1000);
+    var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+    if (d > 0) return 'Trial: ' + d + (d === 1 ? ' day ' : ' days ') + h + (h === 1 ? ' hour' : ' hours') + ' left';
+    if (h > 0) return 'Trial: ' + h + (h === 1 ? ' hour ' : ' hours ') + m + ' min left';
+    return 'Trial: ' + Math.max(m, 0) + ' min left';
+  }
+  function setAppEnabled(on){
+    var app = $('tr-app');
+    if (!app) return;
+    app.querySelectorAll('input, select, textarea, button').forEach(function(el){ el.disabled = !on; });
+    if (!on) { renderCustomers(); }
+  }
+  function renderAccount(){
+    var ts = trialState();
+    $('tr-view-start').hidden = ts !== 'none';
+    $('tr-view-active').hidden = ts !== 'active';
+    $('tr-view-expired').hidden = ts !== 'expired';
+    $('tr-lock').hidden = ts !== 'expired';
+    var chip = $('tr-chip');
+    if (ts === 'none') { chip.hidden = true; }
+    else {
+      chip.hidden = false;
+      chip.textContent = ts === 'active' ? fmtLeft() : 'Trial: ended';
+    }
+    if (ts === 'active') {
+      $('tr-acc-who').textContent = state.account.name + ' · ' + state.account.email;
+      $('tr-countdown').textContent = fmtLeft();
+    }
+    setAppEnabled(ts === 'active');
+  }
+  $('tr-start-btn').addEventListener('click', function(){
+    $('tr-reg-form').hidden = false;
+    $('tr-start-btn').hidden = true;
+    $('tr-acc-name').focus();
+  });
+  $('tr-reg-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = $('tr-acc-name').value.trim();
+    var email = $('tr-acc-email').value.trim();
+    var pass = $('tr-acc-pass').value;
+    var err = $('tr-reg-err');
+    if (!name || !email || email.indexOf('@') < 1 || !pass) {
+      err.textContent = 'Please fill in your name, a valid email, and a password.';
+      err.hidden = false;
+      return;
+    }
+    err.hidden = true;
+    state.account = { name: name, email: email, pass: pass, start: Date.now() };
+    save();
+    renderAccount();
+    setStatus('Trial started — everything below is unlocked for 3 days.');
+  });
+  document.querySelectorAll('[data-logout]').forEach(function(b){
     b.addEventListener('click', function(){
-      stars = parseInt(b.getAttribute('data-stars'), 10);
-      variant = 0;
-      starBtns.forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
-      renderDraft();
+      wipe();
+      state = { account: null, biz: { name:'', rating:'', count:'' }, calc: { rating:'', count:'' }, customers: [], review: { name:'', stars:'5', text:'' } };
+      $('tr-biz-name').value = ''; $('tr-biz-rating').value = ''; $('tr-biz-count').value = '';
+      $('tr-calc-rating').value = ''; $('tr-calc-count').value = '';
+      $('tr-rv-name').value = ''; $('tr-rv-stars').value = '5'; $('tr-rv-text').value = '';
+      $('tr-samples-wrap').hidden = true;
+      $('tr-reg-form').hidden = true;
+      $('tr-start-btn').hidden = false;
+      $('tr-acc-name').value = ''; $('tr-acc-email').value = ''; $('tr-acc-pass').value = '';
+      ['tr-draft-friendly','tr-draft-professional','tr-draft-apologetic'].forEach(function(id){ $(id).textContent = 'Your draft will appear here.'; });
+      renderBiz(); renderCalc(); renderCustomers(); renderAccount();
+      setStatus('Trial account and data cleared from this browser.');
     });
   });
-  [nameEl, jobEl, textEl].forEach(function(el){ el.addEventListener('input', renderDraft); });
-  document.getElementById('rv-new').addEventListener('click', function(){ variant++; renderDraft(); });
-  document.getElementById('rv-copy').addEventListener('click', function(){
-    var t = draftEl.textContent;
-    function done(){ copiedEl.hidden = false; }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(t).then(done, done);
-    } else {
-      var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta);
-      ta.select(); try { document.execCommand('copy'); } catch(e) {}
-      document.body.removeChild(ta); done();
+  setInterval(function(){
+    var ts = trialState();
+    if (ts === 'active') {
+      $('tr-countdown').textContent = fmtLeft();
+      var chip = $('tr-chip'); chip.hidden = false; chip.textContent = fmtLeft();
+    } else if (ts === 'expired' && $('tr-view-expired').hidden) {
+      renderAccount();
     }
-  });
-  renderDraft();
+  }, 30000);
 
-  /* ---------- Tracker demo ---------- */
-  var jobs = [
-    { who: 'Garcia', job: 'Water heater install', status: 'got', stars: 5 },
-    { who: 'Thompson', job: 'AC capacitor repair', status: 'asked', stars: 0 },
-    { who: 'Nguyen', job: 'Furnace tune-up', status: 'none', stars: 0 },
-    { who: 'Brooks', job: 'Drain clearing', status: 'got', stars: 5 }
-  ];
-  var rowsEl = document.getElementById('t-rows');
-  function badge(j){
-    if (j.status === 'got') return '<span class="badge badge-done">★ ' + j.stars + ' review in</span>';
-    if (j.status === 'asked') return '<span class="badge badge-wait">Asked — waiting</span>';
+  /* ---------- Business + calculator ---------- */
+  function num(v){ var n = parseFloat(v); return isNaN(n) ? null : n; }
+  function renderBiz(){
+    var r = num(state.biz.rating), c = num(state.biz.count);
+    var el = $('tr-biz-summary');
+    if (r === null || c === null || c < 0) { el.textContent = 'Enter your rating and review count to see where you stand.'; return; }
+    var stars = Math.round(r * c);
+    var line = (state.biz.name ? state.biz.name : 'Your business') + ': ' + r.toFixed(1) + '★ across ' + c + ' reviews (≈ ' + stars + ' total stars). ';
+    line += r >= 4.0 ? 'You are above the 4-star line customers filter on — now it is about volume.' : 'You are below the 4.0 line that 68% of consumers filter out (BrightLocal 2026) — the calculator shows the climb.';
+    el.textContent = line;
+  }
+  function needed(rating, count, target){
+    if (rating >= target) return 0;
+    if (target >= 5) return null;
+    var n = Math.ceil(((target * count) - (rating * count)) / (5 - target) - 1e-9);
+    return Math.max(n, 0);
+  }
+  function fmtNeed(n){
+    if (n === null) return 'Not reachable*';
+    return n === 0 ? 'Already there ✓' : String(n);
+  }
+  function renderCalc(){
+    var r = num(state.calc.rating), c = num(state.calc.count);
+    var note = $('tr-calc-note');
+    if (r === null || c === null || r < 0 || r > 5 || c < 0) {
+      $('tr-need-40').textContent = '—'; $('tr-need-45').textContent = '—'; $('tr-need-50').textContent = '—';
+      note.textContent = '';
+      return;
+    }
+    $('tr-need-40').textContent = fmtNeed(needed(r, c, 4.0));
+    $('tr-need-45').textContent = fmtNeed(needed(r, c, 4.5));
+    $('tr-need-50').textContent = fmtNeed(needed(r, c, 5.0));
+    note.textContent = (r < 5 && c > 0) ? '* A perfect 5.0 average needs every review to be 5 stars — one lower review makes it mathematically unreachable, which is why shops aim for 4.5+ and volume instead.' : '';
+  }
+  function bindBiz(id, key, alsoCalc){
+    $(id).addEventListener('input', function(){
+      state.biz[key] = this.value;
+      if (alsoCalc) { state.calc[key] = this.value; $(alsoCalc).value = this.value; renderCalc(); }
+      save(); renderBiz();
+    });
+  }
+  bindBiz('tr-biz-name', 'name', null);
+  bindBiz('tr-biz-rating', 'rating', 'tr-calc-rating');
+  bindBiz('tr-biz-count', 'count', 'tr-calc-count');
+  $('tr-calc-rating').addEventListener('input', function(){ state.calc.rating = this.value; save(); renderCalc(); });
+  $('tr-calc-count').addEventListener('input', function(){ state.calc.count = this.value; save(); renderCalc(); });
+
+  /* ---------- Reply drafts (3 tones) ---------- */
+  var templates = {
+    friendly: {
+      hi: "Hi {name}! Thank you so much for the kind words — the whole crew at {biz} really appreciates it. Showing up on time and doing the job right is what we aim for on every call, so it means a lot to hear it landed. We're here whenever you need us!",
+      lo: "Hi {name}, thanks for telling us straight — we'd rather hear it than not. We're sorry this visit wasn't up to scratch, and that's on us at {biz}. Please call the shop and ask for the owner; we'd like the chance to make it right."
+    },
+    professional: {
+      hi: "Thank you for your review, {name}. We're glad the service met your expectations. At {biz} we read every review and use the feedback to keep our standards where they should be. We appreciate your business and your recommendation.",
+      lo: "Thank you for your feedback, {name}. Your experience fell short of the standard we set at {biz}, and we take that seriously. A manager will review what happened on your visit, and we would welcome the opportunity to put it right — please contact the shop and ask for the owner."
+    },
+    apologetic: {
+      hi: "{name}, thank you — and honestly, sorry if anything about the visit was less than smooth. We aim for five stars every time at {biz}, and reviews like yours tell us where we're getting it right and where we still have work to do.",
+      lo: "{name}, we're sorry — full stop. You deserved better from {biz}, and we won't make excuses. The owner will look into your visit today. If you'll give us the chance, we'd like to fix this properly; please call the shop and ask for the owner by name."
+    }
+  };
+  function generateDrafts(){
+    var name = (state.review.name || '').trim() || 'there';
+    var biz = (state.biz.name || '').trim() || 'our shop';
+    var hi = parseInt(state.review.stars, 10) >= 4;
+    ['friendly','professional','apologetic'].forEach(function(tone){
+      var t = templates[tone][hi ? 'hi' : 'lo'];
+      $('tr-draft-' + tone).textContent = t.replace(/\{name\}/g, name).replace(/\{biz\}/g, biz);
+    });
+    $('tr-gen-note').hidden = false;
+  }
+  $('tr-rv-name').addEventListener('input', function(){ state.review.name = this.value; save(); });
+  $('tr-rv-stars').addEventListener('change', function(){ state.review.stars = this.value; save(); });
+  $('tr-rv-text').addEventListener('input', function(){ state.review.text = this.value; save(); });
+  $('tr-generate').addEventListener('click', generateDrafts);
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var t = $(b.getAttribute('data-copy')).textContent;
+      var ok = b.parentElement.querySelector('.copy-ok');
+      function done(){ if (ok) { ok.hidden = false; setTimeout(function(){ ok.hidden = true; }, 2000); } }
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t).then(done, done); }
+      else {
+        var ta = document.createElement('textarea'); ta.value = t; document.body.appendChild(ta);
+        ta.select(); try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta); done();
+      }
+    });
+  });
+
+  /* ---------- Ask-for-review tracker ---------- */
+  function badgeFor(c){
+    if (c.status === 'reviewed') return '<span class="badge badge-done">Reviewed ✓</span>';
+    if (c.status === 'asked') return '<span class="badge badge-wait">Asked — waiting</span>';
     return '<span class="badge badge-none">Not asked yet</span>';
   }
-  function renderTracker(){
-    rowsEl.innerHTML = '';
-    var asked = 0, got = 0;
-    jobs.forEach(function(j, i){
-      if (j.status !== 'none') asked++;
-      if (j.status === 'got') got++;
+  function renderCustomers(){
+    var list = $('tr-cust-list');
+    var locked = trialState() !== 'active';
+    list.innerHTML = '';
+    if (!state.customers.length) {
+      var p = document.createElement('p');
+      p.className = 'cust-empty';
+      p.textContent = 'No customers yet — add your first finished job above, or load the sample data.';
+      list.appendChild(p);
+    }
+    var asked = 0, reviewed = 0;
+    state.customers.forEach(function(c, i){
+      if (c.status !== 'none') asked++;
+      if (c.status === 'reviewed') reviewed++;
       var row = document.createElement('div');
       row.className = 'trow';
-      var askBtn = '<button type="button" class="mini-btn" data-act="ask" data-i="' + i + '"' + (j.status !== 'none' ? ' disabled' : '') + '>Send ask</button>';
-      var gotBtn = '<button type="button" class="mini-btn" data-act="got" data-i="' + i + '"' + (j.status !== 'asked' ? ' disabled' : '') + '>Mark 5★ received</button>';
-      row.innerHTML = '<div class="who"><b></b><span></span></div><div>' + badge(j) + '</div><div class="acts">' + askBtn + gotBtn + '</div>';
-      row.querySelector('.who b').textContent = j.who;
-      row.querySelector('.who span').textContent = j.job;
-      rowsEl.appendChild(row);
+      var dis = locked ? ' disabled' : '';
+      row.innerHTML = '<div class="who"><b></b><span></span></div><div>' + badgeFor(c) + '</div>' +
+        '<div class="acts">' +
+        '<button type="button" class="mini-btn" data-cact="ask" data-i="' + i + '"' + (c.status !== 'none' || locked ? ' disabled' : '') + '>Mark asked</button>' +
+        '<button type="button" class="mini-btn" data-cact="reviewed" data-i="' + i + '"' + (c.status !== 'asked' || locked ? ' disabled' : '') + '>Mark reviewed</button>' +
+        '<button type="button" class="mini-btn" data-cact="remove" data-i="' + i + '"' + dis + '>Remove</button>' +
+        '</div>';
+      row.querySelector('.who b').textContent = c.name;
+      row.querySelector('.who span').textContent = c.job || 'Service call';
+      list.appendChild(row);
     });
-    document.getElementById('t-asked').textContent = asked;
-    document.getElementById('t-got').textContent = got;
-    document.getElementById('t-rate').textContent = asked ? Math.round(got / asked * 100) + '%' : '—';
-    rowsEl.querySelectorAll('button').forEach(function(b){
+    $('tr-c-asked').textContent = asked;
+    $('tr-c-reviewed').textContent = reviewed;
+    $('tr-c-waiting').textContent = state.customers.length - asked;
+    list.querySelectorAll('button[data-cact]').forEach(function(b){
       b.addEventListener('click', function(){
         var i = parseInt(b.getAttribute('data-i'), 10);
-        if (b.getAttribute('data-act') === 'ask') jobs[i].status = 'asked';
-        if (b.getAttribute('data-act') === 'got') { jobs[i].status = 'got'; jobs[i].stars = 5; }
-        renderTracker();
+        var act = b.getAttribute('data-cact');
+        if (act === 'ask') state.customers[i].status = 'asked';
+        if (act === 'reviewed') state.customers[i].status = 'reviewed';
+        if (act === 'remove') state.customers.splice(i, 1);
+        save(); renderCustomers();
       });
     });
   }
-  document.getElementById('t-add').addEventListener('click', function(){
-    var v = document.getElementById('t-new').value.trim();
-    if (!v) return;
-    var parts = v.split('—');
-    if (parts.length < 2) parts = v.split('-');
-    jobs.push({ who: (parts[0] || v).trim(), job: (parts[1] || 'Service call').trim(), status: 'none', stars: 0 });
-    document.getElementById('t-new').value = '';
-    renderTracker();
+  $('tr-cust-add').addEventListener('click', function(){
+    var name = $('tr-cust-name').value.trim();
+    if (!name) { $('tr-cust-name').focus(); return; }
+    state.customers.push({ name: name, job: $('tr-cust-job').value.trim(), status: 'none' });
+    $('tr-cust-name').value = ''; $('tr-cust-job').value = '';
+    save(); renderCustomers();
   });
-  renderTracker();
 
-  /* ---------- Rating calculator ---------- */
-  var ids = [5,4,3,2,1];
-  function calc(){
-    var total = 0, sum = 0, counts = {};
-    ids.forEach(function(s){
-      var v = parseInt(document.getElementById('c' + s).value, 10);
-      counts[s] = v; total += v; sum += v * s;
-      document.getElementById('o' + s).textContent = v;
+  /* ---------- Sample data + clear ---------- */
+  var SAMPLE_REVIEWS = [
+    { name: 'Marcus', stars: '5', text: 'Tech showed up on time, fixed the AC in an hour and the price matched the quote. Will call again.' },
+    { name: 'Priya', stars: '4', text: 'Good work on our furnace tune-up. Only knock: they arrived about 20 minutes late, but they called ahead to say so.' },
+    { name: 'Dan', stars: '2', text: 'Took three days to get a callback and the first visit didn\'t fix the leak. The second tech sorted it, but it shouldn\'t have taken two trips.' }
+  ];
+  function renderSamples(){
+    var wrap = $('tr-samples');
+    wrap.innerHTML = '';
+    SAMPLE_REVIEWS.forEach(function(r){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'sample-item';
+      b.innerHTML = '<b></b>';
+      b.querySelector('b').textContent = r.name + ' — ' + r.stars + '★';
+      b.appendChild(document.createTextNode(r.text));
+      b.addEventListener('click', function(){
+        state.review = { name: r.name, stars: r.stars, text: r.text };
+        $('tr-rv-name').value = r.name;
+        $('tr-rv-stars').value = r.stars;
+        $('tr-rv-text').value = r.text;
+        save(); generateDrafts();
+      });
+      wrap.appendChild(b);
     });
-    var avgEl = document.getElementById('calc-avg');
-    var verdictEl = document.getElementById('calc-verdict');
-    var needEl = document.getElementById('calc-need');
-    if (!total) { avgEl.textContent = '—'; verdictEl.textContent = 'Add some reviews to see your average.'; verdictEl.className = 'calc-verdict'; needEl.textContent = ''; return; }
-    var avg = sum / total;
-    avgEl.textContent = avg.toFixed(1);
-    if (avg < 4.0) {
-      verdictEl.textContent = 'Below 4.0 — the zone 68% of consumers filter out (BrightLocal 2026).';
-      verdictEl.className = 'calc-verdict bad';
-      var need = Math.ceil((4.0 * total - sum) / (5 - 4.0)) + 1;
-      if (need < 1) need = 1;
-      needEl.textContent = 'At your current mix, roughly ' + need + ' new 5-star reviews (with no new low ones) would pull you back above 4.0. That is exactly the pipeline ReviewTracker builds, one finished job at a time.';
-    } else {
-      verdictEl.textContent = 'Above the 4-star line. Now the job is volume — more reviews, more proof, more calls.';
-      verdictEl.className = 'calc-verdict good';
-      needEl.textContent = 'Shops that keep asking after every job hold this line. Shops that stop asking drift down the first time a rough week lands.';
-    }
   }
-  ids.forEach(function(s){ document.getElementById('c' + s).addEventListener('input', calc); });
-  calc();
-
-  /* ---------- Signup (mailto — nothing faked) ---------- */
-  document.getElementById('signup-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    var biz = document.getElementById('s-biz').value.trim();
-    var name = document.getElementById('s-name').value.trim();
-    var trade = document.getElementById('s-trade').value;
-    var city = document.getElementById('s-city').value.trim();
-    var want = document.getElementById('s-want').value;
-    var subject = encodeURIComponent('ReviewTracker request — ' + biz);
-    var body = encodeURIComponent(
-      'Hi ReviewTracker team,\n\n' +
-      'Business: ' + biz + '\n' +
-      'Name: ' + name + '\n' +
-      'Trade: ' + trade + '\n' +
-      'City: ' + (city || '—') + '\n' +
-      'I want: ' + want + '\n\n' +
-      'Plan I saw: $37/mo flat, vs NiceJob Starter $75/mo. Please reply with next steps.\n'
-    );
-    var link = document.createElement('a');
-    link.href = 'mailto:hello@reviewtracker.example?subject=' + subject + '&body=' + body;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  $('tr-sample').addEventListener('click', function(){
+    state.biz = { name: 'Demo Heating & Air', rating: '4.3', count: '37' };
+    state.calc = { rating: '4.3', count: '37' };
+    state.customers = [
+      { name: 'Garcia', job: 'Water heater install', status: 'reviewed' },
+      { name: 'Thompson', job: 'AC capacitor repair', status: 'asked' },
+      { name: 'Nguyen', job: 'Furnace tune-up', status: 'none' }
+    ];
+    $('tr-biz-name').value = state.biz.name;
+    $('tr-biz-rating').value = state.biz.rating;
+    $('tr-biz-count').value = state.biz.count;
+    $('tr-calc-rating').value = '4.3';
+    $('tr-calc-count').value = '37';
+    $('tr-samples-wrap').hidden = false;
+    renderSamples();
+    var r0 = SAMPLE_REVIEWS[0];
+    state.review = { name: r0.name, stars: r0.stars, text: r0.text };
+    $('tr-rv-name').value = r0.name; $('tr-rv-stars').value = r0.stars; $('tr-rv-text').value = r0.text;
+    save(); renderBiz(); renderCalc(); renderCustomers(); generateDrafts();
+    setStatus('Sample data loaded — tap the other sample reviews to draft replies for them.');
   });
+  $('tr-clear').addEventListener('click', function(){
+    state.biz = { name:'', rating:'', count:'' };
+    state.calc = { rating:'', count:'' };
+    state.customers = [];
+    state.review = { name:'', stars:'5', text:'' };
+    $('tr-biz-name').value = ''; $('tr-biz-rating').value = ''; $('tr-biz-count').value = '';
+    $('tr-calc-rating').value = ''; $('tr-calc-count').value = '';
+    $('tr-rv-name').value = ''; $('tr-rv-stars').value = '5'; $('tr-rv-text').value = '';
+    $('tr-samples-wrap').hidden = true;
+    save(); renderBiz(); renderCalc(); renderCustomers();
+    setStatus('Trial data cleared. Your trial account and clock are unchanged.');
+  });
+
+  /* ---------- Init from storage ---------- */
+  $('tr-biz-name').value = state.biz.name || '';
+  $('tr-biz-rating').value = state.biz.rating || '';
+  $('tr-biz-count').value = state.biz.count || '';
+  $('tr-calc-rating').value = state.calc.rating || '';
+  $('tr-calc-count').value = state.calc.count || '';
+  $('tr-rv-name').value = state.review.name || '';
+  $('tr-rv-stars').value = state.review.stars || '5';
+  $('tr-rv-text').value = state.review.text || '';
+  renderBiz(); renderCalc(); renderCustomers(); renderAccount();
 })();
 </script>
+
 </body>
 </html>
