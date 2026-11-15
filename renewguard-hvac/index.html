@@ -377,6 +377,7 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
               </label>
               <button class="btn btn-primary" type="submit">Create trial account</button>
             </form>
+            <p class="trial-msg" id="regMsg" aria-live="polite"></p>
             <p class="fineprint" id="regNote" hidden><strong style="color:var(--ink)">Trial account is stored in this browser only.</strong> The 3-day clock starts the moment you create it. When the trial ends, the tracker locks and your data stays visible, read-only, until you subscribe or clear the account.</p>
           </div>
 
@@ -398,6 +399,7 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
               <button class="btn btn-primary btn-sm" type="button" id="sampleBtn">Load sample data</button>
               <button class="btn btn-ghost btn-sm" type="button" id="csvToggleBtn" aria-expanded="false">Import CSV</button>
               <button class="btn btn-ghost btn-sm" type="button" id="exportBtn">Export proof pack</button>
+              <button class="btn btn-ghost btn-sm" type="button" id="csvDlBtn">Download CSV</button>
               <button class="btn btn-danger btn-sm" type="button" id="clearBtn">Clear trial data</button>
             </div>
             <p class="trial-msg" id="trialMsg" aria-live="polite"></p>
@@ -445,6 +447,16 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
             <div class="board" id="board"></div>
 
             <h3 class="trial-sub">Your licences</h3>
+            <div class="trial-toolbar" style="margin:10px 0 14px">
+              <input type="search" id="licSearch" placeholder="Search licences, holders, types…" autocomplete="off" style="flex:1;min-width:180px" />
+              <select id="licFilter" aria-label="Filter licences">
+                <option value="all">All licences</option>
+                <option value="expired">Expired</option>
+                <option value="due7">Due in 7 days</option>
+                <option value="due30">Due in 30 days</option>
+                <option value="current">Current (30+ days)</option>
+              </select>
+            </div>
             <div id="licListWrap"></div>
 
             <h3 class="trial-sub">By technician</h3>
@@ -813,7 +825,22 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
               var da = daysLeft(a.expiry), db = daysLeft(b.expiry);
               return (da === null ? 99999 : da) - (db === null ? 99999 : db);
             });
-            wrap.innerHTML = '<div class="lic-list">' + sorted.map(function (l) {
+            var qEl = $('licSearch'), fEl = $('licFilter');
+            var q = qEl ? (qEl.value || '').trim().toLowerCase() : '';
+            var f = fEl ? fEl.value : 'all';
+            var shown = sorted.filter(function (l) {
+              if (q && (l.name + ' ' + l.holder + ' ' + l.type).toLowerCase().indexOf(q) < 0) return false;
+              var dd = daysLeft(l.expiry);
+              if (f === 'expired') return dd !== null && dd < 0;
+              if (f === 'due7') return dd !== null && dd >= 0 && dd <= 7;
+              if (f === 'due30') return dd !== null && dd >= 0 && dd <= 30;
+              if (f === 'current') return dd !== null && dd > 30;
+              return true;
+            });
+            if (!shown.length) {
+              wrap.innerHTML = '<p class="empty-note">No licences match that search / filter. Clear the search box or pick “All licences”.</p>';
+            } else {
+            wrap.innerHTML = '<div class="lic-list">' + shown.map(function (l) {
               var d = daysLeft(l.expiry), b = bucketOf(d);
               var actions = locked ? '' :
                 '<div class="lic-actions"><button type="button" data-edit="' + l.id + '">Edit</button><button type="button" class="del" data-del="' + l.id + '">Delete</button></div>';
@@ -821,6 +848,7 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
                 '<p class="lic-meta">' + esc(l.type) + ' · ' + esc(l.state) + ' · Holder: ' + esc(l.holder) + ' · Expires ' + esc(fmtDate(l.expiry)) + '</p>' +
                 '<span class="badge b-' + b + '">' + badgeText(d) + '</span></div>' + actions + '</div>';
             }).join('') + '</div>';
+            }
           }
           var techWrap = $('techWrap');
           if (!licences.length) {
@@ -883,7 +911,16 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
           var name = $('rName').value.trim();
           var email = $('rEmail').value.trim();
           var pass = $('rPassword').value;
-          if (!name || !email || pass.length < 6) return;
+          var regMsg = $('regMsg');
+          if (!name || !/.+@.+\..+/.test(email)) {
+            if (regMsg) regMsg.innerHTML = '<strong>Almost there:</strong> add your name and a valid email address.';
+            return;
+          }
+          if (pass.length < 6) {
+            if (regMsg) regMsg.innerHTML = '<strong>Almost there:</strong> choose a password of at least 6 characters.';
+            return;
+          }
+          if (regMsg) regMsg.innerHTML = '';
           account = { name: name, email: email, password: pass, startedAt: Date.now() };
           storeSet(ACCT_KEY, account);
           renderApp();
@@ -942,8 +979,13 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
           };
           if (!rec.name || !rec.holder || !rec.expiry) return;
           if (editingId) {
+            var found = false;
             for (var i = 0; i < licences.length; i++) {
-              if (licences[i].id === editingId) { rec.id = editingId; licences[i] = rec; break; }
+              if (licences[i].id === editingId) { rec.id = editingId; licences[i] = rec; found = true; break; }
+            }
+            if (!found) {
+              say('<strong>That licence no longer exists.</strong> It may have been deleted — your changes were not saved. Clear the form (Cancel edit) to add it as a new licence.');
+              return;
             }
             say('<strong>Saved.</strong> Licence updated.');
           } else {
@@ -975,13 +1017,24 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
             $('fName').focus();
           }
           if (delId) {
-            licences = licences.filter(function (l) { return l.id !== delId; });
-            if (editingId === delId) resetForm();
-            saveLicences();
-            say('<strong>Deleted.</strong> Licence removed from your trial data.');
-            renderApp();
+            var delBtn = e.target;
+            if (delBtn.getAttribute('data-arm') === '1') {
+              licences = licences.filter(function (l) { return l.id !== delId; });
+              if (editingId === delId) resetForm();
+              saveLicences();
+              say('<strong>Deleted.</strong> Licence removed from your trial data.');
+              renderApp();
+            } else {
+              delBtn.setAttribute('data-arm', '1');
+              delBtn.textContent = 'Confirm delete?';
+              setTimeout(function () { delBtn.removeAttribute('data-arm'); delBtn.textContent = 'Delete'; }, 3500);
+            }
           }
         });
+
+        /* ----- search + filter ----- */
+        $('licSearch').addEventListener('input', function () { renderApp(); });
+        $('licFilter').addEventListener('change', function () { renderApp(); });
 
         /* ----- sample data ----- */
         function relDate(days) {
@@ -1075,6 +1128,26 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
           reader.onload = function () { importCsv(String(reader.result || '')); };
           reader.readAsText(f);
           this.value = '';
+        });
+
+        /* ----- CSV download ----- */
+        function licencesCsv() {
+          var rows = [['Licence name', 'Type', 'State', 'Holder', 'Expiry']];
+          licences.slice().sort(function (a, b) { return (daysLeft(a.expiry) || 0) - (daysLeft(b.expiry) || 0); }).forEach(function (l) {
+            rows.push([l.name, l.type, l.state, l.holder, l.expiry]);
+          });
+          return rows.map(function (r) { return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(','); }).join('\n');
+        }
+        $('csvDlBtn').addEventListener('click', function () {
+          if (isLocked()) return;
+          var blob = new Blob([licencesCsv()], { type: 'text/csv' });
+          var a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'renewguard-hvac-licences.csv';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
         });
 
         /* ----- export proof pack ----- */
