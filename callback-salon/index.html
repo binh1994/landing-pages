@@ -737,16 +737,17 @@ footer li{margin-bottom:6px}
         // ---------- Trial data ----------
         var calls = [];
         var selectedId = null;
+        var replyDraft = null; // {callId, text} — unsent reply draft, survives reload
         var pendingDeleteId = null;
         function saveData(){
-          try { localStorage.setItem(DATA_KEY, JSON.stringify({ calls:calls, selectedId:selectedId })); } catch(e){}
+          try { localStorage.setItem(DATA_KEY, JSON.stringify({ calls:calls, selectedId:selectedId, replyDraft:replyDraft })); } catch(e){}
         }
         function loadData(){
           try {
             var raw = localStorage.getItem(DATA_KEY);
             if (!raw) return;
             var data = JSON.parse(raw);
-            if (data && Array.isArray(data.calls)) { calls = data.calls; selectedId = data.selectedId || null; }
+            if (data && Array.isArray(data.calls)) { calls = data.calls; selectedId = data.selectedId || null; replyDraft = data.replyDraft || null; }
           } catch(e){}
         }
         function esc(s){
@@ -883,7 +884,7 @@ footer li{margin-bottom:6px}
         });
         function clearAccount(){
           account = null;
-          calls = []; selectedId = null; replyEl.value = '';
+          calls = []; selectedId = null; replyEl.value = ''; replyDraft = null;
           try {
             localStorage.removeItem(ACCT_KEY);
             localStorage.removeItem(DATA_KEY);
@@ -948,8 +949,14 @@ footer li{margin-bottom:6px}
             var c = selectedCall();
             if (!c) { replyEl.value = 'Pick a client from the inbox first, then choose a template — it will fill in their name and service here.'; replyEl.focus(); return; }
             replyEl.value = templates[btn.getAttribute('data-ttpl')](c);
+            replyDraft = { callId:c.id, text:replyEl.value };
+            saveData();
             replyEl.focus();
           });
+        });
+        replyEl.addEventListener('input', function(){
+          replyDraft = { callId:selectedId, text:replyEl.value };
+          saveData();
         });
         document.getElementById('sendReply').addEventListener('click', function(){
           if (!editable()) return;
@@ -959,6 +966,7 @@ footer li{margin-bottom:6px}
           c.thread.push({ from:'me', text:text });
           if (c.status === 'callback') c.status = 'resolved';
           replyEl.value = '';
+          replyDraft = null;
           renderApp();
         });
         document.getElementById('addCallForm').addEventListener('submit', function(e){
@@ -992,7 +1000,7 @@ footer li{margin-bottom:6px}
         });
         document.getElementById('clearTrial').addEventListener('click', function(){
           if (!editable()) return;
-          calls = []; selectedId = null; replyEl.value = '';
+          calls = []; selectedId = null; replyEl.value = ''; replyDraft = null;
           try { localStorage.removeItem(DATA_KEY); } catch(e){}
           renderApp();
         });
@@ -1025,6 +1033,7 @@ footer li{margin-bottom:6px}
         account = loadAccount();
         loadData();
         applyGate();
+        if (replyDraft && replyDraft.callId && replyDraft.callId === selectedId && typeof replyDraft.text === 'string') { replyEl.value = replyDraft.text; }
         tcUpdate();
         setInterval(function(){
           if (!account) return;
