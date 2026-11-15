@@ -15,7 +15,13 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:,">
-<title>QuoteChaser — We chase your open quotes until they reply</title>
+<title>QuoteChaser — We chase your open quotes until they reply — $99/mo</title>
+<meta name="description" content="QuoteChaser follows up your open quotes on Day 1, 3, 7 and 14 so US contractors win more jobs — no launch fee. Only $99/month, 3-day free trial, no card required."
+<link rel="canonical" href="https://binh1994.github.io/landing-pages/quotechaser/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="QuoteChaser — We chase your open quotes until they reply — $99/mo" />
+<meta property="og:description" content="QuoteChaser follows up your open quotes on Day 1, 3, 7 and 14 so US contractors win more jobs — no launch fee. Only $99/month, 3-day free trial, no card required." />
+<meta property="og:url" content="https://binh1994.github.io/landing-pages/quotechaser/" /> />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
@@ -239,6 +245,20 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:none;
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
 
+
+/* conversion: sticky mobile CTA + cross-links (added 2026-11-15) */
+.sticky-cta{display:none}
+@media (max-width:760px){
+  body{padding-bottom:64px}
+  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;background:#fff;border-top:1px solid #e2e8f0;box-shadow:0 -8px 24px rgba(15,23,42,.10);padding:10px 14px calc(10px + env(safe-area-inset-bottom));gap:12px;align-items:center;justify-content:space-between}
+  .sticky-cta .sc-t{font-size:.9rem;font-weight:700;line-height:1.25}
+  .sticky-cta .sc-t span{display:block;font-size:.75rem;font-weight:600;color:#64748b}
+  .sticky-cta .sc-b{flex:none;background:#0f172a;color:#fff;font-weight:700;font-size:.95rem;text-decoration:none;border-radius:10px;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center}
+}
+.xlinks{margin-top:28px;padding-top:20px;border-top:1px solid #e2e8f0}
+.xlinks h3{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin:0 0 10px}
+.xlinks ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.xlinks a{font-size:.9rem;font-weight:600}
 </style>
 </head>
 <body>
@@ -464,6 +484,15 @@ input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:none;
     <p>Pay with PayPal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener">Subscribe — $99/month</a> · PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">https://www.paypal.com/paypalme/RenewGuard</a></p>
     <p class="sources">Sources &amp; caveats (researched 2026-11-15; prices are Oct–Nov 2026 snapshots — re-check vendor pages before quoting): Aplos Follow-Up &amp; Estimate Recovery $199/mo + $349 launch — <a href="https://aplosai.com/quote-follow-up-automation" target="_blank" rel="noopener">aplosai.com/quote-follow-up-automation</a>. Trade counts: Census County Business Patterns 2023 via <a href="https://www.brix.so/research/trades-business-statistics" target="_blank" rel="noopener">brix.so/research/trades-business-statistics</a> (111,207 plumbing/HVAC establishments; 83,342 electrical) and <a href="https://hyrehvac.com/statistics/hvac-industry/" target="_blank" rel="noopener">hyrehvac.com/statistics/hvac-industry</a> (76.8% of HVAC firms under 10 employees). SMS carrier cost note (“typically under $15–$30/mo paid directly to your carrier”) via Aplos, as cited in the research. No verified standalone market-size figure exists for quote-follow-up software — demand is inferred from trade counts. Board data above is illustrative example data.</p>
   </div>
+<nav class="xlinks" aria-label="More tools from RenewGuard"><h3>More tools from RenewGuard</h3><ul>
+<li><a href="https://binh1994.github.io/landing-pages/renewguard/">RenewGuard — License tracking — $24/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/renewguard-hvac/">RenewGuard HVAC — A/C license tracking — $39/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/callback/">CallBack — Missed-call text-back — $14/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/callback-salon/">CallBack Salon — Salon text-back — $39/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/fixflow/">FixFlow — Landlord maintenance — $9/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/reviewtracker/">ReviewTracker — Google review tracking — $37/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/ai-video-ads/">AI Video Ads — Done-for-you video ads — $99/video</a></li>
+</ul></nav>
 </footer>
 
 <div id="trialBar" role="status"><div class="in"><span class="t" id="trialBarText">Trial: 3 days 0 hours left</span><span id="trialBarLinks"></span></div></div>
