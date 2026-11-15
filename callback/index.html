@@ -1163,7 +1163,7 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
       (function () {
         "use strict";
         var $ = function (id) { return document.getElementById(id); };
-        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var reduceMotion = (typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
 
         /* ---------- demo simulator ---------- */
         var replies = {
@@ -1301,6 +1301,7 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
         /* ---------- free trial app + trial account ---------- */
         var TKEY = "callbackTrial.v1";
         var AKEY = "callbackAccount.v1";
+        var DKEY = "callbackDraft.v1";
         var TRIAL_MS = 3 * 24 * 60 * 60 * 1000;
         function lsGet(k) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
         function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -1317,6 +1318,16 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
         if (account && (!account.startedAt || !account.email)) account = null;
 
         function saveTrial() { lsSet(TKEY, trial); }
+        function loadDraft() { var d = lsGet(DKEY); return (d && typeof d === "object") ? d : {}; }
+        function saveDraft(d) { lsSet(DKEY, d); }
+        function saveFollowUpDraft() { var d = loadDraft(); d.followUp = $("tFollowUp").value; saveDraft(d); }
+        function saveReplyDraft() { var d = loadDraft(); var c = selectedCall(); d.reply = { callId: c ? c.id : null, text: $("tReplyText").value }; saveDraft(d); }
+        function clearReplyDraft() { var d = loadDraft(); d.reply = null; saveDraft(d); }
+        function restoreDrafts() {
+          var d = loadDraft();
+          if (typeof d.followUp === "string") $("tFollowUp").value = d.followUp;
+          if (d.reply && d.reply.callId && d.reply.callId === trial.selectedId && typeof d.reply.text === "string") $("tReplyText").value = d.reply.text;
+        }
         function trialState() {
           if (!account) return "none";
           return (Date.now() - account.startedAt < TRIAL_MS) ? "active" : "expired";
@@ -1365,7 +1376,7 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
               '<span class="ph">' + esc(c.phone) + '</span> ' +
               '<span class="chip ' + c.status + '">' + statusLabel[c.status] + '</span>';
             b.addEventListener("click", function () {
-              trial.selectedId = c.id; saveTrial(); renderInbox(); renderThread(); fillTemplate();
+              trial.selectedId = c.id; saveTrial(); clearReplyDraft(); renderInbox(); renderThread(); fillTemplate();
             });
             box.appendChild(b);
           });
@@ -1465,13 +1476,14 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
         });
         function clearAccount() {
           account = null;
-          lsDel(AKEY); lsDel(TKEY);
+          lsDel(AKEY); lsDel(TKEY); lsDel(DKEY);
+          $("tFollowUp").value = "";
           trial = { calls: [], selectedId: null, biz: "Lone Star Plumbing", calc: { missed: 8, job: 350, rate: 20 } };
           $("tBiz").value = trial.biz;
           $("tMissed").value = 8; $("tJobVal").value = 350; $("tRate").value = 20;
           $("tRegForm").hidden = true;
           $("tStartBtn").style.display = "";
-          renderInbox(); renderThread(); fillTemplate(); trialCalc(); refreshAccountUI();
+          renderInbox(); renderThread(); fillTemplate(); trialCalc(); refreshAccountUI(); restoreDrafts();
           document.getElementById("trial").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
         }
         $("tLogout").addEventListener("click", clearAccount);
@@ -1522,7 +1534,7 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
         });
 
         /* template picker + sending */
-        $("tTemplate").addEventListener("change", fillTemplate);
+        $("tTemplate").addEventListener("change", function () { clearReplyDraft(); fillTemplate(); });
         $("tBiz").addEventListener("change", function () { trial.biz = $("tBiz").value; saveTrial(); fillTemplate(); });
         $("tSendText").addEventListener("click", function () {
           if (!canEdit()) return;
@@ -1530,6 +1542,7 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
           var text = $("tReplyText").value.trim();
           if (!c || !text) { if (!c) $("tName").focus(); return; }
           c.messages.push({ who: "out", text: text, meta: "Simulated text-back · just now" });
+          clearReplyDraft();
           saveTrial(); renderThread();
           if (!c.replied) {
             c.replied = true;
@@ -1547,10 +1560,13 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
           if (!c || !text) return;
           c.messages.push({ who: "out", text: text, meta: "You · just now" });
           $("tFollowUp").value = "";
+          saveFollowUpDraft();
           saveTrial(); renderThread();
         }
         $("tSendFollow").addEventListener("click", sendFollow);
         $("tFollowUp").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); sendFollow(); } });
+        $("tFollowUp").addEventListener("input", saveFollowUpDraft);
+        $("tReplyText").addEventListener("input", saveReplyDraft);
 
         /* sample data + clear */
         $("tLoadSamples").addEventListener("click", function () {
@@ -1610,7 +1626,7 @@ footer p { color: var(--ink-3); font-size: .88rem; margin: 0; max-width: 420px; 
         $("tBiz").value = trial.biz || "Lone Star Plumbing";
         $("tMissed").value = trial.calc.missed; $("tJobVal").value = trial.calc.job; $("tRate").value = trial.calc.rate;
         if (!selectedCall() && trial.calls.length) trial.selectedId = trial.calls[0].id;
-        renderInbox(); renderThread(); fillTemplate(); trialCalc(); refreshAccountUI();
+        renderInbox(); renderThread(); fillTemplate(); trialCalc(); refreshAccountUI(); restoreDrafts();
 
         /* ---------- hero thread stagger on load ---------- */
         if (!reduceMotion) {
