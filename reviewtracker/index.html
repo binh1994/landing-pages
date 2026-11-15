@@ -690,11 +690,12 @@ footer a{color:var(--ink-2)}
     try { localStorage.removeItem(KEY); } catch(e) {}
   }
 
-  var state = load() || { account: null, biz: { name:'', rating:'', count:'' }, calc: { rating:'', count:'' }, customers: [], review: { name:'', stars:'5', text:'' } };
+  var state = load() || { account: null, biz: { name:'', rating:'', count:'' }, calc: { rating:'', count:'' }, customers: [], review: { name:'', stars:'5', text:'' }, drafts: null };
   if (!state.customers) state.customers = [];
   if (!state.biz) state.biz = { name:'', rating:'', count:'' };
   if (!state.calc) state.calc = { rating:'', count:'' };
   if (!state.review) state.review = { name:'', stars:'5', text:'' };
+  if (!state.drafts) state.drafts = null;
 
   var statusEl = $('tr-status');
   function setStatus(msg){ if (statusEl) statusEl.textContent = msg || ''; }
@@ -765,7 +766,7 @@ footer a{color:var(--ink-2)}
   document.querySelectorAll('[data-logout]').forEach(function(b){
     b.addEventListener('click', function(){
       wipe();
-      state = { account: null, biz: { name:'', rating:'', count:'' }, calc: { rating:'', count:'' }, customers: [], review: { name:'', stars:'5', text:'' } };
+      state = { account: null, biz: { name:'', rating:'', count:'' }, calc: { rating:'', count:'' }, customers: [], review: { name:'', stars:'5', text:'' }, drafts: null };
       $('tr-biz-name').value = ''; $('tr-biz-rating').value = ''; $('tr-biz-count').value = '';
       $('tr-calc-rating').value = ''; $('tr-calc-count').value = '';
       $('tr-rv-name').value = ''; $('tr-rv-stars').value = '5'; $('tr-rv-text').value = '';
@@ -854,9 +855,22 @@ footer a{color:var(--ink-2)}
     var name = (state.review.name || '').trim() || 'there';
     var biz = (state.biz.name || '').trim() || 'our shop';
     var hi = parseInt(state.review.stars, 10) >= 4;
+    // QA fix 2026-11-15: drafts must persist across reload — they were
+    // rendered only in the DOM and vanished on refresh. Store them in state.
+    state.drafts = {};
     ['friendly','professional','apologetic'].forEach(function(tone){
       var t = templates[tone][hi ? 'hi' : 'lo'];
-      $('tr-draft-' + tone).textContent = t.replace(/\{name\}/g, name).replace(/\{biz\}/g, biz);
+      var text = t.replace(/\{name\}/g, name).replace(/\{biz\}/g, biz);
+      state.drafts[tone] = text;
+      $('tr-draft-' + tone).textContent = text;
+    });
+    save();
+    $('tr-gen-note').hidden = false;
+  }
+  function renderDrafts(){
+    if (!state.drafts) return;
+    ['friendly','professional','apologetic'].forEach(function(tone){
+      if (state.drafts[tone]) $('tr-draft-' + tone).textContent = state.drafts[tone];
     });
     $('tr-gen-note').hidden = false;
   }
@@ -985,6 +999,9 @@ footer a{color:var(--ink-2)}
     state.calc = { rating:'', count:'' };
     state.customers = [];
     state.review = { name:'', stars:'5', text:'' };
+    state.drafts = null;
+    ['tr-draft-friendly','tr-draft-professional','tr-draft-apologetic'].forEach(function(id){ $(id).textContent = 'Your draft will appear here.'; });
+    $('tr-gen-note').hidden = true;
     $('tr-biz-name').value = ''; $('tr-biz-rating').value = ''; $('tr-biz-count').value = '';
     $('tr-calc-rating').value = ''; $('tr-calc-count').value = '';
     $('tr-rv-name').value = ''; $('tr-rv-stars').value = '5'; $('tr-rv-text').value = '';
@@ -1002,7 +1019,7 @@ footer a{color:var(--ink-2)}
   $('tr-rv-name').value = state.review.name || '';
   $('tr-rv-stars').value = state.review.stars || '5';
   $('tr-rv-text').value = state.review.text || '';
-  renderBiz(); renderCalc(); renderCustomers(); renderAccount();
+  renderBiz(); renderCalc(); renderCustomers(); renderAccount(); renderDrafts();
 })();
 </script>
 
