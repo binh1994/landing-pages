@@ -24,7 +24,7 @@ html{scroll-behavior:smooth}
 body{margin:0;font-family:"Barlow",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
 a{color:inherit}
 button,[role="button"],input,select,summary{min-height:44px}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 .topbar{background:var(--navy);color:#fff}
 .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
 .logo{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.02em;font-size:24px;line-height:1}
@@ -33,29 +33,29 @@ button,[role="button"],input,select,summary{min-height:44px}
 .nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:999px;color:#dbe6f0}
 .nav a:hover{background:rgba(255,255,255,.1);color:#fff}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;border-radius:999px;padding:13px 20px;border:1px solid transparent;cursor:pointer;font-size:16px;line-height:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;border-radius:999px;padding:14px 24px;border:1px solid transparent;cursor:pointer;font-size:16px;line-height:1;font-family:inherit}
 .btn-amber{background:var(--amber);color:#fff}
 .btn-amber:hover{background:#b45309}
 .btn-outline{background:transparent;color:var(--ink);border-color:var(--line)}
 .btn-white{background:#fff;color:var(--navy)}
 .btn-ghostw{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
-.hero{background:var(--navy);color:#fff;padding:18px 0 56px;position:relative;overflow:hidden}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-sm{padding:10px 16px;font-size:14.5px;min-height:42px}
+.btn-danger{background:transparent;color:var(--red);border-color:var(--red)}
+.btn-danger.armed{background:var(--red);color:#fff}
+.hero{background:var(--navy);color:#fff;padding:44px 0 64px;position:relative;overflow:hidden}
 .hero:before{content:"";position:absolute;inset:auto -120px -180px auto;width:520px;height:520px;background:radial-gradient(circle,rgba(245,158,11,.28),transparent 65%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:start;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;position:relative}
 .eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.02em}
 .eyebrow i{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block}
-h1{font-family:"Archivo",sans-serif;font-weight:900;line-height:.95;letter-spacing:-.03em;font-size:clamp(42px,6vw,68px);margin:18px 0 16px}
+h1{font-family:"Archivo",sans-serif;font-weight:900;line-height:.98;letter-spacing:-.03em;font-size:clamp(40px,5.6vw,62px);margin:20px 0 16px}
 h1 em{font-style:normal;color:var(--amber2)}
-.lead{font-size:19px;color:#d3dee9;max-width:620px;margin:0 0 22px}
-.price-strip{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
-.pill{background:#fff;color:var(--navy);border-radius:12px;padding:12px 14px;min-width:150px}
-.pill b{display:block;font-family:"JetBrains Mono",monospace;font-size:22px;line-height:1}
-.pill span{font-size:13px;color:#5b6773;font-weight:600}
-.pill.dim{background:rgba(255,255,255,.1);color:#fff;border:1px dashed rgba(255,255,255,.3)}
-.pill.dim span{color:#b9c7d6}
-.pill.dim b{text-decoration:line-through;text-decoration-color:#f87171;text-decoration-thickness:2px}
-.hero-ctas{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.hero-note{font-size:13.5px;color:#9fb0c1;margin-top:14px;max-width:560px}
+.lead{font-size:19px;color:#d3dee9;max-width:600px;margin:0 0 24px}
+.price-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 24px}
+.price-line b{font-family:"Archivo",sans-serif;font-weight:900;font-size:34px;color:#fff}
+.price-line span{color:#b9c7d6;font-weight:600}
+.price-line s{color:#8fa3b8;text-decoration-color:#f87171;text-decoration-thickness:2px}
+.hero-note{font-size:14px;color:#9fb0c1;margin-top:14px;max-width:560px}
 .board{background:var(--card);color:var(--ink);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
 .board-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .board-head b{font-family:"Archivo",sans-serif}
@@ -72,36 +72,18 @@ h1 em{font-style:normal;color:var(--amber2)}
 @media (prefers-color-scheme: dark){.s-wait{color:#fcd34d}}
 .s-new{background:#e0e7ff;color:#3730a3}
 .board-foot{padding:14px 18px;background:var(--bg);font-size:14px;color:var(--muted)}
-section{padding:56px 0}
+.trust{background:var(--bg2);border-bottom:1px solid var(--line)}
+.trust .wrap{display:flex;gap:12px 32px;flex-wrap:wrap;padding-top:18px;padding-bottom:18px}
+.trust span{font-weight:700;font-size:15px;display:inline-flex;gap:9px;align-items:center}
+.trust .tick{color:var(--green);font-weight:900;font-size:17px}
+section{padding:72px 0}
 h2{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.02em;line-height:1.05;font-size:clamp(30px,4vw,42px);margin:0 0 12px}
 .sub{color:var(--muted);font-size:17px;max-width:720px;margin:0 0 28px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
-.card h3{margin:0 0 8px;font-size:19px}
-.card p{margin:0;color:var(--muted)}
-.num{font-family:"JetBrains Mono",monospace;font-weight:700;color:var(--amber);font-size:13px;letter-spacing:.08em}
 .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .step{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:12px;padding:18px}
 .step b.day{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber)}
 .step h3{margin:8px 0 6px;font-size:17px}
 .step p{margin:0;color:var(--muted);font-size:15px}
-.calc{background:var(--navy);color:#fff;border-radius:20px;padding:28px}
-.calc h2{color:#fff}
-.calc .sub{color:#b9c7d6}
-.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
-input[type="number"],input[type="text"],input[type="email"],textarea,select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit}
-.calc input{background:#fff;color:#131a22;border-color:transparent}
-.field{margin-bottom:16px}
-.result{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:20px}
-.result .big{font-family:"Archivo",sans-serif;font-weight:900;font-size:36px;line-height:1;color:var(--amber2)}
-.result p{color:#d3dee9;margin:8px 0 0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
-.tab{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer}
-.tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.email-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow)}
-.email-box pre{white-space:pre-wrap;font-family:"Barlow",sans-serif;font-size:16px;line-height:1.6;margin:0;color:var(--ink)}
 .compare{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;align-items:stretch}
 .comp{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card)}
 .comp.hot{border:2px solid var(--amber);background:var(--card);position:relative}
@@ -109,11 +91,6 @@ input[type="number"],input[type="text"],input[type="email"],textarea,select{widt
 .comp ul{margin:14px 0 0;padding-left:18px;color:var(--muted)}
 .comp li{margin:7px 0}
 .tag{position:absolute;top:-13px;left:18px;background:var(--amber);color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
-.days{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.dayrow{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.dayrow .d{flex:0 0 52px;height:52px;border-radius:12px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-weight:700;font-size:13px;text-align:center;line-height:1.1}
-.dayrow h3{margin:0 0 4px;font-size:16px}
-.dayrow p{margin:0;color:var(--muted);font-size:14.5px}
 details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin-bottom:10px}
 summary{cursor:pointer;font-weight:700;padding:12px 0}
 details p{color:var(--muted);margin:0 0 16px}
@@ -123,14 +100,88 @@ details p{color:var(--muted);margin:0 0 16px}
 footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
 footer a{text-decoration:underline}
 .sources{font-size:13px;line-height:1.7}
+label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
+input[type="number"],input[type="text"],input[type="email"],input[type="password"],input[type="date"],textarea,select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit}
+.field{margin-bottom:16px}
+/* --- Free trial app --- */
+.trial{background:var(--bg2);border-bottom:1px solid var(--line)}
+.trial-tag{display:inline-flex;gap:8px;align-items:center;background:var(--green-bg);color:var(--green);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.trial-note{background:var(--amber-bg);border:1px solid var(--amber);border-radius:12px;padding:14px 16px;font-weight:600;margin:0 0 26px}
+.step-tag{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--amber);margin-bottom:8px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:18px}
+.panel h3{margin:0 0 6px;font-size:20px;font-family:"Archivo",sans-serif;letter-spacing:-.01em}
+.panel .hint{color:var(--muted);margin:0 0 16px;font-size:15px}
+.panel.acct{border:2px solid var(--amber)}
+.reggrid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end}
+.reggrid .field{margin-bottom:0}
+.fineprint{font-size:13.5px;color:var(--muted);margin:12px 0 0}
+.countdown{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(24px,3.4vw,32px);line-height:1.1;margin:6px 0 4px}
+.acct-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.tstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.tstat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.tstat b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-size:27px;line-height:1.05;overflow-wrap:anywhere}
+.tstat span{font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.tstat.win b{color:var(--green)}
+.qform{display:grid;grid-template-columns:1.1fr 1.2fr .75fr .95fr auto;gap:10px;align-items:end}
+.qform .field{margin-bottom:0}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.qcard-top{display:flex;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;align-items:baseline}
+.qcard .who{font-weight:700;font-size:17px}
+.qcard .meta{color:var(--muted);font-size:14px}
+.qcard .amt{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:17px}
+.qcard-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.stbtn{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 13px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;min-height:38px;font-family:inherit}
+.stbtn[disabled]{opacity:.45;cursor:not-allowed}
+.stbtn.on-open{background:var(--navy);color:#fff;border-color:var(--navy)}
+.stbtn.on-won{background:var(--green);color:#fff;border-color:var(--green)}
+.stbtn.on-lost{background:var(--red);color:#fff;border-color:var(--red)}
+.nextchip{font-size:12.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:var(--amber-bg);color:#92400e}
+@media (prefers-color-scheme: dark){.nextchip{color:#fcd34d}}
+.wonchip{background:var(--green-bg);color:var(--green)}
+.lostchip{background:#fee2e2;color:var(--red)}
+@media (prefers-color-scheme: dark){.lostchip{background:#3d1512}}
+.linkbtn{background:none;border:0;color:var(--amber);font-weight:700;cursor:pointer;padding:8px 4px;font-size:14px;text-decoration:underline;min-height:38px;font-family:inherit}
+.linkbtn[disabled]{opacity:.45;cursor:not-allowed}
+.delbtn{margin-left:auto;background:none;border:0;color:var(--muted);font-weight:700;cursor:pointer;padding:8px 4px;font-size:14px;min-height:38px;font-family:inherit}
+.delbtn:hover{color:var(--red)}
+.delbtn[disabled]{opacity:.45;cursor:not-allowed}
+.empty{border:1.5px dashed var(--line);border-radius:12px;padding:26px;text-align:center;color:var(--muted)}
+.sched{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sched-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:12px;padding:18px}
+.sched-card b.day{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber)}
+.sched-card h4{margin:6px 0 10px;font-size:16px}
+.sched-card textarea{min-height:180px;resize:vertical;font-size:14.5px;line-height:1.55}
+.sched-card .saved{font-size:12.5px;color:var(--green);font-weight:700;min-height:18px;display:block;margin-top:6px}
+.draftbox{background:var(--navy);color:#fff;border-radius:14px;padding:22px;margin-top:18px}
+.draftbox h4{margin:0 0 10px;font-family:"Archivo",sans-serif}
+.draftbox pre{white-space:pre-wrap;font-family:"Barlow",sans-serif;font-size:15.5px;line-height:1.6;margin:0;color:#e6edf4}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.roi-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.roi-row:last-child{border-bottom:0}
+.roi-row b{font-family:"JetBrains Mono",monospace;white-space:nowrap}
+.roi-row.total{font-size:17px}
+.roi-row.total b{color:var(--green)}
+.app-off{opacity:.55}
+#trialBar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--navy);color:#fff;display:none;box-shadow:0 -6px 24px rgba(0,0,0,.25)}
+#trialBar.show{display:block}
+#trialBar .in{max-width:1080px;margin:0 auto;padding:10px 20px;display:flex;gap:10px 18px;align-items:center;flex-wrap:wrap}
+#trialBar .t{font-weight:800;font-size:15.5px}
+#trialBar a{color:#fff}
 @media (max-width:860px){
-  .hero-grid,.grid2,.calc-grid,.cta-band{grid-template-columns:1fr}
-  .grid3,.timeline{grid-template-columns:1fr 1fr}
-  .compare,.days{grid-template-columns:1fr}
+  .hero-grid,.cta-band{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr 1fr}
+  .compare{grid-template-columns:1fr}
+  .tstats{grid-template-columns:1fr 1fr}
+  .qform,.reggrid{grid-template-columns:1fr 1fr}
+  .sched,.roi-grid{grid-template-columns:1fr}
+  section{padding:52px 0}
 }
 @media (max-width:520px){
-  .grid3,.timeline{grid-template-columns:1fr}
-  h1{font-size:44px}
+  .timeline{grid-template-columns:1fr}
+  .qform,.reggrid{grid-template-columns:1fr}
+  .tstat b{font-size:23px}
+  h1{font-size:42px}
   .topbar .wrap{justify-content:flex-start}
 }
 </style>
@@ -140,8 +191,8 @@ footer a{text-decoration:underline}
   <div class="wrap">
     <div class="logo">Quote<span>Chaser</span><small>For HVAC · Plumbing · Electrical</small></div>
     <nav class="nav" aria-label="Main">
-      <a href="#how">How it works</a><a href="#calculator">ROI calculator</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
-      <a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="color:#fff">Start — $99/mo via PayPal</a>
+      <a href="#trial">Free trial</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a class="btn btn-amber btn-sm" href="#trial" style="color:#fff">Start free trial</a>
     </nav>
   </div>
 </header>
@@ -152,17 +203,9 @@ footer a{text-decoration:underline}
       <span class="eyebrow"><i></i> Email-first quote follow-up for trades</span>
       <h1>You sent the quote.<br>Then <em>silence.</em></h1>
       <p class="lead">QuoteChaser chases your open estimates on Day 1, 3, 7 and 14 — by email, in your name — until the customer replies, books the job, or says no. You stop losing jobs you already quoted.</p>
-      <div class="price-strip">
-        <div class="pill"><b>$99/mo</b><span>QuoteChaser · no launch fee</span></div>
-        <div class="pill dim"><b>$199/mo</b><span>Aplos + $349 launch fee</span></div>
-        <div class="pill"><b>1 job = 20 mo</b><span>One recovered $2,000 job pays for ~20 months</span></div>
-      </div>
-      <div class="hero-ctas">
-        <a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener">Subscribe — $99/mo via PayPal →</a>
-        <a class="btn btn-ghostw" href="#sequence">See the email sequence</a>
-      </div>
-      <p class="hero-note">Pay securely with PayPal — $99/month subscription, cancel anytime. Prefer PayPal.me? <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;font-weight:700">paypal.me/RenewGuard</a></p>
-      <p class="hero-note">Built for the long tail on paper &amp; QuickBooks — the shops Jobber and ServiceTitan don’t reach. No standalone market-size figure exists for quote-follow-up software; demand here is inferred from trade counts (see Sources), not invented.</p>
+      <div class="price-line"><b>$99/mo</b><span>after your free trial · no launch fee</span><s>$199/mo + $349 launch at Aplos</s></div>
+      <a class="btn btn-amber" href="#trial" style="font-size:17px;padding:16px 28px">Start 3-day free trial →</a>
+      <p class="hero-note">3-day free trial · No card required · Cancel anytime. Prefer to pay now? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;font-weight:700">Subscribe — $99/mo via PayPal</a> · <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;font-weight:700">paypal.me/RenewGuard</a></p>
     </div>
     <div class="board" aria-label="Example open-quote tracker">
       <div class="board-head"><b>Open quotes — this week</b><span class="badge">Sample tracker view</span></div>
@@ -170,70 +213,143 @@ footer a{text-decoration:underline}
       <div class="qrow"><div><div class="who">Johnson — Water heater</div><div class="meta">Replied after Day 3 email · “Can you do Thursday?”</div></div><div><div class="amt">$1,850</div><span class="status s-book">Booked ✓</span></div></div>
       <div class="qrow"><div><div class="who">Garcia — Panel upgrade</div><div class="meta">Sent today · Day 1 check-in scheduled</div></div><div><div class="amt">$2,400</div><span class="status s-new">New</span></div></div>
       <div class="qrow"><div><div class="who">Smith — Furnace repair</div><div class="meta">Day 14 final email sent · No reply = closed</div></div><div><div class="amt">$920</div><span class="status s-wait">Final</span></div></div>
-      <div class="board-foot">Example data for illustration. Your board shows your real quotes, amounts, and where each one sits in the sequence.</div>
+      <div class="board-foot">Example data for illustration. In the free trial below, the board shows your real quotes.</div>
     </div>
   </div>
 </div>
 
-<main>
-<section>
+<div class="trust">
   <div class="wrap">
-    <h2>The problem isn’t your price. It’s the follow-up.</h2>
-    <p class="sub">There are 111,207 plumbing, heating &amp; A/C establishments and 83,342 electrical establishments in the US (Census County Business Patterns 2023). Almost all of them send quotes. The ones with office staff chase them. Solo and 1–10-person shops — 76.8% of HVAC firms have fewer than 10 employees — usually don’t.</p>
-    <div class="grid3">
-      <div class="card"><div class="num">01 — THE LEAK</div><h3>Quotes go cold in 48 hours</h3><p>Homeowners get 2–3 quotes, get busy, and book whoever followed up. Silence reads as “they don’t want the job.”</p></div>
-      <div class="card"><div class="num">02 — THE FIX</div><h3>A sequence, not a reminder</h3><p>Four short, polite emails over 14 days. Each one makes replying easy: book, ask a question, or say no — all three end the guessing.</p></div>
-      <div class="card"><div class="num">03 — YOUR PART</div><h3>About 10 minutes a week</h3><p>Add the quote, customer, and amount. QuoteChaser tracks the schedule and pings <em>you</em> when a customer replies hot.</p></div>
+    <span><span class="tick">✓</span> 3-day free trial</span>
+    <span><span class="tick">✓</span> No card required</span>
+    <span><span class="tick">✓</span> Cancel anytime</span>
+    <span><span class="tick">✓</span> Secure checkout via PayPal</span>
+  </div>
+</div>
+
+<section class="trial" id="trial">
+  <div class="wrap">
+    <span class="trial-tag">3-DAY FREE TRIAL · NO CARD REQUIRED</span>
+    <h2 style="margin-top:16px">Try QuoteChaser free for 3 days</h2>
+    <p class="sub">Two steps: <strong>1)</strong> create your trial account, <strong>2)</strong> use the app — add open quotes, edit the follow-up drafts, mark jobs won or lost, and watch recovered revenue add up.</p>
+    <p class="trial-note">Trial follow-ups are drafts in your browser only — real follow-up emails are sent after you subscribe.</p>
+
+    <div class="panel acct" id="acctPanel">
+      <div class="step-tag">STEP 1 — YOUR TRIAL ACCOUNT</div>
+      <div id="acctNone">
+        <h3>Start your 3-day free trial</h3>
+        <p class="hint">Enter your name and email to unlock the app for 3 full days. No card required.</p>
+        <button class="btn btn-amber" type="button" id="startTrialBtn" style="font-size:17px;padding:16px 28px">Start 3-day free trial</button>
+        <form id="regForm" style="display:none;margin-top:20px">
+          <div class="reggrid">
+            <div class="field"><label for="rName">Your name</label><input type="text" id="rName" placeholder="e.g. Mike Torres" autocomplete="name" required></div>
+            <div class="field"><label for="rEmail">Email</label><input type="email" id="rEmail" placeholder="you@yourshop.com" autocomplete="email" required></div>
+            <div class="field"><label for="rPass">Password</label><input type="password" id="rPass" placeholder="For this browser only" autocomplete="new-password" required></div>
+            <button class="btn btn-amber" type="submit">Create trial account →</button>
+          </div>
+          <p class="fineprint"><strong>Trial account is stored in this browser only</strong> — it is saved in this browser’s localStorage on this device. There is no server account and nothing is sent anywhere; clearing the account deletes it completely.</p>
+        </form>
+      </div>
+      <div id="acctActive" style="display:none">
+        <h3>Your free trial is active</h3>
+        <p class="hint" style="margin-bottom:4px">Signed in as <strong id="acctWho"></strong> · Trial account stored in this browser only.</p>
+        <div class="countdown" id="countdownText">Trial: 3 days 0 hours left</div>
+        <p class="hint" style="margin:0">When the countdown ends, the app locks. Subscribe any time to keep going without losing your board.</p>
+        <div class="acct-row">
+          <a class="btn btn-amber btn-sm" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener">Subscribe — $99/mo via PayPal</a>
+          <button class="btn btn-outline btn-sm" type="button" data-logout>Log out / Clear trial account</button>
+        </div>
+      </div>
+      <div id="acctLocked" style="display:none">
+        <h3>Trial ended — subscribe to continue</h3>
+        <p class="hint">Your 3 free days are up, so the app below is locked. Your trial data is still saved in this browser and visible read-only — subscribing is the way to unlock editing and have the follow-ups actually sent.</p>
+        <div class="acct-row" style="margin-top:4px">
+          <a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="font-size:17px;padding:16px 28px">Subscribe — $99/mo via PayPal →</a>
+          <button class="btn btn-outline btn-sm" type="button" data-logout>Log out / Clear trial account</button>
+        </div>
+        <p class="fineprint">Secure checkout on PayPal · Cancel anytime · Or use PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">https://www.paypal.com/paypalme/RenewGuard</a></p>
+      </div>
+    </div>
+
+    <div class="step-tag" style="margin-top:26px">STEP 2 — USE THE APP</div>
+    <div id="trialApp">
+    <div class="tstats" aria-label="Trial totals">
+      <div class="tstat"><b id="statOpen">0</b><span>Still open</span></div>
+      <div class="tstat"><b id="statPipeline">$0</b><span>Open pipeline</span></div>
+      <div class="tstat win"><b id="statWon">$0</b><span>Recovered revenue (won)</span></div>
+      <div class="tstat"><b id="statCounts">0 / 0</b><span>Won / lost</span></div>
+    </div>
+
+    <div class="panel">
+      <h3>Add an open quote</h3>
+      <p class="hint">Enter a quote you already sent and haven’t heard back on. The app works out which follow-up step it is due next.</p>
+      <form id="addQuoteForm" class="qform">
+        <div class="field"><label for="fName">Client name</label><input type="text" id="fName" placeholder="e.g. Mrs. Nguyen" required></div>
+        <div class="field"><label for="fJob">Job</label><input type="text" id="fJob" placeholder="e.g. A/C replacement" required></div>
+        <div class="field"><label for="fAmount">Amount ($)</label><input type="number" id="fAmount" placeholder="4800" min="0" step="any" required></div>
+        <div class="field"><label for="fDate">Date sent</label><input type="date" id="fDate" required></div>
+        <button class="btn btn-amber" type="submit">Add quote</button>
+      </form>
+      <div class="btnrow">
+        <button class="btn btn-outline btn-sm" type="button" id="loadSampleBtn">Load sample data — 5 open quotes</button>
+        <button class="btn btn-danger btn-sm" type="button" id="clearBtn">Clear trial data</button>
+      </div>
+    </div>
+
+    <div id="quoteList" aria-live="polite"></div>
+
+    <div class="panel" style="margin-top:18px">
+      <h3>Your follow-up schedule — Day 1 / 3 / 7 / 14</h3>
+      <p class="hint">These are the four drafts your quotes move through. Edit any of them — changes save automatically in your browser. Use <strong>{name}</strong>, <strong>{job}</strong> and <strong>{amount}</strong> and they fill in from each quote. On any quote above, tap “Preview next draft” to see its email filled in.</p>
+      <div class="sched">
+        <div class="sched-card"><b class="day">DAY 1</b><h4>“Just checking it landed”</h4><textarea id="tpl1" aria-label="Day 1 email draft"></textarea><span class="saved" id="saved1"></span></div>
+        <div class="sched-card"><b class="day">DAY 3</b><h4>Answer the hidden objection</h4><textarea id="tpl3" aria-label="Day 3 email draft"></textarea><span class="saved" id="saved3"></span></div>
+        <div class="sched-card"><b class="day">DAY 7</b><h4>Gentle deadline</h4><textarea id="tpl7" aria-label="Day 7 email draft"></textarea><span class="saved" id="saved7"></span></div>
+        <div class="sched-card"><b class="day">DAY 14</b><h4>Clean close-out</h4><textarea id="tpl14" aria-label="Day 14 email draft"></textarea><span class="saved" id="saved14"></span></div>
+      </div>
+      <div class="draftbox" id="draftBox" style="display:none">
+        <h4 id="draftTitle">Draft preview</h4>
+        <pre id="draftText"></pre>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>ROI calculator — with vs. without follow-up</h3>
+      <p class="hint">Use your own close rates. This compares the jobs you close today against the jobs you’d close if every open quote got the Day 1 / 3 / 7 / 14 sequence.</p>
+      <div class="roi-grid">
+        <div>
+          <div class="field"><label for="roiQ">Quotes you send per month</label><input type="number" id="roiQ" value="20" min="0"></div>
+          <div class="field"><label for="roiAvg">Average quote value ($)</label><input type="number" id="roiAvg" value="2400" min="0"></div>
+          <div class="field"><label for="roiWithout">Close rate WITHOUT follow-up (%)</label><input type="number" id="roiWithout" value="20" min="0" max="100"></div>
+          <div class="field" style="margin-bottom:0"><label for="roiWith">Close rate WITH follow-up (%)</label><input type="number" id="roiWith" value="30" min="0" max="100"></div>
+        </div>
+        <div aria-live="polite">
+          <div class="roi-row"><span>Jobs closed / month — no follow-up</span><b id="roiJobsWithout">4</b></div>
+          <div class="roi-row"><span>Jobs closed / month — with follow-up</span><b id="roiJobsWith">6</b></div>
+          <div class="roi-row"><span>Revenue / month — no follow-up</span><b id="roiRevWithout">$9,600</b></div>
+          <div class="roi-row"><span>Revenue / month — with follow-up</span><b id="roiRevWith">$14,400</b></div>
+          <div class="roi-row"><span>Extra revenue / month from follow-up</span><b id="roiExtra">$4,800</b></div>
+          <div class="roi-row"><span>Minus QuoteChaser</span><b>− $99/mo</b></div>
+          <div class="roi-row total"><span>Net extra / month</span><b id="roiNet">$4,701</b></div>
+          <div class="roi-row total"><span>Net extra / year</span><b id="roiYear">$56,412</b></div>
+        </div>
+      </div>
+      <p class="hint" style="margin:14px 0 0">A calculator, not a promise — the close rates are your assumptions, and your real results depend on your market and how fast you reply when customers answer.</p>
+    </div>
     </div>
   </div>
 </section>
 
-<section id="how" style="padding-top:0">
+<main>
+<section id="how">
   <div class="wrap">
     <h2>How it works — Day 1 / 3 / 7 / 14</h2>
-    <p class="sub">Email-first on purpose: no SMS API, no carrier approval wait at v1. If you later want texts, you connect your own Twilio — carrier usage typically runs under $15–$30/mo paid directly to your carrier.</p>
+    <p class="sub">There are 111,207 plumbing, heating &amp; A/C establishments and 83,342 electrical establishments in the US (Census County Business Patterns 2023) — and 76.8% of HVAC firms have fewer than 10 employees, with nobody whose job is chasing quotes. QuoteChaser is that follow-up, done for you. Email-first on purpose: no SMS API, no carrier approval wait.</p>
     <div class="timeline">
       <div class="step"><b class="day">DAY 1</b><h3>“Just checking it landed”</h3><p>Confirms they received the quote and can open it. Catches wrong-email and spam-folder losses early.</p></div>
       <div class="step"><b class="day">DAY 3</b><h3>Answer the hidden objection</h3><p>Restates scope, warranty, and timing in plain words. Most “no replies” are really unasked questions.</p></div>
       <div class="step"><b class="day">DAY 7</b><h3>Gentle deadline</h3><p>Notes that scheduling and parts pricing are held until a date. Honest urgency, no pressure tricks.</p></div>
       <div class="step"><b class="day">DAY 14</b><h3>Clean close-out</h3><p>“Should I close this out?” — the email that gets the most replies, because saying no feels safe.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="sequence" style="padding-top:0">
-  <div class="wrap">
-    <h2>Read the actual sequence</h2>
-    <p class="sub">Tap a day to preview the email your customer receives. Your business name, job, and amount fill in automatically.</p>
-    <div class="tabs" role="tablist">
-      <button class="tab active" data-day="1">Day 1</button>
-      <button class="tab" data-day="3">Day 3</button>
-      <button class="tab" data-day="7">Day 7</button>
-      <button class="tab" data-day="14">Day 14</button>
-    </div>
-    <div class="email-box"><pre id="emailText"></pre></div>
-  </div>
-</section>
-
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="calc" id="calculator">
-      <h2>Do the math on your own quotes</h2>
-      <p class="sub">No made-up recovery rate — you choose the assumption. Even recovering <strong>one</strong> extra job a month usually covers QuoteChaser many times over.</p>
-      <div class="calc-grid">
-        <div>
-          <div class="field"><label for="qpm">Quotes you send per month</label><input type="number" id="qpm" value="20" min="0"></div>
-          <div class="field"><label for="avg">Average job value ($)</label><input type="number" id="avg" value="2400" min="0"></div>
-          <div class="field"><label for="rec">If follow-up recovers just this % of silent quotes</label><input type="number" id="rec" value="10" min="0" max="100"></div>
-          <button class="btn btn-amber" id="calcBtn" style="width:100%">Calculate</button>
-        </div>
-        <div class="result">
-          <div style="font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:12px;color:#b9c7d6">Extra revenue / month at your numbers</div>
-          <div class="big" id="calcBig">$4,800</div>
-          <p id="calcText">That’s 2 recovered jobs × $2,400. QuoteChaser is $99/mo — a $4,701 difference before job costs, at your own 10% assumption.</p>
-          <p style="font-size:13.5px">This is a calculator, not a promise. Your real recovery depends on your market, pricing, and how fast you reply when customers answer.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -250,19 +366,6 @@ footer a{text-decoration:underline}
   </div>
 </section>
 
-<section style="padding-top:0">
-  <div class="wrap">
-    <h2>Your first 14 days — the plan, day by day</h2>
-    <p class="sub">No vague “onboarding.” Here is exactly what happens after you start.</p>
-    <div class="days">
-      <div class="dayrow"><div class="d">DAY<br>1</div><div><h3>Set up your board</h3><p>Add your business name, sender email, and logo. We load the 4-email sequence with your warranty and scheduling wording.</p></div></div>
-      <div class="dayrow"><div class="d">DAY<br>2</div><div><h3>Import open quotes</h3><p>Bring in every quote sent in the last 30 days that never got a reply — name, amount, date sent. These enter at the right step, not Day 1.</p></div></div>
-      <div class="dayrow"><div class="d">DAY<br>3–7</div><div><h3>First chases go out</h3><p>Day 3 and Day 7 emails go to your stalest quotes first. You get a ping for every reply; you handle booking like normal.</p></div></div>
-      <div class="dayrow"><div class="d">DAY<br>8–14</div><div><h3>Close-outs &amp; review</h3><p>Day 14 close-out emails clear the dead quotes off your board. On Day 14 we review together: sent, replied, booked — and tune the wording.</p></div></div>
-    </div>
-  </div>
-</section>
-
 <section id="faq" style="padding-top:0">
   <div class="wrap">
     <h2>Honest answers</h2>
@@ -272,6 +375,7 @@ footer a{text-decoration:underline}
     <details><summary>Will customers find the emails annoying?</summary><p>Four short emails over 14 days, each with an easy “no thanks” path, and the sequence stops the moment they reply. The Day 14 close-out exists specifically so nobody gets chased forever.</p></details>
     <details><summary>What if it doesn’t recover a job for me?</summary><p>Cancel anytime — no contract, no launch fee to lose. Judge it on the Day 14 review: emails sent, replies, and bookings are all on your board.</p></details>
     <details><summary>Who is this for?</summary><p>HVAC, plumbing, and electrical shops — especially 1–10-person firms in Texas and beyond — that send quotes by email, PDF, or paper and rarely follow up more than once.</p></details>
+    <details><summary>How does the free trial on this page work?</summary><p>Create a trial account above and you get 3 days with the full in-browser app. The account and your trial data are stored only in this browser (localStorage) — there is no server account, and trial follow-ups are drafts only. When the 3 days end, the app locks; subscribing via PayPal is how you continue with real follow-up emails sent for you.</p></details>
   </div>
 </section>
 
@@ -301,29 +405,9 @@ footer a{text-decoration:underline}
   </div>
 </footer>
 
+<div id="trialBar" role="status"><div class="in"><span class="t" id="trialBarText">Trial: 3 days 0 hours left</span><span id="trialBarLinks"></span></div></div>
+
 <script>
-var emails={
-1:"Subject: Quick check — your A/C replacement quote ($4,800)\n\nHi Mrs. Nguyen,\n\nJust checking this landed okay — I sent your quote for the A/C replacement ($4,800) a day ago and wanted to make sure it didn't end up in spam.\n\nAny questions at all, just reply here. And if you've decided to go another way, no hard feelings — a quick \"no thanks\" helps me close the file.\n\nThanks,\n[Your name] · [Your business]",
-3:"Subject: Re: Your A/C replacement quote — what it includes\n\nHi Mrs. Nguyen,\n\nFollowing up on the $4,800 quote. Two things homeowners usually ask:\n\n• The price includes [parts, labour, and disposal of the old unit].\n• It's covered by [your warranty] and we can normally fit within [your lead time].\n\nWant me to walk you through it in 5 minutes? Just reply and I'll call at a time that suits you.\n\nThanks,\n[Your name] · [Your business]",
-7:"Subject: Holding your slot until Friday\n\nHi Mrs. Nguyen,\n\nQuick note: I can hold scheduling and the quoted $4,800 price until Friday. After that I'd need to re-check parts pricing before I can promise the same number.\n\nIf you'd like the slot, reply \"book it\" and we'll lock a day in. If not, no pressure at all.\n\nThanks,\n[Your name] · [Your business]",
-14:"Subject: Should I close this out?\n\nHi Mrs. Nguyen,\n\nI haven't heard back on the A/C replacement quote ($4,800), so I'll close the file at the end of today — no more emails from me on this one.\n\nIf you do still want it done, just reply before then and we'll pick it back up at the same price.\n\nEither way, thanks for considering us.\n\n[Your name] · [Your business]"
-};
-var emailText=document.getElementById('emailText');
-function showDay(d){ emailText.textContent=emails[d]; document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('active', t.getAttribute('data-day')==String(d)); }); }
-document.querySelectorAll('.tab').forEach(function(t){ t.addEventListener('click',function(){ showDay(t.getAttribute('data-day')); }); });
-showDay(1);
-function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
-function calc(){
-  var q=parseFloat(document.getElementById('qpm').value)||0;
-  var a=parseFloat(document.getElementById('avg').value)||0;
-  var r=parseFloat(document.getElementById('rec').value)||0;
-  var jobs=q*(r/100); var rev=jobs*a;
-  document.getElementById('calcBig').textContent=money(rev);
-  document.getElementById('calcText').textContent="That's "+(Math.round(jobs*10)/10)+" recovered jobs × "+money(a)+". QuoteChaser is $99/mo — a "+money(rev-99)+" difference before job costs, at your own "+r+"% assumption.";
-}
-document.getElementById('calcBtn').addEventListener('click',calc);
-['qpm','avg','rec'].forEach(function(id){ document.getElementById(id).addEventListener('input',calc); });
-calc();
 document.getElementById('leadForm').addEventListener('submit',function(e){
   e.preventDefault();
   var biz=document.getElementById('biz').value.trim()||'Your business';
@@ -334,6 +418,257 @@ document.getElementById('leadForm').addEventListener('submit',function(e){
   document.getElementById('formNote').textContent='Here is your sample — generated from what you typed:';
   out.scrollIntoView({behavior:'smooth',block:'nearest'});
 });
+</script>
+<script>
+(function(){
+"use strict";
+var LS={acct:'qc_trial_account_v1',quotes:'qc_trial_quotes_v1',tpl:'qc_trial_templates_v1'};
+var TRIAL_MS=3*24*60*60*1000;
+var PAYPAL='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW';
+function loadJSON(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+function saveJSON(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+function removeKey(k){ try{ localStorage.removeItem(k); }catch(e){} }
+function money(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function $(id){ return document.getElementById(id); }
+
+var defaultTpls={
+1:"Subject: Quick check — your {job} quote ({amount})\n\nHi {name},\n\nJust checking this landed okay — I sent your quote for the {job} ({amount}) and wanted to make sure it didn't end up in spam.\n\nAny questions at all, just reply here. And if you've decided to go another way, no hard feelings — a quick \"no thanks\" helps me close the file.\n\nThanks,\n[Your name] · [Your business]",
+3:"Subject: Re: Your {job} quote — what it includes\n\nHi {name},\n\nFollowing up on the {amount} quote for the {job}. Two things homeowners usually ask:\n\n• The price includes [parts, labour, and disposal of the old unit].\n• It's covered by [your warranty] and we can normally fit within [your lead time].\n\nWant me to walk you through it in 5 minutes? Just reply and I'll call at a time that suits you.\n\nThanks,\n[Your name] · [Your business]",
+7:"Subject: Holding your slot until Friday\n\nHi {name},\n\nQuick note: I can hold scheduling and the quoted {amount} price for the {job} until Friday. After that I'd need to re-check parts pricing before I can promise the same number.\n\nIf you'd like the slot, reply \"book it\" and we'll lock a day in. If not, no pressure at all.\n\nThanks,\n[Your name] · [Your business]",
+14:"Subject: Should I close this out?\n\nHi {name},\n\nI haven't heard back on the {job} quote ({amount}), so I'll close the file at the end of today — no more emails from me on this one.\n\nIf you do still want it done, just reply before then and we'll pick it back up at the same price.\n\nEither way, thanks for considering us.\n\n[Your name] · [Your business]"
+};
+
+var account=loadJSON(LS.acct,null);
+var quotes=loadJSON(LS.quotes,[]);
+if(!Array.isArray(quotes)) quotes=[];
+var templates=loadJSON(LS.tpl,null);
+if(!templates||typeof templates!=='object') templates=JSON.parse(JSON.stringify(defaultTpls));
+[1,3,7,14].forEach(function(d){ if(typeof templates[d]!=='string') templates[d]=defaultTpls[d]; });
+
+function trialState(){
+  if(!account||!account.startedAt) return 'none';
+  return (Date.now()-account.startedAt<TRIAL_MS)?'active':'expired';
+}
+function msLeft(){ return account? (account.startedAt+TRIAL_MS-Date.now()) : 0; }
+function fmtLeft(ms){
+  if(ms<=0) return 'Trial: ended';
+  var s=Math.floor(ms/1000), d=Math.floor(s/86400), h=Math.floor((s%86400)/3600), m=Math.floor((s%3600)/60);
+  if(d>0) return 'Trial: '+d+' day'+(d===1?'':'s')+' '+h+' hour'+(h===1?'':'s')+' left';
+  if(h>0) return 'Trial: '+h+' hour'+(h===1?'':'s')+' '+m+' min left';
+  return 'Trial: '+m+' min left';
+}
+
+/* ---------- quotes ---------- */
+function todayISO(offsetDays){
+  var d=new Date(); d.setDate(d.getDate()-(offsetDays||0));
+  var mo=String(d.getMonth()+1); if(mo.length<2)mo='0'+mo;
+  var da=String(d.getDate()); if(da.length<2)da='0'+da;
+  return d.getFullYear()+'-'+mo+'-'+da;
+}
+function daysSince(dateStr){
+  var p=String(dateStr||'').split('-'); if(p.length!==3) return 0;
+  var sent=new Date(+p[0],+p[1]-1,+p[2]); var now=new Date();
+  var a=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  return Math.round((a-sent)/86400000);
+}
+function nextStep(q){
+  var d=daysSince(q.date);
+  if(d>=14) return {day:14,label:'Day 14 · Final close-out due'};
+  if(d>=7) return {day:7,label:'Day 7 · Deadline nudge due'};
+  if(d>=3) return {day:3,label:'Day 3 · Objection answer due'};
+  if(d>=1) return {day:1,label:'Day 1 · Check-in due'};
+  return {day:1,label:'Day 1 · Due tomorrow'};
+}
+function fillTpl(t,q){
+  return String(t).split('{name}').join(q.name).split('{job}').join(q.job).split('{amount}').join(money(q.amount));
+}
+function renderStats(){
+  var open=0,pipeline=0,won=0,wonN=0,lostN=0;
+  quotes.forEach(function(q){
+    if(q.status==='won'){ won+=+q.amount||0; wonN++; }
+    else if(q.status==='lost'){ lostN++; }
+    else { open++; pipeline+=+q.amount||0; }
+  });
+  $('statOpen').textContent=open;
+  $('statPipeline').textContent=money(pipeline);
+  $('statWon').textContent=money(won);
+  $('statCounts').textContent=wonN+' / '+lostN;
+}
+function renderQuotes(){
+  var list=$('quoteList'); var active=(trialState()==='active');
+  var dis=active?'':' disabled';
+  if(!quotes.length){
+    list.innerHTML='<div class="empty">No quotes yet. '+(active?'Add your first open quote above — or load the sample data to see the board working in seconds.':'Start your free trial above to add quotes and run the board.')+'</div>';
+    renderStats(); return;
+  }
+  var sorted=quotes.slice().sort(function(a,b){ return a.date<b.date?-1:(a.date>b.date?1:0); });
+  var html='';
+  sorted.forEach(function(q){
+    var d=daysSince(q.date); var step=nextStep(q);
+    var chip, meta='Sent '+esc(q.date)+' · '+(d<=0?'today':d+(d===1?' day':' days')+' ago')+' · '+esc(q.job);
+    if(q.status==='won') chip='<span class="nextchip wonchip">Won ✓</span>';
+    else if(q.status==='lost') chip='<span class="nextchip lostchip">Lost</span>';
+    else chip='<span class="nextchip">'+esc(step.label)+'</span>';
+    html+='<div class="qcard"><div class="qcard-top"><div><span class="who">'+esc(q.name)+'</span><div class="meta">'+meta+'</div></div><div style="text-align:right"><div class="amt">'+money(q.amount)+'</div>'+chip+'</div></div>'
+      +'<div class="qcard-actions">'
+      +'<button type="button" class="stbtn'+(q.status==='open'?' on-open':'')+'" data-act="open" data-id="'+q.id+'"'+dis+'>Still open</button>'
+      +'<button type="button" class="stbtn'+(q.status==='won'?' on-won':'')+'" data-act="won" data-id="'+q.id+'"'+dis+'>Won</button>'
+      +'<button type="button" class="stbtn'+(q.status==='lost'?' on-lost':'')+'" data-act="lost" data-id="'+q.id+'"'+dis+'>Lost</button>'
+      +'<button type="button" class="linkbtn" data-act="preview" data-id="'+q.id+'"'+dis+'>Preview next draft</button>'
+      +'<button type="button" class="delbtn" data-act="del" data-id="'+q.id+'"'+dis+'>Delete</button>'
+      +'</div></div>';
+  });
+  list.innerHTML=html;
+  renderStats();
+}
+$('quoteList').addEventListener('click',function(e){
+  var b=e.target.closest? e.target.closest('button[data-act]') : null;
+  if(!b||b.disabled) return;
+  var id=b.getAttribute('data-id'), act=b.getAttribute('data-act');
+  var q=null; quotes.forEach(function(x){ if(String(x.id)===String(id)) q=x; });
+  if(!q) return;
+  if(act==='del'){ quotes=quotes.filter(function(x){ return String(x.id)!==String(id); }); saveJSON(LS.quotes,quotes); renderQuotes(); return; }
+  if(act==='preview'){
+    var step=nextStep(q);
+    $('draftTitle').textContent='Day '+step.day+' draft for '+q.name+' — '+q.job+' ('+money(q.amount)+')';
+    $('draftText').textContent=fillTpl(templates[step.day],q);
+    $('draftBox').style.display='block';
+    $('draftBox').scrollIntoView({behavior:'smooth',block:'nearest'});
+    return;
+  }
+  q.status=act; saveJSON(LS.quotes,quotes); renderQuotes();
+});
+$('addQuoteForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  if(trialState()!=='active') return;
+  var name=$('fName').value.trim(), job=$('fJob').value.trim();
+  var amount=parseFloat($('fAmount').value)||0, date=$('fDate').value||todayISO(0);
+  if(!name||!job) return;
+  quotes.push({id:Date.now(),name:name,job:job,amount:amount,date:date,status:'open'});
+  saveJSON(LS.quotes,quotes); renderQuotes();
+  $('fName').value=''; $('fJob').value=''; $('fAmount').value=''; $('fDate').value=todayISO(0);
+  $('fName').focus();
+});
+function arm(btn,label,fn){
+  if(btn.getAttribute('data-armed')==='1'){ btn.removeAttribute('data-armed'); btn.classList.remove('armed'); btn.textContent=label; fn(); return; }
+  btn.setAttribute('data-armed','1'); btn.classList.add('armed'); var old=btn.textContent; btn.textContent='Click again to confirm';
+  setTimeout(function(){ btn.removeAttribute('data-armed'); btn.classList.remove('armed'); btn.textContent=old; },3500);
+}
+$('loadSampleBtn').addEventListener('click',function(){
+  if(trialState()!=='active') return;
+  var btn=this;
+  var load=function(){
+    var base=Date.now();
+    quotes=[
+      {id:base+1,name:'Mrs. Nguyen',job:'A/C replacement',amount:4800,date:todayISO(6),status:'open'},
+      {id:base+2,name:'Johnson',job:'Water heater install',amount:1850,date:todayISO(3),status:'open'},
+      {id:base+3,name:'Garcia',job:'Panel upgrade',amount:2400,date:todayISO(1),status:'open'},
+      {id:base+4,name:'Smith',job:'Furnace repair',amount:920,date:todayISO(12),status:'open'},
+      {id:base+5,name:'Patel',job:'Bathroom remodel — plumbing',amount:3650,date:todayISO(8),status:'open'}
+    ];
+    saveJSON(LS.quotes,quotes); renderQuotes();
+    $('quoteList').scrollIntoView({behavior:'smooth',block:'nearest'});
+  };
+  if(quotes.length){ arm(btn,'Load sample data — 5 open quotes',load); } else { load(); }
+});
+$('clearBtn').addEventListener('click',function(){
+  if(trialState()!=='active') return;
+  arm(this,'Clear trial data',function(){
+    quotes=[]; templates=JSON.parse(JSON.stringify(defaultTpls));
+    saveJSON(LS.quotes,quotes); saveJSON(LS.tpl,templates);
+    [1,3,7,14].forEach(function(d){ $('tpl'+d).value=templates[d]; $('saved'+d).textContent=''; });
+    $('draftBox').style.display='none';
+    renderQuotes();
+  });
+});
+
+/* ---------- templates ---------- */
+[1,3,7,14].forEach(function(d){
+  var ta=$('tpl'+d); ta.value=templates[d];
+  ta.addEventListener('input',function(){
+    templates[d]=ta.value; saveJSON(LS.tpl,templates);
+    $('saved'+d).textContent='Saved in this browser ✓';
+  });
+});
+
+/* ---------- ROI calculator ---------- */
+function roiCalc(){
+  var q=parseFloat($('roiQ').value)||0, a=parseFloat($('roiAvg').value)||0;
+  var wo=parseFloat($('roiWithout').value)||0, wi=parseFloat($('roiWith').value)||0;
+  var jw=q*wo/100, ji=q*wi/100, rw=jw*a, ri=ji*a, extra=ri-rw, net=extra-99;
+  $('roiJobsWithout').textContent=Math.round(jw*10)/10;
+  $('roiJobsWith').textContent=Math.round(ji*10)/10;
+  $('roiRevWithout').textContent=money(rw);
+  $('roiRevWith').textContent=money(ri);
+  $('roiExtra').textContent=money(extra);
+  $('roiNet').textContent=money(net);
+  $('roiYear').textContent=money(net*12);
+}
+['roiQ','roiAvg','roiWithout','roiWith'].forEach(function(id){ $(id).addEventListener('input',roiCalc); });
+
+/* ---------- account / trial clock / locking ---------- */
+function applyLock(){
+  var active=(trialState()==='active');
+  var app=$('trialApp');
+  app.classList.toggle('app-off',!active);
+  app.querySelectorAll('input,textarea,button,select').forEach(function(el){ el.disabled=!active; });
+  renderQuotes();
+}
+function renderAccount(){
+  var st=trialState();
+  $('acctNone').style.display=(st==='none')?'block':'none';
+  $('acctActive').style.display=(st==='active')?'block':'none';
+  $('acctLocked').style.display=(st==='expired')?'block':'none';
+  if(account){ $('acctWho').textContent=(account.name||'')+(account.email?' · '+account.email:''); }
+  var bar=$('trialBar');
+  if(st==='none'){ bar.classList.remove('show'); document.body.style.paddingBottom=''; }
+  else{
+    bar.classList.add('show'); document.body.style.paddingBottom='58px';
+    if(st==='active'){ $('trialBarText').textContent=fmtLeft(msLeft()); $('trialBarLinks').innerHTML='<a href="#trial" style="font-weight:700;text-decoration:underline">Open the app</a>'; }
+    else{ $('trialBarText').textContent='Trial ended — subscribe to continue'; $('trialBarLinks').innerHTML='<a class="btn btn-amber btn-sm" href="'+PAYPAL+'" target="_blank" rel="noopener" style="color:#fff">Subscribe — $99/mo via PayPal</a>'; }
+  }
+  applyLock();
+}
+function tick(){
+  var st=trialState();
+  if(st==='active'){ var t=fmtLeft(msLeft()); $('countdownText').textContent=t; $('trialBarText').textContent=t; }
+  else if(st==='expired'&&$('acctLocked').style.display==='none'){ renderAccount(); }
+}
+$('startTrialBtn').addEventListener('click',function(){
+  $('regForm').style.display='block'; this.style.display='none'; $('rName').focus();
+});
+$('regForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var name=$('rName').value.trim(), email=$('rEmail').value.trim(), pw=$('rPass').value;
+  if(!name||!email||!pw) return;
+  account={name:name,email:email,pass:pw,startedAt:Date.now()};
+  saveJSON(LS.acct,account);
+  renderAccount();
+  $('trialApp').scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.querySelectorAll('[data-logout]').forEach(function(b){
+  b.addEventListener('click',function(){
+    arm(b,'Log out / Clear trial account',function(){
+      account=null; quotes=[]; templates=JSON.parse(JSON.stringify(defaultTpls));
+      removeKey(LS.acct); removeKey(LS.quotes); removeKey(LS.tpl);
+      [1,3,7,14].forEach(function(d){ $('tpl'+d).value=templates[d]; $('saved'+d).textContent=''; });
+      $('draftBox').style.display='none';
+      $('regForm').style.display='none'; $('startTrialBtn').style.display='';
+      $('rName').value=''; $('rEmail').value=''; $('rPass').value='';
+      renderAccount();
+      $('trial').scrollIntoView({behavior:'smooth'});
+    });
+  });
+});
+
+/* ---------- init ---------- */
+$('fDate').value=todayISO(0);
+roiCalc();
+renderAccount();
+setInterval(tick,20000);
+tick();
+})();
 </script>
 </body>
 </html>
