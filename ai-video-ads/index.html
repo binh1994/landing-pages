@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
+<!-- Google Analytics 4 (free) - visitor + trial analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NZLMVT41QW"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-NZLMVT41QW');
+function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_started'); } catch (e) {} }
+</script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
@@ -758,6 +768,7 @@
           var now = Date.now();
           lsSet(ACCT_KEY, { name: name, email: email, password: pass, startedAt: now, fingerprint: fingerprint, ip: currentIp });
           lsSet(DEVICE_KEY, { fingerprint: fingerprint, email: email, startedAt: now });
+    trackTrialStarted();
           regError.textContent = '';
           if (!oEmail.value) oEmail.value = email;
           applyState();
