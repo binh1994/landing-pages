@@ -131,6 +131,7 @@
       .status-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
       .status-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 12px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:inherit;min-height:38px}
       .status-btn.active{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+      .status-btn.del-btn{color:#b3382e;border-color:#e5b8b3}
       .empty-note{color:var(--muted);font-size:.95rem;border:1px dashed var(--line);border-radius:12px;padding:18px;text-align:center}
       .thread-box{background:var(--surface2);border-radius:14px;padding:16px;min-height:220px;display:flex;flex-direction:column;gap:8px}
       .thread-box .bubble{opacity:1;transform:none;max-width:92%}
@@ -581,7 +582,7 @@
           return Math.max(0, account.startedAt + TRIAL_MS - Date.now());
         }
         function fmtLeft(ms){
-          var totalMin = Math.floor(ms / 60000);
+          var totalMin = Math.ceil(ms / 60000);
           var d = Math.floor(totalMin / 1440);
           var h = Math.floor((totalMin % 1440) / 60);
           var m = totalMin % 60;
@@ -593,6 +594,7 @@
         // ---------- Trial data ----------
         var calls = [];
         var selectedId = null;
+        var pendingDeleteId = null;
         function saveData(){
           try { localStorage.setItem(DATA_KEY, JSON.stringify({ calls:calls, selectedId:selectedId })); } catch(e){}
         }
@@ -655,10 +657,11 @@
               var btns = STATUSES.map(function(s){
                 return '<button type="button" class="status-btn' + (c.status === s.id ? ' active' : '') + '" data-status="' + s.id + '" data-id="' + esc(c.id) + '"' + (canEdit ? '' : ' disabled') + '>' + s.label + '</button>';
               }).join('');
+              var delBtn = '<button type="button" class="status-btn del-btn" data-del="' + esc(c.id) + '"' + (canEdit ? '' : ' disabled') + '>' + (pendingDeleteId === c.id ? 'Click again to delete' : 'Delete') + '</button>';
               return '<div class="call-card' + (c.id === selectedId ? ' selected' : '') + '" data-select="' + esc(c.id) + '" role="button" tabindex="0" aria-label="Open thread for ' + esc(c.name) + '">'
                 + '<div class="top"><span class="cname">' + esc(c.name) + '</span><span class="badge ' + esc(c.status) + '">' + esc(statusLabel(c.status)) + '</span></div>'
                 + '<div class="meta">' + esc(SERVICE_LABEL[c.service] || c.service) + ' · ' + esc(c.detail || '') + '<br>' + esc(c.phone) + ' · ' + esc(c.timeLabel) + '</div>'
-                + '<div class="status-row">' + btns + '</div></div>';
+                + '<div class="status-row">' + btns + delBtn + '</div></div>';
             }).join('');
           }
 
@@ -695,6 +698,7 @@
           } else if (st === 'ended') {
             pill.classList.add('ended');
             pillText.textContent = 'Trial ended — subscribe to continue';
+            countdownText.textContent = 'Trial: ended';
           } else {
             pill.classList.remove('ended');
             pillText.textContent = '3-day free trial — no card required';
@@ -751,18 +755,34 @@
 
         // ---------- App events ----------
         listEl.addEventListener('click', function(e){
+          var del = e.target.closest ? e.target.closest('[data-del]') : null;
+          if (del) {
+            if (!editable()) return;
+            e.stopPropagation();
+            var delId = del.getAttribute('data-del');
+            if (pendingDeleteId === delId) {
+              calls = calls.filter(function(x){ return x.id !== delId; });
+              if (selectedId === delId) selectedId = calls.length ? calls[0].id : null;
+              pendingDeleteId = null;
+            } else {
+              pendingDeleteId = delId;
+            }
+            renderApp();
+            return;
+          }
           var st = e.target.closest ? e.target.closest('[data-status]') : null;
           if (st) {
             if (!editable()) return;
             e.stopPropagation();
             var id = st.getAttribute('data-id'), val = st.getAttribute('data-status');
+            pendingDeleteId = null;
             calls.forEach(function(c){ if (c.id === id) c.status = val; });
             selectedId = id;
             renderApp();
             return;
           }
           var card = e.target.closest ? e.target.closest('[data-select]') : null;
-          if (card) { selectedId = card.getAttribute('data-select'); renderApp(); }
+          if (card) { pendingDeleteId = null; selectedId = card.getAttribute('data-select'); renderApp(); }
         });
         listEl.addEventListener('keydown', function(e){
           if (e.key !== 'Enter' && e.key !== ' ') return;
