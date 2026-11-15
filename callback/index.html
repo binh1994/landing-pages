@@ -13,6 +13,7 @@
     <style>
       button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem; }
       * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
       :root {
         --paper: #fbfbfa;
         --surface: #ffffff;
@@ -159,6 +160,98 @@
       .float-chip.b { bottom: -94px; right: 6px; }
       @media (max-width: 1080px) { .float-chip.b { right: 6px; } }
       @media (max-width: 480px) { .float-chip { display: none; } }
+
+      /* ---------- free trial app ---------- */
+      .trial-sec { background: var(--surface-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      @media (prefers-color-scheme: dark) { .trial-sec { background: var(--surface); } }
+      .trial-notice {
+        background: var(--accent-soft); border: 1px solid var(--accent); border-radius: var(--radius);
+        padding: 14px 18px; font-size: .95rem; color: var(--ink); margin-bottom: 26px; max-width: 860px;
+      }
+      .trial-notice strong { font-family: "Archivo", sans-serif; }
+      .trial-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 22px; }
+      .trial-toolbar .spacer { flex: 1; }
+      .trial-counts { font-family: "IBM Plex Mono", monospace; font-size: .84rem; color: var(--ink-2); }
+      .trial-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 30px; align-items: start; }
+      @media (max-width: 900px) { .trial-grid { grid-template-columns: 1fr; } }
+      .trial-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 20px; }
+      .trial-card h3 { font-size: 1.08rem; font-weight: 800; margin-bottom: 14px; }
+      .trial-card textarea {
+        width: 100%; font: inherit; font-size: .95rem; color: var(--ink); line-height: 1.5;
+        background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 13px; resize: vertical;
+      }
+      .trial-card textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .inbox-list { display: grid; gap: 9px; margin-top: 18px; }
+      .inbox-item {
+        display: block; width: 100%; text-align: left; font: inherit; cursor: pointer;
+        background: var(--surface); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; color: var(--ink);
+      }
+      .inbox-item:hover { border-color: var(--ink-3); }
+      .inbox-item.sel { border-color: var(--accent); background: var(--accent-soft); }
+      .inbox-item .top { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+      .inbox-item .nm { font-family: "Archivo", sans-serif; font-weight: 700; font-size: .98rem; }
+      .inbox-item .tm { font-family: "IBM Plex Mono", monospace; font-size: .76rem; color: var(--ink-3); white-space: nowrap; }
+      .inbox-item .rs { font-size: .88rem; color: var(--ink-2); margin-top: 2px; }
+      .inbox-item .ph { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--ink-3); }
+      .chip { display: inline-block; font-size: .72rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-top: 7px; }
+      .chip.callback { background: #fdecea; color: #b3382e; }
+      .chip.booked { background: var(--good-soft); color: var(--good); }
+      .chip.resolved { background: var(--surface-2); color: var(--ink-2); }
+      @media (prefers-color-scheme: dark) { .chip.callback { background: #3a1d1a; color: #f0958a; } }
+      .inbox-empty { color: var(--ink-3); font-size: .92rem; text-align: center; padding: 26px 12px; border: 1.5px dashed var(--line); border-radius: 12px; margin-top: 18px; }
+      .thread-head { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 13px; }
+      .thread-head .nm { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1.05rem; }
+      .thread-head .meta { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--ink-3); }
+      .thread-msgs { display: grid; gap: 9px; min-height: 190px; align-content: start; margin-bottom: 16px; }
+      .thread-empty { color: var(--ink-3); font-size: .9rem; text-align: center; padding: 30px 10px; border: 1.5px dashed var(--line); border-radius: 14px; }
+      .status-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+      .status-btn {
+        font: inherit; font-size: .86rem; font-weight: 700; cursor: pointer; min-height: 40px;
+        background: var(--surface); color: var(--ink-2); border: 1.5px solid var(--line); border-radius: 999px; padding: 7px 15px;
+      }
+      .status-btn:hover { border-color: var(--ink-3); }
+      .status-btn.on-booked { background: var(--good-soft); color: var(--good); border-color: var(--good); }
+      .status-btn.on-resolved { background: var(--surface-2); color: var(--ink); border-color: var(--ink-3); }
+      .status-btn.on-callback { background: #fdecea; color: #b3382e; border-color: #b3382e; }
+      @media (prefers-color-scheme: dark) { .status-btn.on-callback { background: #3a1d1a; color: #f0958a; } }
+      .send-row { display: flex; gap: 9px; margin-top: 10px; }
+      .send-row input { flex: 1; min-width: 0; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 13px; }
+      .send-row input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .trial-calc { display: grid; grid-template-columns: 1.05fr .95fr; gap: 30px; align-items: start; margin-top: 34px; }
+      @media (max-width: 900px) { .trial-calc { grid-template-columns: 1fr; } }
+      .trial-calc input[type="number"] {
+        width: 100%; font: inherit; font-size: .97rem; color: var(--ink);
+        background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 13px;
+      }
+      .trial-calc input[type="number"]:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .hero-trust { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .9rem; color: var(--ink-2); margin: 0 0 22px; }
+      .hero-trust span { display: inline-flex; gap: 6px; align-items: baseline; }
+      .hero-trust .ck { color: var(--good); font-weight: 700; }
+      .acct-bar {
+        display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center;
+        background: var(--dark); color: var(--dark-ink); border-radius: var(--radius);
+        padding: 13px 18px; margin-bottom: 22px;
+      }
+      .acct-bar .cd { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 1.02rem; color: #fff; }
+      .acct-bar .cd b { color: var(--amber); }
+      .acct-bar .who { font-size: .88rem; color: var(--dark-ink-2); }
+      .acct-bar .spacer { flex: 1; }
+      .acct-bar .btn { min-height: 38px; padding: 7px 14px; font-size: .87rem; }
+      .gate-card { background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: 28px 26px; margin-bottom: 26px; }
+      .gate-card h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 8px; }
+      .gate-card p { color: var(--ink-2); margin: 0 0 14px; max-width: 620px; }
+      .steps-2 { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 0 0 18px; padding: 0; list-style: none; font-size: .95rem; color: var(--ink-2); }
+      .steps-2 b { color: var(--accent); font-family: "IBM Plex Mono", monospace; margin-right: 6px; }
+      .gate-form { max-width: 460px; margin-top: 18px; }
+      .gate-note { font-size: .88rem; color: var(--ink-2); background: var(--surface-2); border-radius: 10px; padding: 11px 14px; margin-top: 14px; }
+      .trust-row { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .9rem; color: var(--ink-2); margin-top: 16px; }
+      .trust-row .ck { color: var(--good); font-weight: 700; margin-right: 5px; }
+      .locked-card { background: var(--dark); color: var(--dark-ink); border-radius: var(--radius); padding: 30px 26px; margin-bottom: 26px; text-align: left; }
+      .locked-card h3 { color: #fff; font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+      .locked-card p { color: var(--dark-ink-2); margin: 0 0 18px; max-width: 620px; }
+      .locked-card .row-btns { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .trial-app-off { opacity: .45; pointer-events: none; user-select: none; }
+      .form-err { color: #b3382e; font-size: .88rem; font-weight: 600; margin-top: 10px; display: none; }
 
       /* ---------- stats band ---------- */
       .band { background: var(--dark); color: var(--dark-ink); }
@@ -314,13 +407,14 @@
           CallBack <small>Text-Back</small>
         </a>
         <nav class="topnav" aria-label="Page sections">
+          <a href="#trial">Try it free</a>
           <a href="#how">How it works</a>
           <a href="#demo">Live demo</a>
           <a href="#why-text">Why text-only</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <a class="btn btn-primary btn-sm" href="#signup">Start free trial</a>
+        <a class="btn btn-primary btn-sm" href="#trial">Start free trial</a>
       </div>
     </header>
 
@@ -333,8 +427,13 @@
             <h1>On a ladder. Under a sink. <span class="hl">Your missed calls still get answered.</span></h1>
             <p class="sub">When a call to your shop goes unanswered, CallBack instantly texts the caller back from your business number — so the job comes to you by text instead of going to the next name on Google.</p>
             <div class="hero-ctas">
-              <a class="btn btn-primary" href="#signup">Start 14-day free trial</a>
-              <a class="btn btn-ghost" href="#demo">Try the live demo</a>
+              <a class="btn btn-primary" href="#trial">Start 3-day free trial</a>
+            </div>
+            <div class="hero-trust">
+              <span><span class="ck" aria-hidden="true">✓</span> 3-day free trial</span>
+              <span><span class="ck" aria-hidden="true">✓</span> No card required</span>
+              <span><span class="ck" aria-hidden="true">✓</span> Cancel anytime</span>
+              <span><span class="ck" aria-hidden="true">✓</span> Secure checkout via PayPal</span>
             </div>
             <p class="hero-price"><strong>$14/mo flat.</strong> About 52% less than Dialzara&rsquo;s $29/mo — and no per-minute meter, ever.</p>
             <ul class="hero-points">
@@ -371,6 +470,166 @@
           </div>
         </div>
       </div>
+
+      <!-- FREE TRIAL APP -->
+      <section class="trial-sec" id="trial" aria-labelledby="trial-h">
+        <div class="wrap">
+          <div class="sec-head">
+            <span class="tag">Free in-browser trial</span>
+            <h2 id="trial-h">Try it free — no signup</h2>
+            <p>This is the real CallBack workflow, running in your browser. Add a missed call, pick an auto-reply template, send the text-back, work the thread, and mark the outcome — then run your own lost-revenue numbers below.</p>
+          </div>
+          <p class="trial-notice"><strong>Please note:</strong> Trial text-backs are a simulation — real SMS text-back is set up after you subscribe, using a carrier-registered number. Everything you enter here stays in this browser only (localStorage) — nothing is sent or stored anywhere else.</p>
+
+          <div class="acct-bar" id="tAcctBar" hidden>
+            <span class="cd" id="tCountdown">Trial: 3 days left</span>
+            <span class="who" id="tAcctWho"></span>
+            <span class="spacer"></span>
+            <button class="btn btn-outline-light" type="button" id="tLogout">Log out / Clear trial account</button>
+          </div>
+
+          <div class="gate-card" id="tGate">
+            <h3>Start your 3-day free trial</h3>
+            <p>Full access to the trial app below for 3 days — the missed-call inbox, text-back templates, threads and the lost-revenue calculator. No card required.</p>
+            <ol class="steps-2">
+              <li><b>Step 1</b> Enter your name and email</li>
+              <li><b>Step 2</b> Use the app — your 3 days start right away</li>
+            </ol>
+            <button class="btn btn-primary" type="button" id="tStartBtn">Start 3-day free trial</button>
+            <form class="gate-form" id="tRegForm" hidden novalidate>
+              <div class="field">
+                <label for="tRegName">Your name</label>
+                <input id="tRegName" type="text" maxlength="48" placeholder="e.g. Mike Torres" autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="tRegEmail">Email</label>
+                <input id="tRegEmail" type="email" maxlength="80" placeholder="you@yourshop.com" autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="tRegPass">Password</label>
+                <input id="tRegPass" type="password" maxlength="64" placeholder="Any password — it never leaves this browser" autocomplete="new-password" />
+              </div>
+              <button class="btn btn-primary" type="submit" style="width:100%">Create trial account &amp; start</button>
+              <p class="form-err" id="tRegErr" role="alert"></p>
+              <p class="gate-note"><strong>Trial account is stored in this browser only</strong> — in localStorage on this device. There is no server account and nothing is sent anywhere; clearing your browser data deletes it.</p>
+            </form>
+            <div class="trust-row">
+              <span><span class="ck" aria-hidden="true">✓</span>3-day free trial</span>
+              <span><span class="ck" aria-hidden="true">✓</span>No card required</span>
+              <span><span class="ck" aria-hidden="true">✓</span>Cancel anytime</span>
+              <span><span class="ck" aria-hidden="true">✓</span>Secure checkout via PayPal</span>
+            </div>
+          </div>
+
+          <div class="locked-card" id="tLocked" hidden>
+            <h3>Trial ended — subscribe to continue</h3>
+            <p>Your 3-day free trial is over, so the trial app is now read-only: your calls and threads are still below, exactly as you left them, but adding and editing are locked. Subscribe to unlock CallBack for real — $14/mo flat, set up on a carrier-registered number.</p>
+            <div class="row-btns">
+              <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=VMJJKHVEQU3DJ">Subscribe with PayPal — $14/mo</a>
+              <button class="btn btn-outline-light" type="button" id="tLogout2">Log out / Clear trial account</button>
+            </div>
+          </div>
+
+          <div id="tApp">
+          <div class="trial-toolbar">
+            <button class="btn btn-primary btn-sm" type="button" id="tLoadSamples">Load sample data</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="tClear">Clear trial data</button>
+            <span class="spacer"></span>
+            <span class="trial-counts" id="tCounts" role="status"></span>
+          </div>
+
+          <div class="trial-grid">
+            <div>
+              <form class="trial-card" id="tAddForm" novalidate>
+                <h3>Add a missed call</h3>
+                <div class="field">
+                  <label for="tName">Caller name</label>
+                  <input id="tName" type="text" maxlength="48" placeholder="e.g. Sarah Mitchell" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label for="tPhone">Caller phone</label>
+                  <input id="tPhone" type="tel" maxlength="20" placeholder="e.g. (512) 555-0147" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label for="tTime">Time of call</label>
+                  <input id="tTime" type="text" maxlength="24" placeholder="e.g. Today · 9:12 AM" autocomplete="off" />
+                </div>
+                <div class="field">
+                  <label for="tReason">Reason for calling</label>
+                  <input id="tReason" type="text" maxlength="90" placeholder="e.g. Water heater leaking in the garage" autocomplete="off" />
+                </div>
+                <button class="btn btn-primary" type="submit" style="width:100%">Add to inbox</button>
+              </form>
+              <div class="inbox-list" id="tInbox" role="list" aria-label="Missed-call inbox"></div>
+              <div class="inbox-empty" id="tInboxEmpty">No missed calls yet.<br />Add one above, or load the sample data to see a working inbox.</div>
+            </div>
+
+            <div class="trial-card" id="tThreadCard" aria-live="polite">
+              <div class="thread-head">
+                <span class="nm" id="tThreadName">No call selected</span>
+                <span class="meta" id="tThreadMeta">Pick a call from the inbox to open its thread.</span>
+              </div>
+              <div class="status-btns" role="group" aria-label="Mark this call">
+                <button class="status-btn" type="button" data-setstatus="booked" id="tBtnBooked">✓ Booked</button>
+                <button class="status-btn" type="button" data-setstatus="resolved" id="tBtnResolved">Resolved</button>
+                <button class="status-btn" type="button" data-setstatus="callback" id="tBtnCallback">Needs callback</button>
+              </div>
+              <div class="thread-msgs" id="tThread">
+                <div class="thread-empty">The text-back conversation for the selected caller will appear here.</div>
+              </div>
+              <div class="field">
+                <label for="tBiz">Your business name (fills the template)</label>
+                <input id="tBiz" type="text" maxlength="48" value="Lone Star Plumbing" autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="tTemplate">Auto-reply template</label>
+                <select id="tTemplate">
+                  <option value="standard">Missed call — business hours</option>
+                  <option value="afterhours">After hours</option>
+                  <option value="emergency">Emergency</option>
+                </select>
+              </div>
+              <div class="field" style="margin-bottom:8px">
+                <label for="tReplyText">Text-back message — edit it before sending</label>
+                <textarea id="tReplyText" rows="4" maxlength="480"></textarea>
+              </div>
+              <button class="btn btn-primary" type="button" id="tSendText" style="width:100%">Send text-back (simulated)</button>
+              <div class="send-row">
+                <input id="tFollowUp" type="text" maxlength="300" placeholder="Type a follow-up message as the shop…" aria-label="Follow-up message" />
+                <button class="btn btn-ghost btn-sm" type="button" id="tSendFollow">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="trial-calc">
+            <div class="trial-card">
+              <h3>Lost-revenue calculator</h3>
+              <div class="field">
+                <label for="tMissed">Missed calls per week</label>
+                <input id="tMissed" type="number" min="0" max="1000" step="1" value="8" />
+              </div>
+              <div class="field">
+                <label for="tJobVal">Average job value ($)</label>
+                <input id="tJobVal" type="number" min="0" max="100000" step="10" value="350" />
+              </div>
+              <div class="field" style="margin-bottom:4px">
+                <label for="tRate">Callback rate — % of missed callers you currently win back</label>
+                <input id="tRate" type="number" min="0" max="100" step="1" value="20" />
+              </div>
+              <p class="demo-note">Every missed caller you don&rsquo;t win back is counted as a lost job at your average ticket. A text-back that lands in seconds is how you raise that callback rate.</p>
+            </div>
+            <div class="calc-out" aria-live="polite">
+              <div class="row"><span>Missed calls / month</span><span class="small" id="tOutMissed">35</span></div>
+              <div class="row"><span>Job value at risk / month</span><span class="small" id="tOutRisk">$12,132</span></div>
+              <div class="row"><span>Won back by callbacks today</span><span class="small" id="tOutBack">$2,426</span></div>
+              <div class="row"><span>Estimated lost revenue / month</span><span class="big" id="tOutLost">$9,705</span></div>
+              <div class="row"><span>Estimated lost revenue / year</span><span class="small" id="tOutYear">$116,460</span></div>
+              <p>Against that, CallBack is $14/mo flat. One recovered job at your average ticket covers the subscription many times over.</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </section>
 
       <!-- STATS -->
       <div class="band">
@@ -641,7 +900,7 @@
                 <li><span class="ck" aria-hidden="true">✓</span> Send a test missed call to your own phone anytime</li>
               </ul>
               <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=VMJJKHVEQU3DJ">Buy with PayPal — $14/mo</a>
-              <p class="trial-note">14 days free · month-to-month after · cancel anytime</p>
+              <p class="trial-note">3-day free trial · no card required · month-to-month after · cancel anytime</p>
               <p class="trial-note">Prefer PayPal.me? Pay at <a href="https://www.paypal.com/paypalme/RenewGuard" style="color:var(--amber);font-weight:600">paypal.me/RenewGuard</a></p>
             </div>
             <div>
@@ -705,7 +964,7 @@
             <details>
               <summary>What does the trial look like?<span class="plus" aria-hidden="true">+</span></summary>
               <div class="body">
-                <p>14 days free, then $14/mo month-to-month. Set your business profile and hours, pick or edit your three templates, and send a test missed call to your own phone to watch the text land before a real customer ever sees it. Cancel anytime — there&rsquo;s no annual contract to escape.</p>
+                <p>3 days free, then $14/mo month-to-month. Set your business profile and hours, pick or edit your three templates, and send a test missed call to your own phone to watch the text land before a real customer ever sees it. Cancel anytime — there&rsquo;s no annual contract to escape.</p>
               </div>
             </details>
             <details>
@@ -725,7 +984,7 @@
             <div>
               <span class="tag" style="color:var(--amber);border-color:var(--amber)">Start your trial</span>
               <h2 id="signup-h" style="font-size:clamp(1.8rem,3.8vw,2.5rem);font-weight:800;margin-bottom:14px">Your next missed call could be a booked job instead.</h2>
-              <p class="lede">Tell us about your shop and we&rsquo;ll set up your 14-day free trial — templates pre-filled with your business name, hours set, and a test text sent to your own phone so you can watch it work before a customer does.</p>
+              <p class="lede">Tell us about your shop and we&rsquo;ll set up your 3-day free trial — templates pre-filled with your business name, hours set, and a test text sent to your own phone so you can watch it work before a customer does.</p>
               <p class="lede" style="margin-top:14px"><strong style="color:#fff">$14/mo after the trial.</strong> Month-to-month. Founding customers lock this price — it&rsquo;s about 52% under Dialzara&rsquo;s $29 today, and it stays yours.</p>
               <p class="lede" style="margin-top:14px">Pay with PayPal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=VMJJKHVEQU3DJ" style="color:var(--amber);font-weight:600">Subscribe — $14/mo</a> · or via <a href="https://www.paypal.com/paypalme/RenewGuard" style="color:var(--amber);font-weight:600">paypal.me/RenewGuard</a></p>
             </div>
@@ -917,7 +1176,7 @@
             return;
           }
           signupText =
-            "CallBack Text-Back — 14-day free trial signup\n" +
+            "CallBack Text-Back — 3-day free trial signup\n" +
             "Plan: $14/mo flat after trial (month-to-month)\n" +
             "Business: " + biz + "\n" +
             "Trade: " + trade + "\n" +
@@ -947,6 +1206,303 @@
           document.body.appendChild(a); a.click(); document.body.removeChild(a);
           setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
         });
+
+        /* ---------- free trial app + trial account ---------- */
+        var TKEY = "callbackTrial.v1";
+        var AKEY = "callbackAccount.v1";
+        var TRIAL_MS = 3 * 24 * 60 * 60 * 1000;
+        function lsGet(k) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; } }
+        function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+        function lsDel(k) { try { localStorage.removeItem(k); } catch (e) {} }
+        function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+        function uid() { return "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
+
+        var trial = lsGet(TKEY);
+        if (!trial || !Array.isArray(trial.calls)) {
+          trial = { calls: [], selectedId: null, biz: "Lone Star Plumbing", calc: { missed: 8, job: 350, rate: 20 } };
+        }
+        if (!trial.calc) trial.calc = { missed: 8, job: 350, rate: 20 };
+        var account = lsGet(AKEY);
+        if (account && (!account.startedAt || !account.email)) account = null;
+
+        function saveTrial() { lsSet(TKEY, trial); }
+        function trialState() {
+          if (!account) return "none";
+          return (Date.now() - account.startedAt < TRIAL_MS) ? "active" : "expired";
+        }
+        function canEdit() { return trialState() === "active"; }
+        function selectedCall() {
+          for (var i = 0; i < trial.calls.length; i++) if (trial.calls[i].id === trial.selectedId) return trial.calls[i];
+          return null;
+        }
+
+        var statusLabel = { booked: "✓ Booked", resolved: "Resolved", callback: "Needs callback" };
+        var tTemplates = {
+          standard: "Hi {FirstName}, sorry we missed your call — this is {Business}. What can we help with? Reply here and we'll get you on the schedule.",
+          afterhours: "Hi {FirstName}, thanks for calling {Business} — we're closed right now, but your message matters. Tell us what's going on and we'll text you back first thing in the morning.",
+          emergency: "Hi {FirstName}, this is {Business}. If this is an emergency, reply with your address and a photo if you can — our on-call tech will call you right back."
+        };
+        function simReply(reason) {
+          var r = (reason || "").toLowerCase();
+          if (r.indexOf("water heater") > -1 || r.indexOf("leak") > -1) return "Thanks for texting back! The water heater is leaking into the garage — can someone come out today?";
+          if (r.indexOf("ac") > -1 || r.indexOf("air") > -1 || r.indexOf("cool") > -1 || r.indexOf("heat") > -1) return "Hi! Our AC stopped cooling and the house is already at 86°. How soon can someone get here?";
+          if (r.indexOf("drain") > -1 || r.indexOf("clog") > -1 || r.indexOf("sink") > -1) return "Kitchen sink is backed up and draining really slowly. Any opening this week works for us.";
+          if (r.indexOf("breaker") > -1 || r.indexOf("panel") > -1 || r.indexOf("electric") > -1) return "The kitchen breaker keeps tripping. Is it safe to leave it until tomorrow, or should someone look sooner?";
+          if (r.indexOf("burst") > -1 || r.indexOf("pipe") > -1 || r.indexOf("flood") > -1) return "Pipe burst — I shut off the main already. Please call as soon as you can, there's water in two rooms.";
+          return "Thanks for getting back to me so fast! When's the soonest someone could come take a look?";
+        }
+        function fillTemplate() {
+          var c = selectedCall();
+          var first = c ? (c.name.split(/\s+/)[0] || "there") : "there";
+          var biz = $("tBiz").value.trim() || "Your Business";
+          $("tReplyText").value = tTemplates[$("tTemplate").value].replace(/\{FirstName\}/g, first).replace(/\{Business\}/g, biz);
+        }
+
+        function renderInbox() {
+          var box = $("tInbox");
+          box.innerHTML = "";
+          $("tInboxEmpty").style.display = trial.calls.length ? "none" : "block";
+          trial.calls.forEach(function (c) {
+            var b = document.createElement("button");
+            b.type = "button";
+            b.className = "inbox-item" + (c.id === trial.selectedId ? " sel" : "");
+            b.setAttribute("role", "listitem");
+            b.innerHTML =
+              '<span class="top"><span class="nm">' + esc(c.name) + '</span><span class="tm">' + esc(c.time) + '</span></span>' +
+              '<span class="rs">' + esc(c.reason) + '</span><br />' +
+              '<span class="ph">' + esc(c.phone) + '</span> ' +
+              '<span class="chip ' + c.status + '">' + statusLabel[c.status] + '</span>';
+            b.addEventListener("click", function () {
+              trial.selectedId = c.id; saveTrial(); renderInbox(); renderThread(); fillTemplate();
+            });
+            box.appendChild(b);
+          });
+          var nb = 0, bk = 0;
+          trial.calls.forEach(function (c) { if (c.status === "callback") nb++; if (c.status === "booked") bk++; });
+          $("tCounts").textContent = trial.calls.length
+            ? trial.calls.length + " missed call" + (trial.calls.length === 1 ? "" : "s") + " · " + nb + " need callback · " + bk + " booked"
+            : "";
+        }
+
+        function renderThread() {
+          var c = selectedCall();
+          var thread = $("tThread");
+          ["tBtnBooked", "tBtnResolved", "tBtnCallback"].forEach(function (id) { $(id).className = "status-btn"; });
+          if (!c) {
+            $("tThreadName").textContent = "No call selected";
+            $("tThreadMeta").textContent = "Pick a call from the inbox to open its thread.";
+            thread.innerHTML = '<div class="thread-empty">The text-back conversation for the selected caller will appear here.</div>';
+            return;
+          }
+          $("tThreadName").textContent = c.name;
+          $("tThreadMeta").textContent = c.phone + " · Missed call · " + c.time;
+          var btn = c.status === "booked" ? $("tBtnBooked") : c.status === "resolved" ? $("tBtnResolved") : $("tBtnCallback");
+          btn.classList.add("on-" + c.status);
+          thread.innerHTML = "";
+          var chip = document.createElement("div");
+          chip.className = "missed-chip";
+          chip.textContent = "Missed call · " + c.time + " — " + c.reason;
+          thread.appendChild(chip);
+          if (!c.messages.length) {
+            var e = document.createElement("div");
+            e.className = "thread-empty";
+            e.textContent = "No text-back sent yet. Pick a template on the right and send the first one.";
+            thread.appendChild(e);
+          }
+          c.messages.forEach(function (m) {
+            var d = document.createElement("div");
+            d.className = "bubble " + m.who;
+            d.innerHTML = esc(m.text) + '<span class="t">' + esc(m.meta) + "</span>";
+            thread.appendChild(d);
+          });
+        }
+
+        function setControlsEnabled(on) {
+          $("tApp").classList.toggle("trial-app-off", !on);
+          $("tApp").querySelectorAll("input, textarea, select, button").forEach(function (el) { el.disabled = !on; });
+        }
+
+        function fmtCountdown() {
+          var left = account.startedAt + TRIAL_MS - Date.now();
+          if (left <= 0) return "Trial ended";
+          var mins = Math.floor(left / 60000);
+          var d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
+          if (d > 0) return "Trial: " + d + " day" + (d === 1 ? "" : "s") + " " + h + " hour" + (h === 1 ? "" : "s") + " left";
+          if (h > 0) return "Trial: " + h + " hour" + (h === 1 ? "" : "s") + " " + m + " min left";
+          return "Trial: " + m + " min left";
+        }
+
+        function refreshAccountUI() {
+          var st = trialState();
+          $("tGate").hidden = st !== "none";
+          $("tAcctBar").hidden = st === "none";
+          $("tLocked").hidden = st !== "expired";
+          if (account) {
+            $("tCountdown").innerHTML = st === "expired" ? "Trial ended" : esc(fmtCountdown());
+            $("tAcctWho").textContent = account.name + " · " + account.email;
+          }
+          setControlsEnabled(st === "active");
+        }
+
+        /* registration */
+        $("tStartBtn").addEventListener("click", function () {
+          $("tRegForm").hidden = false;
+          $("tStartBtn").style.display = "none";
+          $("tRegName").focus();
+        });
+        $("tRegForm").addEventListener("submit", function (e) {
+          e.preventDefault();
+          var name = $("tRegName").value.trim();
+          var email = $("tRegEmail").value.trim();
+          var pass = $("tRegPass").value;
+          var err = $("tRegErr");
+          if (!name || !email || email.indexOf("@") < 1 || !pass) {
+            err.textContent = "Please fill in your name, a valid email, and a password to start the trial.";
+            err.style.display = "block";
+            return;
+          }
+          err.style.display = "none";
+          account = { name: name, email: email, pass: pass, startedAt: Date.now() };
+          lsSet(AKEY, account);
+          refreshAccountUI();
+          document.getElementById("tApp").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        });
+        function clearAccount() {
+          account = null;
+          lsDel(AKEY); lsDel(TKEY);
+          trial = { calls: [], selectedId: null, biz: "Lone Star Plumbing", calc: { missed: 8, job: 350, rate: 20 } };
+          $("tBiz").value = trial.biz;
+          $("tMissed").value = 8; $("tJobVal").value = 350; $("tRate").value = 20;
+          $("tRegForm").hidden = true;
+          $("tStartBtn").style.display = "";
+          renderInbox(); renderThread(); fillTemplate(); trialCalc(); refreshAccountUI();
+          document.getElementById("trial").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+        }
+        $("tLogout").addEventListener("click", clearAccount);
+        $("tLogout2").addEventListener("click", clearAccount);
+        setInterval(function () { if (account) refreshAccountUI(); }, 30000);
+
+        /* inbox: add a missed call */
+        $("tAddForm").addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!canEdit()) return;
+          var name = $("tName").value.trim();
+          var phone = $("tPhone").value.trim();
+          var time = $("tTime").value.trim() || "Just now";
+          var reason = $("tReason").value.trim();
+          if (!name || !phone || !reason) {
+            (!name ? $("tName") : !phone ? $("tPhone") : $("tReason")).focus();
+            return;
+          }
+          var c = { id: uid(), name: name, phone: phone, time: time, reason: reason, status: "callback", replied: false, messages: [] };
+          trial.calls.unshift(c);
+          trial.selectedId = c.id;
+          saveTrial();
+          $("tName").value = ""; $("tPhone").value = ""; $("tTime").value = ""; $("tReason").value = "";
+          renderInbox(); renderThread(); fillTemplate();
+        });
+
+        /* status buttons */
+        document.querySelectorAll("[data-setstatus]").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (!canEdit()) return;
+            var c = selectedCall();
+            if (!c) return;
+            c.status = btn.getAttribute("data-setstatus");
+            saveTrial(); renderInbox(); renderThread();
+          });
+        });
+
+        /* template picker + sending */
+        $("tTemplate").addEventListener("change", fillTemplate);
+        $("tBiz").addEventListener("change", function () { trial.biz = $("tBiz").value; saveTrial(); fillTemplate(); });
+        $("tSendText").addEventListener("click", function () {
+          if (!canEdit()) return;
+          var c = selectedCall();
+          var text = $("tReplyText").value.trim();
+          if (!c || !text) { if (!c) $("tName").focus(); return; }
+          c.messages.push({ who: "out", text: text, meta: "Simulated text-back · just now" });
+          saveTrial(); renderThread();
+          if (!c.replied) {
+            c.replied = true;
+            var replyText = simReply(c.reason), cname = c.name;
+            setTimeout(function () {
+              c.messages.push({ who: "in", text: replyText, meta: cname + " · just now" });
+              saveTrial(); renderThread();
+            }, reduceMotion ? 60 : 1100);
+          }
+        });
+        function sendFollow() {
+          if (!canEdit()) return;
+          var c = selectedCall();
+          var text = $("tFollowUp").value.trim();
+          if (!c || !text) return;
+          c.messages.push({ who: "out", text: text, meta: "You · just now" });
+          $("tFollowUp").value = "";
+          saveTrial(); renderThread();
+        }
+        $("tSendFollow").addEventListener("click", sendFollow);
+        $("tFollowUp").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); sendFollow(); } });
+
+        /* sample data + clear */
+        $("tLoadSamples").addEventListener("click", function () {
+          if (!canEdit()) return;
+          var biz = $("tBiz").value.trim() || "Lone Star Plumbing";
+          function auto(first) { return "Hi " + first + ", sorry we missed your call — this is " + biz + ". What can we help with? Reply here and we'll get you on the schedule."; }
+          trial.calls = [
+            { id: uid(), name: "Sarah Mitchell", phone: "(512) 555-0147", time: "Today · 9:12 AM", reason: "Water heater leaking all over the garage", status: "callback", replied: true, messages: [
+              { who: "out", text: auto("Sarah"), meta: "Auto text-back · 9:12 AM" },
+              { who: "in", text: "Thanks for texting back! The water heater is leaking into the garage — can someone come out today?", meta: "Sarah Mitchell · 9:15 AM" } ] },
+            { id: uid(), name: "James Carter", phone: "(512) 555-0193", time: "Today · 10:05 AM", reason: "AC stopped cooling, house already at 86°", status: "booked", replied: true, messages: [
+              { who: "out", text: auto("James"), meta: "Auto text-back · 10:05 AM" },
+              { who: "in", text: "Hi! Our AC stopped cooling and the house is already at 86°. How soon can someone get here?", meta: "James Carter · 10:07 AM" },
+              { who: "out", text: "We can get a tech out today between 2–4 PM. Want me to lock that window in?", meta: "You · 10:09 AM" },
+              { who: "in", text: "Yes please — see you then.", meta: "James Carter · 10:10 AM" } ] },
+            { id: uid(), name: "Maria Gonzalez", phone: "(512) 555-0118", time: "Today · 11:47 AM", reason: "Kitchen sink backed up, draining slowly", status: "callback", replied: false, messages: [
+              { who: "out", text: auto("Maria"), meta: "Auto text-back · 11:47 AM" } ] },
+            { id: uid(), name: "David Nguyen", phone: "(512) 555-0161", time: "Yesterday · 4:22 PM", reason: "Breaker for the kitchen keeps tripping", status: "resolved", replied: true, messages: [
+              { who: "out", text: auto("David"), meta: "Auto text-back · 4:22 PM" },
+              { who: "in", text: "The kitchen breaker keeps tripping. Is it safe to leave it until tomorrow?", meta: "David Nguyen · 4:26 PM" },
+              { who: "out", text: "Don't reset it again tonight — leave that circuit off and we'll check it first thing tomorrow. Booked you for 8–10 AM.", meta: "You · 4:31 PM" } ] },
+            { id: uid(), name: "Tom Becker", phone: "(512) 555-0129", time: "Yesterday · 6:58 PM", reason: "Burst pipe under the house — water everywhere", status: "booked", replied: true, messages: [
+              { who: "out", text: "Hi Tom, this is " + biz + ". If this is an emergency, reply with your address and a photo if you can — our on-call tech will call you right back.", meta: "Auto text-back · 6:58 PM" },
+              { who: "in", text: "Pipe burst — I shut off the main already. 4218 Oak Ridge Dr. Please hurry.", meta: "Tom Becker · 7:00 PM" },
+              { who: "out", text: "On our way, Tom — tech is 25 minutes out. Keep the main off and move anything you can off the floor.", meta: "You · 7:02 PM" } ] }
+          ];
+          trial.selectedId = trial.calls[0].id;
+          saveTrial(); renderInbox(); renderThread(); fillTemplate();
+        });
+        $("tClear").addEventListener("click", function () {
+          trial.calls = []; trial.selectedId = null;
+          trial.calc = { missed: 8, job: 350, rate: 20 };
+          $("tMissed").value = 8; $("tJobVal").value = 350; $("tRate").value = 20;
+          saveTrial(); renderInbox(); renderThread(); fillTemplate(); trialCalc();
+        });
+
+        /* trial lost-revenue calculator */
+        function trialCalc() {
+          var missed = Math.max(0, parseFloat($("tMissed").value) || 0);
+          var job = Math.max(0, parseFloat($("tJobVal").value) || 0);
+          var rate = Math.min(100, Math.max(0, parseFloat($("tRate").value) || 0));
+          var missedMo = missed * 4.33;
+          var risk = missedMo * job;
+          var back = risk * rate / 100;
+          var lost = risk - back;
+          $("tOutMissed").textContent = Math.round(missedMo);
+          $("tOutRisk").textContent = money(risk);
+          $("tOutBack").textContent = money(back);
+          $("tOutLost").textContent = money(lost);
+          $("tOutYear").textContent = money(lost * 12);
+          trial.calc = { missed: missed, job: job, rate: rate };
+          saveTrial();
+        }
+        ["tMissed", "tJobVal", "tRate"].forEach(function (id) { $(id).addEventListener("input", trialCalc); });
+
+        /* trial init */
+        $("tBiz").value = trial.biz || "Lone Star Plumbing";
+        $("tMissed").value = trial.calc.missed; $("tJobVal").value = trial.calc.job; $("tRate").value = trial.calc.rate;
+        if (!selectedCall() && trial.calls.length) trial.selectedId = trial.calls[0].id;
+        renderInbox(); renderThread(); fillTemplate(); trialCalc(); refreshAccountUI();
 
         /* ---------- hero thread stagger on load ---------- */
         if (!reduceMotion) {
