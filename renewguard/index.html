@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="data:," />
 <title>RenewGuard — License, COI &amp; renewal tracking for small Texas contractors — $24/mo</title>
-<meta name="description" content="RenewGuard tracks licenses, COIs, permits and CE hours for Texas electrical, HVAC and plumbing shops with 1–10 people. $24/mo — about half the $49/mo that DueLantern and RenewCue charge. 14-day free trial." />
+<meta name="description" content="RenewGuard tracks licenses, COIs, permits and CE hours for Texas electrical, HVAC and plumbing shops with 1–10 people. $24/mo — about half the $49/mo that DueLantern and RenewCue charge. 3-day free trial." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Archivo Narrow:wght@600;700&display=swap" rel="stylesheet" />
@@ -231,6 +231,95 @@
   footer li{margin:7px 0;font-size:.88rem;color:var(--ink2)}
   footer a{word-break:break-all}
   .foot-note{margin-top:24px;font-size:.82rem;color:var(--ink3);max-width:78ch}
+  /* trial app */
+  .trial-sec{padding:56px 0 64px;background:var(--surface);border-bottom:1px solid var(--line)}
+  .trial-head{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:flex-end;justify-content:space-between}
+  .trial-head h2{margin-top:14px}
+  .trial-note{margin-top:14px;background:var(--amber-soft);border:1px solid var(--amber);border-radius:var(--radius);padding:14px 18px;font-size:.97rem}
+  .trial-note b{color:var(--amber-dark)}
+  .trial-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+  @media (max-width:820px){ .trial-stats{grid-template-columns:1fr 1fr} }
+  .tstat{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface2)}
+  .tstat .n{font-size:1.6rem;font-weight:900;letter-spacing:-.02em}
+  .tstat .l{font-size:.82rem;color:var(--ink3);font-weight:600}
+  .tstat.hot .n{color:var(--red)} .tstat.warn .n{color:var(--amber-dark)}
+  .trial-grid{display:grid;grid-template-columns:380px 1fr;gap:22px;margin-top:24px;align-items:start}
+  @media (max-width:980px){ .trial-grid{grid-template-columns:1fr} }
+  .trial-card{border:1px solid var(--line2);border-radius:16px;padding:22px;background:var(--surface)}
+  .trial-card h3{margin-bottom:4px}
+  .trial-card .sub2{color:var(--ink2);font-size:.92rem}
+  .trial-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .btn-sm{padding:10px 16px;min-height:44px;font-size:.93rem;border-radius:10px}
+  .btn-danger{background:var(--surface);color:var(--red);border:1.5px solid var(--red)}
+  .btn-danger:hover{background:var(--red-soft)}
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  @media (max-width:980px){ .board{grid-template-columns:1fr 1fr} }
+  @media (max-width:560px){ .board{grid-template-columns:1fr} }
+  .bucket{border:1px solid var(--line);border-top:5px solid var(--line2);border-radius:12px;padding:14px;background:var(--surface2);min-width:0}
+  .bucket .bh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .bucket .bh b{font-size:.95rem}
+  .bucket .cnt{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.05rem}
+  .bucket ul{list-style:none;margin:10px 0 0;padding:0}
+  .bucket li{font-size:.86rem;padding:7px 0;border-top:1px solid var(--line);overflow-wrap:anywhere}
+  .bucket li:first-child{border-top:0}
+  .bucket .empty{font-size:.86rem;color:var(--ink3);padding-top:8px}
+  .bucket.b-expired{border-top-color:var(--red)} .bucket.b-expired .cnt{color:var(--red)}
+  .bucket.b-7{border-top-color:var(--red)} .bucket.b-7 .cnt{color:var(--red)}
+  .bucket.b-14{border-top-color:var(--amber)} .bucket.b-14 .cnt{color:var(--amber-dark)}
+  .bucket.b-30{border-top-color:var(--amber)} .bucket.b-30 .cnt{color:var(--amber-dark)}
+  .bucket.b-60{border-top-color:var(--brand)} .bucket.b-60 .cnt{color:var(--green-ok)}
+  .bucket.b-90{border-top-color:var(--brand)} .bucket.b-90 .cnt{color:var(--green-ok)}
+  .bucket.b-later{border-top-color:var(--line2)}
+  .lic-list{margin-top:16px;display:flex;flex-direction:column;gap:10px}
+  .lic-row{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--surface2);display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+  .lic-row .grow{flex:1;min-width:200px}
+  .lic-row .grow b{display:block;font-size:1rem;overflow-wrap:anywhere}
+  .lic-row .meta{font-size:.85rem;color:var(--ink3);overflow-wrap:anywhere}
+  .lic-row .rowbtns{display:flex;gap:8px;flex-wrap:wrap}
+  .chip-btn{font:inherit;font-size:.85rem;font-weight:700;border:1.5px solid var(--line2);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 13px;cursor:pointer;min-height:38px}
+  .chip-btn:hover{border-color:var(--ink)}
+  .chip-btn.del{color:var(--red);border-color:var(--red)}
+  .chip-btn.del:hover{background:var(--red-soft)}
+  .tech-group{margin-top:14px}
+  .tech-group h4{margin:0 0 6px;font-size:1rem}
+  .tech-group ul{list-style:none;margin:0;padding:0}
+  .tech-group li{display:flex;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+  .tech-group li:last-child{border-bottom:0}
+  .tech-group li>span:first-child{min-width:0;overflow-wrap:anywhere}
+  .trial-empty{border:1px dashed var(--line2);border-radius:12px;padding:22px;text-align:center;color:var(--ink2);font-size:.95rem;margin-top:16px}
+  .csv-panel{margin-top:16px;border:1px solid var(--line2);border-radius:12px;padding:16px;background:var(--surface2);display:none}
+  .csv-panel.open{display:block}
+  .csv-panel textarea{font-family:"IBM Plex Mono",monospace;font-size:.85rem}
+  .trial-status{display:none;margin-top:14px;border-radius:10px;padding:12px 14px;font-size:.93rem}
+  .trial-status.show{display:block}
+  .trial-status.ok{background:var(--brand-soft);border:1px solid var(--brand)}
+  .trial-status.err{background:var(--red-soft);border:1px solid var(--red)}
+  /* trial account / countdown / lock */
+  .trial-statusbar{position:sticky;top:62px;z-index:40;margin-top:20px;background:var(--brand);color:#fff;border-radius:12px;padding:12px 18px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;font-size:.95rem}
+  @media (prefers-color-scheme: dark){ .trial-statusbar{color:#07130c} }
+  .trial-statusbar .cd{font-weight:800;font-size:1.02rem}
+  .trial-statusbar button{font:inherit;font-weight:700;font-size:.85rem;background:rgba(255,255,255,.16);color:inherit;border:1.5px solid rgba(255,255,255,.5);border-radius:8px;padding:7px 13px;cursor:pointer;min-height:38px}
+  .trial-statusbar.ended{background:var(--red)}
+  @media (prefers-color-scheme: dark){ .trial-statusbar.ended{color:#fff} }
+  .gate-card{margin-top:22px;border:2px solid var(--brand);border-radius:16px;padding:26px;background:var(--surface);box-shadow:var(--shadow)}
+  .gate-card h3{font-size:1.25rem}
+  .gate-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 14px}
+  @media (max-width:820px){ .gate-grid{grid-template-columns:1fr} }
+  .trust-row{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:.9rem;color:var(--ink2);font-weight:600}
+  .locked-banner{display:none;margin-top:22px;border:2px solid var(--red);background:var(--red-soft);border-radius:16px;padding:26px;text-align:center}
+  .locked-banner.show{display:block}
+  .locked-banner h3{font-size:1.4rem;color:var(--red)}
+  .locked-banner p{color:var(--ink2);margin:10px auto 18px;max-width:52ch}
+  #trialApp.locked{opacity:.55}
+  #trialApp.gated{opacity:.55}
+  input[type="password"]{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--surface2);border:1.5px solid var(--line2);border-radius:10px;padding:11px 13px;min-height:48px}
+  #proofPack{display:none}
+  @media print{
+    body>*{display:none!important}
+    body>#proofPack{display:block!important;color:#000;background:#fff;font-family:Arial,sans-serif;padding:24px}
+    #proofPack table{width:100%;border-collapse:collapse;font-size:12px}
+    #proofPack th,#proofPack td{border:1px solid #999;padding:6px 8px;text-align:left}
+  }
   @media (max-width:480px){
     .wrap{padding:0 16px}
     body{font-size:16px}
@@ -258,11 +347,11 @@
       RenewGuard
     </a>
     <nav class="nav" aria-label="Page sections">
+      <a href="#trial">Free trial app</a>
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
-      <a href="#fit">Who it&rsquo;s for</a>
       <a href="#faq">FAQ</a>
-      <a class="cta" href="#signup">Start free trial</a>
+      <a class="cta" href="#trial">Start 3-day free trial</a>
     </nav>
   </div>
 </header>
@@ -290,10 +379,9 @@
             <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=UV8HA45D6EB22" target="_blank" rel="noopener">Subscribe — $24/mo via PayPal
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-7 7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
-            <a class="btn btn-ghost" href="#signup">Start your 14-day free trial</a>
-            <a class="btn btn-ghost" href="#pricing">See the price comparison</a>
+            <a class="btn btn-ghost" href="#trial">Start 3-day free trial — no card</a>
           </div>
-          <p class="hero-note">Month-to-month, no contract. Planned home on the web: <span class="mono">renewguard.pages.dev</span> — a free Cloudflare Pages address. Trial signup is by email and takes no card; when you&rsquo;re ready to pay, the subscribe buttons on this page check out through PayPal. Details in the <a href="#faq">FAQ</a>.</p>
+          <p class="hero-note">Month-to-month, no contract, no card for the trial. Start the 3-day free trial right below — it runs entirely in your browser. When you&rsquo;re ready to pay, the subscribe buttons on this page check out securely through PayPal. Details in the <a href="#faq">FAQ</a>.</p>
         </div>
 
         <figure class="hero-photo" style="margin:0">
@@ -323,60 +411,173 @@
     </div>
   </div>
 
-  <!-- MARKET STATS -->
-  <section class="stats" aria-label="Market size">
+  <!-- FREE IN-BROWSER TRIAL -->
+  <section id="trial" class="trial-sec" aria-labelledby="trial-h">
     <div class="wrap">
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="big">814,557</div>
-          <p>US construction establishments with employees (Census County Business Patterns, 2023) — <strong>65.8% of them have just 1–4 employees</strong>.</p>
-          <p class="src" style="margin-top:8px">Source: <a href="https://bebop.ai/industries/construction-companies" target="_blank" rel="noopener">bebop.ai/industries/construction-companies</a></p>
+      <div class="trial-head">
+        <div>
+          <span class="tag">Try it free — 3 days, right in your browser</span>
+          <h2 id="trial-h">Use the licence tracker right now, in your browser</h2>
+          <p class="lede" style="margin-top:10px">Add your real licences below and watch the expiry board sort them by urgency. No card, nothing to install — your trial account lives only in this browser. Load the sample data first if you just want to see how it feels.</p>
         </div>
-        <div class="stat">
-          <div class="big">521,315</div>
-          <p>Specialty-trade contractor firms with employees, plus <strong>1.99 million</strong> nonemployer trade businesses — the small-shop base RenewGuard is built for.</p>
-          <p class="src" style="margin-top:8px">Source: <a href="https://www.brix.so/research/trades-business-statistics" target="_blank" rel="noopener">brix.so/research/trades-business-statistics</a></p>
-        </div>
-        <div class="stat">
-          <div class="big">81%</div>
-          <p>Of US construction firms have <strong>fewer than 10 employees</strong> (ABC, citing Census) — too small for enterprise compliance software, too busy for spreadsheets.</p>
-          <p class="src" style="margin-top:8px">Source: <a href="https://bebop.ai/industries/construction-companies" target="_blank" rel="noopener">bebop.ai/industries/construction-companies</a></p>
-        </div>
+        <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=UV8HA45D6EB22" target="_blank" rel="noopener">Like it? Subscribe — $24/mo</a>
       </div>
-    </div>
-  </section>
 
-  <!-- COST OF A LAPSE -->
-  <section aria-labelledby="lapse-h" style="padding-top:30px">
-    <div class="wrap">
-      <span class="tag">Why owners pay for this</span>
-      <h2 id="lapse-h" style="margin-top:16px">A spreadsheet sits silent. A lapse does damage.</h2>
-      <p class="lede" style="margin-top:12px">Contractors on Reddit describe the current system plainly — one r/Construction poster managing 40 subcontractors called spreadsheet tracking &ldquo;a full-time job&rdquo; that is &ldquo;falling apart.&rdquo; The figures below are the downside when it fails once.</p>
+      <div class="trial-note" role="note"><b>How the trial works:</b> everything you enter stays in this browser only (saved on this device with localStorage) — it is never sent to a server, and your trial account is stored only in this browser. <strong>Trial reminders show in-app only — real email/SMS reminders are set up after you subscribe.</strong></div>
 
-      <div class="lapse-grid">
-        <div class="lapse">
-          <div class="amt">$200 – $15,000</div>
-          <h3>California unlicensed-contracting fine</h3>
-          <p>Administrative fine range for contracting without a valid license in California — and customers are not legally required to pay an unlicensed contractor.</p>
-          <p class="src" style="margin-top:10px">As published by DueLantern: <a href="https://www.duelantern.com/for/contractors" target="_blank" rel="noopener">duelantern.com/for/contractors</a></p>
-        </div>
-        <div class="lapse">
-          <div class="amt">$5,000 – $25,000</div>
-          <h3>Stop-work order, per incident</h3>
-          <p>The cost range attached to a stop-work incident — before the lost days, the idle crew, and the GC relationship you have to repair.</p>
-          <p class="src" style="margin-top:10px">As published by DueLantern / LicenseRoadmap: <a href="https://www.duelantern.com/for/contractors" target="_blank" rel="noopener">duelantern.com</a> · <a href="https://licenseroadmap.com/" target="_blank" rel="noopener">licenseroadmap.com</a></p>
-        </div>
-        <div class="lapse">
-          <div class="amt">Up to $165,514</div>
-          <h3>OSHA fine ceiling — willful / repeated</h3>
-          <p>The maximum OSHA penalty figure for a willful or repeated violation (a serious violation runs up to $16,550). One bad inspection can cost more than decades of tracking.</p>
-          <p class="src" style="margin-top:10px">As published by DueLantern: <a href="https://www.duelantern.com/for/contractors" target="_blank" rel="noopener">duelantern.com/for/contractors</a></p>
+      <div class="trial-statusbar" id="trialStatusBar">
+        <span class="cd" id="trialCountdown">No trial running yet — start your free 3 days below.</span>
+        <span id="trialAcctArea"></span>
+      </div>
+
+      <div class="gate-card" id="trialGate">
+        <h3>Step 1 — Start your 3-day free trial</h3>
+        <p class="sub2" style="color:var(--ink2);font-size:.95rem;margin-top:6px">Create your trial account, then use the full tracker below for 3 days. <strong>Trial account is stored in this browser only</strong> — no server, no card, nothing leaves this device.</p>
+        <form id="acctForm" novalidate>
+          <div class="gate-grid">
+            <div>
+              <label class="flabel" for="acctName">Your name *</label>
+              <input type="text" id="acctName" autocomplete="name" placeholder="e.g. Mike Torres" />
+            </div>
+            <div>
+              <label class="flabel" for="acctEmail">Email *</label>
+              <input type="email" id="acctEmail" autocomplete="email" placeholder="you@yourcompany.com" />
+            </div>
+            <div>
+              <label class="flabel" for="acctPass">Password *</label>
+              <input type="password" id="acctPass" autocomplete="new-password" placeholder="Any password — it never leaves this browser" />
+            </div>
+          </div>
+          <div class="trial-actions">
+            <button type="submit" class="btn btn-primary" style="min-height:52px;font-size:1.05rem">Start 3-day free trial</button>
+          </div>
+          <div class="trial-status" id="acctStatus" role="status"></div>
+        </form>
+        <div class="trust-row">
+          <span>✓ 3-day free trial</span><span>✓ No card required</span><span>✓ Cancel anytime</span><span>✓ Secure checkout by PayPal</span>
         </div>
       </div>
 
-      <div class="hedge" role="note">
-        <b>Read these numbers carefully:</b> the fine and penalty figures above come from competitor marketing pages (DueLantern and LicenseRoadmap, read 14 Nov 2026), <b>not</b> from the primary statutes or OSHA&rsquo;s own site. They are shown because they are the figures those vendors put in front of buyers — verify the current amounts for your state and trade before relying on them. The math that follows uses the same published ranges.
+      <div class="locked-banner" id="lockedBanner" role="alert">
+        <h3>Trial ended — subscribe to continue</h3>
+        <p>Your 3 days are up. Your licences are still shown below, read-only — nothing was deleted. Subscribe to unlock editing and turn on real email/SMS reminders.</p>
+        <a class="btn btn-primary" style="min-height:52px;font-size:1.05rem" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=UV8HA45D6EB22" target="_blank" rel="noopener">Subscribe — $24/mo via PayPal</a>
       </div>
+
+      <div id="trialApp">
+      <div class="trial-stats" aria-label="Trial summary">
+        <div class="tstat"><div class="n" id="tsTotal">0</div><div class="l">Licences tracked</div></div>
+        <div class="tstat hot"><div class="n" id="tsExpired">0</div><div class="l">Expired</div></div>
+        <div class="tstat warn"><div class="n" id="tsSoon">0</div><div class="l">Due within 30 days</div></div>
+        <div class="tstat"><div class="n" id="tsTechs">0</div><div class="l">Holders / technicians</div></div>
+      </div>
+
+      <div class="trial-grid">
+        <div class="trial-card">
+          <h3 id="licFormTitle">Add a licence</h3>
+          <p class="sub2">Five fields — that&rsquo;s the whole form.</p>
+          <form id="licForm" novalidate>
+            <input type="hidden" id="licId" value="" />
+            <label class="flabel" for="licName">Licence name *</label>
+            <input type="text" id="licName" placeholder="e.g. Master Electrician License — TDLR" />
+            <label class="flabel" for="licType">Type *</label>
+            <select id="licType">
+              <option>Master Electrician License</option>
+              <option>Journeyman Electrician License</option>
+              <option>Apprentice Electrician License</option>
+              <option>Electrical Contractor License (TECL)</option>
+              <option>HVAC License</option>
+              <option>Plumbing License</option>
+              <option>General Liability COI</option>
+              <option>Workers&rsquo; Comp Policy</option>
+              <option>Permit</option>
+              <option>OSHA Card</option>
+              <option>Other document</option>
+            </select>
+            <div class="fgrid">
+              <div>
+                <label class="flabel" for="licState">State *</label>
+                <select id="licState">
+                  <option>TX</option><option>FL</option><option>OK</option><option>LA</option><option>NM</option><option>AR</option><option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="flabel" for="licExpiry">Expiry date *</label>
+                <input type="date" id="licExpiry" />
+              </div>
+            </div>
+            <label class="flabel" for="licHolder">Holder / technician *</label>
+            <input type="text" id="licHolder" placeholder="e.g. Mike Torres — or your company name" />
+            <div class="trial-actions">
+              <button type="submit" class="btn btn-primary btn-sm" id="licSubmit" style="flex:1">Add licence</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="licCancelEdit" style="display:none">Cancel edit</button>
+            </div>
+          </form>
+          <div class="trial-status" id="licStatus" role="status"></div>
+
+          <h3 style="margin-top:26px">Bring your data in</h3>
+          <p class="sub2">Start from samples, or import the spreadsheet you already keep.</p>
+          <div class="trial-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="sampleBtn">Load sample data</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="csvToggle" aria-expanded="false">Import CSV</button>
+          </div>
+          <div class="csv-panel" id="csvPanel">
+            <label class="flabel" for="csvText">Paste CSV rows</label>
+            <textarea id="csvText" rows="5" placeholder="Licence name,Type,State,Holder,Expiry (YYYY-MM-DD)&#10;Master Electrician License,Master Electrician License,TX,Mike Torres,2027-03-01"></textarea>
+            <p class="form-note">One licence per line, in this order: <span class="mono">name, type, state, holder, expiry</span>. A header row is fine — it is skipped automatically.</p>
+            <label class="flabel" for="csvFile">…or upload a .csv file</label>
+            <input type="file" id="csvFile" accept=".csv,text/csv,text/plain" />
+            <div class="trial-actions">
+              <button type="button" class="btn btn-primary btn-sm" id="csvImportBtn">Import these rows</button>
+            </div>
+          </div>
+
+          <h3 style="margin-top:26px">Get it back out</h3>
+          <p class="sub2">Export a proof pack for a GC, or wipe the trial clean.</p>
+          <div class="trial-actions">
+            <button type="button" class="btn btn-ghost btn-sm" id="proofBtn">Export proof pack</button>
+            <button type="button" class="btn btn-ghost btn-sm" id="csvDlBtn">Download CSV</button>
+            <button type="button" class="btn btn-danger btn-sm" id="clearBtn">Clear trial data</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="trial-card">
+            <h3>Expiry board — grouped by the reminder ladder</h3>
+            <p class="sub2">The same 90 / 60 / 30 / 14 / 7-day ladder from the paid plan, colour-coded by urgency.</p>
+            <div class="board" id="board"></div>
+          </div>
+
+          <div class="trial-card" style="margin-top:22px">
+            <h3>All licences</h3>
+            <p class="sub2">Sorted by soonest expiry. Edit or delete any row — changes save in this browser instantly.</p>
+            <div class="fgrid" style="margin-top:6px">
+              <div>
+                <label class="flabel" for="licSearch">Search licences</label>
+                <input type="text" id="licSearch" placeholder="Search by name or holder…" />
+              </div>
+              <div>
+                <label class="flabel" for="licFilter">Filter by status</label>
+                <select id="licFilter">
+                  <option value="all">All licences</option>
+                  <option value="expired">Expired</option>
+                  <option value="due7">Due within 7 days</option>
+                  <option value="due30">Due within 30 days</option>
+                  <option value="current">Current (30+ days)</option>
+                </select>
+              </div>
+            </div>
+            <div id="licListWrap"></div>
+          </div>
+
+          <div class="trial-card" style="margin-top:22px">
+            <h3>Licences by technician</h3>
+            <p class="sub2">Every holder with the licences under their name — the per-tech view a GC asks for.</p>
+            <div id="techWrap"></div>
+          </div>
+        </div>
+      </div>
+      </div><!-- /trialApp -->
     </div>
   </section>
 
@@ -472,10 +673,10 @@
           <span class="badge">This page</span>
           <div class="pname">RenewGuard</div>
           <div class="pprice">$24<small>/mo</small></div>
-          <p class="pnote">Own licenses + crew certs + COIs for 1–10-person Texas electrical, HVAC &amp; plumbing shops. 14-day free trial, month-to-month, no contract.</p>
+          <p class="pnote">Own licenses + crew certs + COIs for 1–10-person Texas electrical, HVAC &amp; plumbing shops. 3-day free trial, month-to-month, no contract.</p>
           <p class="save">The launch price on this page</p>
           <a class="btn btn-primary" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=UV8HA45D6EB22" target="_blank" rel="noopener" style="margin-top:14px">Subscribe — $24/mo via PayPal</a>
-          <a class="btn btn-ghost" href="#signup" style="margin-top:10px">Or start the free trial first</a>
+          <a class="btn btn-ghost" href="#trial" style="margin-top:10px">Or try it free for 3 days first</a>
         </article>
         <article class="plan">
           <div class="pname">DueLantern</div>
@@ -503,118 +704,6 @@
     </div>
   </section>
 
-  <!-- FIT + OPERATING COST -->
-  <section id="fit" aria-labelledby="fit-h" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-top:56px">
-    <div class="wrap">
-      <span class="tag">Straight answers</span>
-      <h2 id="fit-h" style="margin-top:16px">Who this is for — and who should skip it</h2>
-      <div class="two-col">
-        <div class="panel">
-          <h3>A fit if this sounds like your shop</h3>
-          <ul class="fitlist">
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#177245" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>1–10 employees</strong> — owner plus 1–9 techs, electrical, HVAC or plumbing.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#177245" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>3–15 documents</strong> in play: company license, a trade license per tech, GL, workers&rsquo; comp, a permit or two, OSHA cards.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#177245" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>You sub for GCs</strong> and have to produce current licenses/COIs to get on site and get paid.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#177245" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Texas first</strong> — TDLR licensing and CE tracking are the launch coverage; Florida (DBPR) is the planned second state.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#177245" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Your current system is a <strong>spreadsheet, a folder, or a calendar</strong> — and it has already failed, or nearly failed, once.</span></li>
-          </ul>
-          <h3 style="margin-top:24px">Honestly not a fit</h3>
-          <ul class="fitlist">
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#b3261e" stroke-width="2.4" stroke-linecap="round"/></svg><span><strong>One license, one policy, nothing else?</strong> A calendar reminder is genuinely enough. Don&rsquo;t pay $24/mo for it.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#b3261e" stroke-width="2.4" stroke-linecap="round"/></svg><span><strong>A GC tracking hundreds of vendors&rsquo; COIs?</strong> That is the enterprise tools&rsquo; job (TrustLayer, Jones, CertFocus) — different product, different price.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="#b3261e" stroke-width="2.4" stroke-linecap="round"/></svg><span><strong>Need daily-use software?</strong> Compliance is episodic: intense for a week around renewals, quiet the rest of the year. RenewGuard is insurance against the bad week, not another daily dashboard.</span></li>
-          </ul>
-        </div>
-
-        <div class="panel">
-          <h3>What it costs to run — the lean math</h3>
-          <p style="color:var(--ink2);font-size:.96rem;margin-top:8px">RenewGuard is plain software — a document vault, a database and scheduled reminders. No voice AI, no per-minute anything. That is why $24/mo works where a $49 AI product would bleed money. Estimated monthly running cost from the November 2026 market research:</p>
-          <table class="cost-table">
-            <thead><tr><th scope="col">Paying customers</th><th scope="col">Est. running cost / mo</th></tr></thead>
-            <tbody>
-              <tr><td>0</td><td class="num">~$0–$20</td></tr>
-              <tr><td>10</td><td class="num">~$25–$50</td></tr>
-              <tr><td>100</td><td class="num">~$50–$120</td></tr>
-            </tbody>
-          </table>
-          <p style="color:var(--ink2);font-size:.93rem;margin-top:12px">At 100 customers that is roughly database + hosting (about $45 of it is fixed) plus reminder messaging — 100 shops × ~20 reminder texts a month would cost about $17 at Twilio&rsquo;s published SMS rate, and an email-first reminder design keeps that near zero once sending is connected.</p>
-          <p class="src" style="margin-top:10px">SMS rate: Twilio pricing, Oct 2026 — <a href="https://www.twilio.com:443/en-us/pricing" target="_blank" rel="noopener">twilio.com/en-us/pricing</a>. Cost bands are research estimates, not audited accounts.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SIGNUP -->
-  <section id="signup" class="signup-sec" aria-labelledby="signup-h">
-    <div class="wrap">
-      <div class="signup-grid">
-        <div>
-          <span class="tag" style="background:rgba(255,255,255,.12);color:#ffe1a8;border-color:rgba(255,255,255,.25)">14-day free trial · $24/mo after</span>
-          <h2 id="signup-h" style="margin-top:16px">Start the trial. Send us the spreadsheet.</h2>
-          <p class="lede" style="margin-top:12px">Fill this in and the button opens your own mail app with the request already written — you review it and press send. We set up your tracker from your spreadsheet or card photos, free, during the trial.</p>
-          <ul class="trial-points">
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#f5a623" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>$24/mo flat</strong> for 1–10 people — about half the $49/mo DueLantern and RenewCue charge.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#f5a623" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Pay through PayPal.</strong> The free trial itself takes no card — request it by email. When you&rsquo;re ready to pay, subscribe through the PayPal button below (or <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:#ffe1a8">paypal.me/RenewGuard</a>) — PayPal handles the payment, and the trial clock only runs once your account exists.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#f5a623" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Month-to-month.</strong> Cancel anytime; no annual contract, no per-vendor fees.</span></li>
-            <li><svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4.5 12.5 5 5 10-11" stroke="#f5a623" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Done-for-you setup</strong> during the trial: spreadsheet import, or send photos of the cards.</span></li>
-          </ul>
-          <div class="action-row" style="margin-top:22px">
-            <a class="btn" style="background:var(--amber);color:#241703" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=UV8HA45D6EB22" target="_blank" rel="noopener">Subscribe now — $24/mo via PayPal</a>
-            <a class="btn btn-ghost" href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">paypal.me/RenewGuard</a>
-          </div>
-        </div>
-
-        <form class="signup-form" id="trialForm" novalidate>
-          <h3 style="font-size:1.2rem">Request your free trial</h3>
-          <div class="fgrid">
-            <div>
-              <label class="flabel" for="fName">Your name *</label>
-              <input type="text" id="fName" autocomplete="name" placeholder="e.g. Mike Torres" required />
-            </div>
-            <div>
-              <label class="flabel" for="fCompany">Company *</label>
-              <input type="text" id="fCompany" autocomplete="organization" placeholder="e.g. Torres Electric LLC" required />
-            </div>
-          </div>
-          <label class="flabel" for="fEmail">Work email *</label>
-          <input type="email" id="fEmail" autocomplete="email" placeholder="you@yourcompany.com" required />
-          <div class="fgrid">
-            <div>
-              <label class="flabel" for="fTrade">Trade</label>
-              <select id="fTrade">
-                <option>Electrical</option>
-                <option>HVAC</option>
-                <option>Plumbing</option>
-                <option>Electrical + HVAC</option>
-                <option>Other specialty trade</option>
-              </select>
-            </div>
-            <div>
-              <label class="flabel" for="fCrew">Crew size</label>
-              <select id="fCrew">
-                <option>Just me</option>
-                <option>2–5 people</option>
-                <option>6–10 people</option>
-                <option>More than 10</option>
-              </select>
-            </div>
-          </div>
-          <label class="flabel" for="fExpiry">Next license / policy expiry (if you know it)</label>
-          <input type="date" id="fExpiry" />
-          <label class="flabel" for="fNotes">Anything expiring soon, or a GC on your back?</label>
-          <textarea id="fNotes" rows="3" placeholder="Optional — e.g. &ldquo;GL policy renews in March, GC needs a proof pack for a school job.&rdquo;"></textarea>
-
-          <div class="action-row">
-            <button type="submit" class="btn btn-primary" style="flex:1">Open my mail app with this request</button>
-            <button type="button" class="btn btn-ghost" id="copyBtn">Copy the request instead</button>
-          </div>
-          <p class="form-note">This page has no server: submitting builds an email in <em>your</em> mail app (or copies the text) — nothing is sent or stored by this page itself. Add the RenewGuard inbox address when you send, or paste the copied text into any message to us. No card details are ever asked for on this page — paid plans are paid through PayPal.</p>
-          <div class="status-msg" id="formStatus" role="status"></div>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section id="faq" aria-labelledby="faq-h">
     <div class="wrap" style="max-width:860px">
@@ -631,7 +720,7 @@
       </details>
       <details>
         <summary>Can I actually pay $24/mo on this page today?</summary>
-        <div class="ans"><p><strong>Yes — through PayPal.</strong> The subscribe buttons on this page open PayPal&rsquo;s hosted subscription checkout for the $24/mo plan, and you can also pay via <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">paypal.me/RenewGuard</a>. There is no card form on this page itself — PayPal handles the payment. The 14-day free trial still starts by email from your own mail app, and you are never charged for the trial period.</p></div>
+        <div class="ans"><p><strong>Yes — through PayPal.</strong> The subscribe buttons on this page open PayPal&rsquo;s hosted subscription checkout for the $24/mo plan, and you can also pay via <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">paypal.me/RenewGuard</a>. There is no card form on this page itself — PayPal handles the payment. The 3-day free trial runs right on this page, in your browser — start it in the trial section above — and you are never charged for the trial period.</p></div>
       </details>
       <details>
         <summary>Where will RenewGuard live on the web?</summary>
@@ -646,8 +735,8 @@
         <div class="ans"><p>They are the figures published on competitor pages — DueLantern&rsquo;s contractor page and LicenseRoadmap&rsquo;s site, read 14 Nov 2026 — <strong>not</strong> quotations from the California statutes or OSHA. Penalties vary by state, trade and violation, and change over time. Treat them as the vendors&rsquo; published ranges and check your own state&rsquo;s current schedule before relying on a number. Sources: <a href="https://www.duelantern.com/for/contractors" target="_blank" rel="noopener">duelantern.com/for/contractors</a> · <a href="https://licenseroadmap.com/" target="_blank" rel="noopener">licenseroadmap.com</a></p></div>
       </details>
       <details>
-        <summary>What happens at the end of the 14-day trial?</summary>
-        <div class="ans"><p>Nothing automatic — there is no card on file to charge; the trial never bills you. If the tracker earned its keep (usually the first time a GC proof pack goes out in one click), you move to $24/mo month-to-month, paid through PayPal. If it didn&rsquo;t, you keep your exported documents and walk away; the vault export is yours either way.</p></div>
+        <summary>What happens at the end of the 3-day trial?</summary>
+        <div class="ans"><p>Nothing automatic — there is no card on file to charge; the trial never bills you. When the 3 days end, the in-browser tracker locks to read-only: your licences stay visible, editing stops, and subscribing through PayPal is how you continue. If the tracker earned its keep (usually the first time a GC proof pack goes out in one click), you move to $24/mo month-to-month, paid through PayPal. If it didn&rsquo;t, you keep your exported documents and walk away; the vault export is yours either way.</p></div>
       </details>
     </div>
   </section>
@@ -661,9 +750,10 @@
         <h3>RenewGuard</h3>
         <ul>
           <li>License, COI, permit &amp; CE tracking for Texas electrical, HVAC and plumbing shops with 1–10 people.</li>
-          <li><strong>$24/mo</strong> · 14-day free trial · month-to-month · planned home: <span class="mono">renewguard.pages.dev</span></li>
+          <li><strong>$24/mo</strong> · 3-day free trial · month-to-month · planned home: <span class="mono">renewguard.pages.dev</span></li>
           <li>Pay: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=UV8HA45D6EB22" target="_blank" rel="noopener">Subscribe via PayPal</a> · <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">paypal.me/RenewGuard</a></li>
-          <li><a href="#signup">Start a free trial</a> · <a href="#pricing">Pricing comparison</a> · <a href="#features">Features</a></li>
+          <li>Live page: <a href="https://binh1994.github.io/landing-pages/renewguard/" target="_blank" rel="noopener">binh1994.github.io/landing-pages/renewguard</a></li>
+          <li><a href="#trial">Try the free trial app</a> · <a href="#pricing">Pricing comparison</a> · <a href="#features">Features</a></li>
         </ul>
       </div>
       <div>
@@ -677,7 +767,7 @@
         </ul>
       </div>
     </div>
-    <p class="foot-note">All competitor prices and penalty figures were read from the vendors&rsquo; own pages on 14 November 2026 for the underlying market research and can change at any time — re-check the source before quoting. Penalty figures are as published by those vendors, not primary legal sources. No customer counts, testimonials or search-volume figures are claimed anywhere on this page, because the research did not verify any. Payments are handled by PayPal; this page stores nothing you type into it.</p>
+    <p class="foot-note">All competitor prices and penalty figures were read from the vendors&rsquo; own pages on 14 November 2026 for the underlying market research and can change at any time — re-check the source before quoting. Penalty figures are as published by those vendors, not primary legal sources. No customer counts, testimonials or search-volume figures are claimed anywhere on this page, because the research did not verify any. Payments are handled by PayPal. Your trial account and licence data are stored only in your own browser (localStorage) — they are never sent to or stored on any server.</p>
   </div>
 </footer>
 
@@ -748,78 +838,387 @@
     renderSavings();
   }
 
-  /* ---- Trial form -> mailto / copy ---- */
-  var form = document.getElementById("trialForm");
-  var status = document.getElementById("formStatus");
-  var copyBtn = document.getElementById("copyBtn");
-  function buildRequest(){
-    var v = function(id){ return (document.getElementById(id).value || "").trim(); };
-    var lines = [
-      "RenewGuard — 14-day free trial request ($24/mo plan)",
-      "",
-      "Name: " + v("fName"),
-      "Company: " + v("fCompany"),
-      "Work email: " + v("fEmail"),
-      "Trade: " + v("fTrade"),
-      "Crew size: " + v("fCrew"),
-      "Next license / policy expiry: " + (v("fExpiry") || "not sure yet"),
-      "Notes: " + (v("fNotes") || "—"),
-      "",
-      "Please set up my trial and the free done-for-you import (spreadsheet or card photos)."
+})();
+</script>
+
+<div id="proofPack" aria-hidden="true"></div>
+
+<script>
+(function(){
+  "use strict";
+  var ACCT_KEY = "rg_trial_account_v1";
+  var LIC_KEY = "rg_trial_licences_v1";
+  var TRIAL_MS = 3 * 24 * 60 * 60 * 1000;
+  var PAYPAL = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UV8HA45D6EB22";
+
+  function lsGet(k){ try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch(e){ return null; } }
+  function lsSet(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+  function lsDel(k){ try { localStorage.removeItem(k); } catch(e){} }
+  function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function $(id){ return document.getElementById(id); }
+
+  var account = lsGet(ACCT_KEY);
+  var licences = lsGet(LIC_KEY);
+  if(!Array.isArray(licences)) licences = [];
+
+  function saveLicences(){ lsSet(LIC_KEY, licences); }
+  function trialState(){
+    if(!account || !account.start) return "none";
+    return (Date.now() - account.start < TRIAL_MS) ? "active" : "ended";
+  }
+  function daysLeft(iso){
+    var p = String(iso||"").split("-");
+    if(p.length !== 3) return null;
+    var exp = new Date(+p[0], +p[1]-1, +p[2]);
+    if(isNaN(exp.getTime())) return null;
+    var today = new Date(); today.setHours(0,0,0,0);
+    return Math.round((exp - today)/86400000);
+  }
+  function fmtDate(iso){
+    var p = String(iso||"").split("-");
+    if(p.length !== 3) return esc(iso);
+    var d = new Date(+p[0], +p[1]-1, +p[2]);
+    return isNaN(d.getTime()) ? esc(iso) : d.toLocaleDateString("en-US",{month:"short", day:"numeric", year:"numeric"});
+  }
+  function pillFor(d){
+    if(d === null) return '<span class="pill amber">no date</span>';
+    if(d < 0) return '<span class="pill red">Expired ' + Math.abs(d) + 'd ago</span>';
+    if(d === 0) return '<span class="pill red">Expires today</span>';
+    if(d <= 7) return '<span class="pill red">' + d + ' days left</span>';
+    if(d <= 30) return '<span class="pill amber">' + d + ' days left</span>';
+    return '<span class="pill green">' + d + ' days left</span>';
+  }
+  function sortedLicences(){
+    return licences.slice().sort(function(a,b){
+      var da = daysLeft(a.expiry), db = daysLeft(b.expiry);
+      if(da === null) return 1; if(db === null) return -1;
+      return da - db;
+    });
+  }
+
+  /* ---------- account / countdown / lock ---------- */
+  var statusBar = $("trialStatusBar"), countdownEl = $("trialCountdown"), acctArea = $("trialAcctArea");
+  var gate = $("trialGate"), lockedBanner = $("lockedBanner"), app = $("trialApp");
+
+  function fmtRemaining(ms){
+    if(ms <= 0) return "Trial: 0 days 0 hours left";
+    var mins = Math.ceil(ms/60000);
+    var d = Math.floor(mins/1440), h = Math.floor((mins%1440)/60), m = mins%60;
+    if(d > 0) return "Trial: " + d + " day" + (d===1?"":"s") + " " + h + " hour" + (h===1?"":"s") + " left";
+    if(h > 0) return "Trial: " + h + " hour" + (h===1?"":"s") + " " + m + " min left";
+    return "Trial: " + m + " min left";
+  }
+  function renderAccount(){
+    var st = trialState();
+    gate.style.display = (st === "none") ? "" : "none";
+    lockedBanner.className = "locked-banner" + (st === "ended" ? " show" : "");
+    statusBar.className = "trial-statusbar" + (st === "ended" ? " ended" : "");
+    app.className = st === "ended" ? "locked" : (st === "none" ? "gated" : "");
+    if(st === "none"){
+      countdownEl.textContent = "No trial running yet — start your free 3 days below.";
+      acctArea.innerHTML = "";
+    } else {
+      var left = account.start + TRIAL_MS - Date.now();
+      countdownEl.textContent = st === "ended" ? "Trial ended — subscribe to continue." : fmtRemaining(left);
+      acctArea.innerHTML = '<span style="margin-right:10px">Signed in as <strong>' + esc(account.name) + '</strong> (' + esc(account.email) + ')</span>' +
+        '<button type="button" id="logoutBtn">Log out / Clear trial account</button>';
+      var lb = $("logoutBtn");
+      if(lb) lb.addEventListener("click", function(){
+        if(lb.getAttribute("data-arm") === "1"){
+          lsDel(ACCT_KEY); lsDel(LIC_KEY);
+          account = null; licences = [];
+          saveLicences();
+          renderAccount(); renderAll();
+          showLicStatus("Trial account and data cleared from this browser.", true);
+        } else {
+          lb.setAttribute("data-arm","1");
+          lb.textContent = "Click again to confirm — this erases the trial account and all trial data";
+          setTimeout(function(){ if(lb){ lb.removeAttribute("data-arm"); lb.textContent = "Log out / Clear trial account"; } }, 4000);
+        }
+      });
+    }
+    var disabled = (st !== "active");
+    app.querySelectorAll("input, select, textarea, button").forEach(function(el){ el.disabled = disabled; });
+  }
+
+  var acctForm = $("acctForm"), acctStatus = $("acctStatus");
+  function showAcctStatus(msg, ok){
+    acctStatus.innerHTML = msg;
+    acctStatus.className = "trial-status show " + (ok ? "ok" : "err");
+  }
+  acctForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    var name = $("acctName").value.trim();
+    var email = $("acctEmail").value.trim();
+    var pass = $("acctPass").value;
+    if(!name || !/.+@.+\..+/.test(email) || pass.length < 4){
+      showAcctStatus("<strong>Almost there:</strong> add your name, a valid email, and a password of at least 4 characters.", false);
+      return;
+    }
+    var h = 0; for(var i=0;i<pass.length;i++){ h = ((h<<5) - h + pass.charCodeAt(i))|0; }
+    account = { name: name, email: email, passHash: String(h), start: Date.now() };
+    lsSet(ACCT_KEY, account);
+    renderAccount(); renderAll();
+    showLicStatus("<strong>Trial started.</strong> Step 2: add your licences below, or load the sample data to see the board in action.", true);
+    document.getElementById("trial").scrollIntoView({behavior:"smooth", block:"start"});
+  });
+
+  /* ---------- licence CRUD ---------- */
+  var licForm = $("licForm"), licStatus = $("licStatus");
+  function showLicStatus(msg, ok){
+    licStatus.innerHTML = msg;
+    licStatus.className = "trial-status show " + (ok ? "ok" : "err");
+  }
+  function resetLicForm(){
+    licForm.reset();
+    $("licId").value = "";
+    $("licState").value = "TX";
+    $("licFormTitle").textContent = "Add a licence";
+    $("licSubmit").textContent = "Add licence";
+    $("licCancelEdit").style.display = "none";
+  }
+  licForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    if(trialState() !== "active") return;
+    var name = $("licName").value.trim();
+    var holder = $("licHolder").value.trim();
+    var expiry = $("licExpiry").value;
+    if(!name || !holder || !expiry){
+      showLicStatus("<strong>Three things are needed:</strong> licence name, holder / technician, and an expiry date.", false);
+      return;
+    }
+    var rec = { name: name, type: $("licType").value, state: $("licState").value, holder: holder, expiry: expiry };
+    var editId = $("licId").value;
+    if(editId){
+      for(var i=0;i<licences.length;i++){ if(licences[i].id === editId){ rec.id = editId; licences[i] = rec; break; } }
+      showLicStatus("<strong>Saved.</strong> “" + esc(name) + "” was updated.", true);
+    } else {
+      rec.id = "lic" + Date.now() + Math.floor(Math.random()*100000);
+      licences.push(rec);
+      showLicStatus("<strong>Added.</strong> “" + esc(name) + "” is now on the board.", true);
+    }
+    saveLicences(); resetLicForm(); renderAll();
+  });
+  $("licCancelEdit").addEventListener("click", resetLicForm);
+  $("licSearch").addEventListener("input", function(){ renderAll(); });
+  $("licFilter").addEventListener("change", function(){ renderAll(); });
+
+  /* ---------- render: stats, board, list, by-tech ---------- */
+  function renderAll(){
+    var list = sortedLicences();
+    var expired = 0, soon = 0, holders = {};
+    list.forEach(function(l){
+      var d = daysLeft(l.expiry);
+      if(d !== null && d < 0) expired++;
+      if(d !== null && d >= 0 && d <= 30) soon++;
+      holders[l.holder] = true;
+    });
+    $("tsTotal").textContent = list.length;
+    $("tsExpired").textContent = expired;
+    $("tsSoon").textContent = soon;
+    $("tsTechs").textContent = Object.keys(holders).length;
+
+    var buckets = [
+      { key:"b-expired", label:"Expired", test:function(d){ return d !== null && d < 0; } },
+      { key:"b-7",  label:"Due in 7 days",  test:function(d){ return d !== null && d >= 0 && d <= 7; } },
+      { key:"b-14", label:"8–14 days",      test:function(d){ return d !== null && d > 7 && d <= 14; } },
+      { key:"b-30", label:"15–30 days",     test:function(d){ return d !== null && d > 14 && d <= 30; } },
+      { key:"b-60", label:"31–60 days",     test:function(d){ return d !== null && d > 30 && d <= 60; } },
+      { key:"b-90", label:"61–90 days",     test:function(d){ return d !== null && d > 60 && d <= 90; } },
+      { key:"b-later", label:"90+ days",    test:function(d){ return d === null || d > 90; } }
     ];
-    return lines.join("\n");
-  }
-  function valid(){
-    var name = document.getElementById("fName").value.trim();
-    var comp = document.getElementById("fCompany").value.trim();
-    var email = document.getElementById("fEmail").value.trim();
-    return name && comp && /.+@.+\..+/.test(email);
-  }
-  function showStatus(html, ok){
-    status.innerHTML = html;
-    status.className = "status-msg show " + (ok ? "ok" : "");
-    status.style.background = ok ? "" : "var(--red-soft)";
-    status.style.border = ok ? "" : "1px solid var(--red)";
-  }
-  if(form){
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      if(!valid()){
-        showStatus("<strong>Three fields are needed:</strong> your name, your company, and a valid work email — then the request can be built.", false);
-        return;
-      }
-      var subject = encodeURIComponent("RenewGuard free trial — " + document.getElementById("fCompany").value.trim());
-      var body = encodeURIComponent(buildRequest());
-      showStatus("<strong>Your mail app should now open</strong> with the trial request written and addressed from your own email. Review it, add the RenewGuard inbox address, and press send — nothing was sent or stored by this page. No card is taken for the trial.", true);
-      var a = document.createElement("a");
-      a.href = "mailto:?subject=" + subject + "&body=" + body;
-      a.style.display = "none";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+    $("board").innerHTML = buckets.map(function(b){
+      var items = list.filter(function(l){ return b.test(daysLeft(l.expiry)); });
+      var inner = items.length
+        ? "<ul>" + items.map(function(l){ return "<li><strong>" + esc(l.name) + "</strong><br>" + esc(l.holder) + " · " + fmtDate(l.expiry) + "</li>"; }).join("") + "</ul>"
+        : '<p class="empty">Nothing here.</p>';
+      return '<div class="bucket ' + b.key + '"><div class="bh"><b>' + b.label + '</b><span class="cnt">' + items.length + '</span></div>' + inner + '</div>';
+    }).join("");
+
+    if(!list.length){
+      $("licListWrap").innerHTML = '<div class="trial-empty">No licences yet. Add your first one on the left — or hit <strong>Load sample data</strong> to see the tracker working in ten seconds.</div>';
+      $("techWrap").innerHTML = '<div class="trial-empty">Nobody here yet — licences you add will group under their holder automatically.</div>';
+      return;
+    }
+    var q = ($("licSearch").value || "").trim().toLowerCase();
+    var f = $("licFilter").value;
+    var shown = list.filter(function(l){
+      if(q && (l.name + " " + l.holder + " " + l.type).toLowerCase().indexOf(q) < 0) return false;
+      var d = daysLeft(l.expiry);
+      if(f === "expired") return d !== null && d < 0;
+      if(f === "due7") return d !== null && d >= 0 && d <= 7;
+      if(f === "due30") return d !== null && d >= 0 && d <= 30;
+      if(f === "current") return d !== null && d > 30;
+      return true;
     });
+    if(!shown.length){
+      $("licListWrap").innerHTML = '<div class="trial-empty">No licences match that search / filter. Clear the search box or pick “All licences”.</div>';
+    } else {
+    $("licListWrap").innerHTML = '<div class="lic-list">' + shown.map(function(l){
+      return '<div class="lic-row"><div class="grow"><b>' + esc(l.name) + '</b>' +
+        '<span class="meta">' + esc(l.type) + ' · ' + esc(l.state) + ' · Holder: ' + esc(l.holder) + ' · Expires ' + fmtDate(l.expiry) + '</span></div>' +
+        pillFor(daysLeft(l.expiry)) +
+        '<span class="rowbtns"><button type="button" class="chip-btn" data-edit="' + esc(l.id) + '">Edit</button>' +
+        '<button type="button" class="chip-btn del" data-del="' + esc(l.id) + '">Delete</button></span></div>';
+    }).join("") + '</div>';
+    }
+
+    var byHolder = {};
+    list.forEach(function(l){ (byHolder[l.holder] = byHolder[l.holder] || []).push(l); });
+    $("techWrap").innerHTML = Object.keys(byHolder).sort().map(function(h){
+      return '<div class="tech-group"><h4>' + esc(h) + ' <span style="color:var(--ink3);font-weight:600;font-size:.85rem">— ' + byHolder[h].length + ' licence' + (byHolder[h].length===1?"":"s") + '</span></h4><ul>' +
+        byHolder[h].map(function(l){ return '<li><span>' + esc(l.name) + ' <span style="color:var(--ink3)">(' + esc(l.type) + ', ' + esc(l.state) + ')</span></span>' + pillFor(daysLeft(l.expiry)) + '</li>'; }).join("") + '</ul></div>';
+    }).join("");
   }
-  if(copyBtn){
-    copyBtn.addEventListener("click", function(){
-      if(!valid()){
-        showStatus("<strong>Three fields are needed first:</strong> your name, your company, and a valid work email.", false);
-        return;
+
+  $("licListWrap").addEventListener("click", function(e){
+    if(trialState() !== "active") return;
+    var editBtn = e.target.closest("[data-edit]");
+    var delBtn = e.target.closest("[data-del]");
+    if(editBtn){
+      var rec = null;
+      licences.forEach(function(l){ if(l.id === editBtn.getAttribute("data-edit")) rec = l; });
+      if(!rec) return;
+      $("licId").value = rec.id;
+      $("licName").value = rec.name;
+      $("licType").value = rec.type;
+      $("licState").value = rec.state;
+      $("licHolder").value = rec.holder;
+      $("licExpiry").value = rec.expiry;
+      $("licFormTitle").textContent = "Edit licence";
+      $("licSubmit").textContent = "Save changes";
+      $("licCancelEdit").style.display = "";
+      $("licName").focus();
+      return;
+    }
+    if(delBtn){
+      if(delBtn.getAttribute("data-arm") === "1"){
+        var id = delBtn.getAttribute("data-del");
+        licences = licences.filter(function(l){ return l.id !== id; });
+        saveLicences(); renderAll();
+        showLicStatus("Licence deleted.", true);
+      } else {
+        delBtn.setAttribute("data-arm","1");
+        delBtn.textContent = "Confirm delete?";
+        setTimeout(function(){ delBtn.removeAttribute("data-arm"); delBtn.textContent = "Delete"; }, 3500);
       }
-      var text = buildRequest();
-      function done(){ showStatus("<strong>Copied.</strong> Paste the request into any email or message to RenewGuard to start the 14-day trial. No card is taken for the trial.", true); }
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(done, function(){ fallback(); });
-      } else { fallback(); }
-      function fallback(){
-        var ta = document.createElement("textarea");
-        ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand("copy"); done(); }
-        catch(err){ showStatus("Copy didn&rsquo;t work in this browser — your request text is:<br><br><span class=&quot;mono&quot; style=&quot;white-space:pre-wrap&quot;>" + text.replace(/</g,"&lt;").replace(/\n/g,"<br>") + "</span>", true); }
-        document.body.removeChild(ta);
-      }
+    }
+  });
+
+  /* ---------- sample data ---------- */
+  function isoIn(days){
+    var d = new Date(); d.setDate(d.getDate() + days);
+    return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  }
+  $("sampleBtn").addEventListener("click", function(){
+    if(trialState() !== "active") return;
+    var samples = [
+      { name:"Master Electrician License — TDLR #28471", type:"Master Electrician License", state:"TX", holder:"Mike Torres", expiry: isoIn(6) },
+      { name:"Electrical Contractor License — TECL #19384", type:"Electrical Contractor License (TECL)", state:"TX", holder:"Torres Electric LLC", expiry: isoIn(18) },
+      { name:"Journeyman Electrician License — TDLR #51206", type:"Journeyman Electrician License", state:"TX", holder:"Carlos Mendez", expiry: isoIn(44) },
+      { name:"Apprentice Electrician License — TDLR #73019", type:"Apprentice Electrician License", state:"TX", holder:"Jake Nguyen", expiry: isoIn(82) },
+      { name:"General Liability COI — $1M/$2M", type:"General Liability COI", state:"TX", holder:"Torres Electric LLC", expiry: isoIn(196) }
+    ];
+    var added = 0;
+    samples.forEach(function(s){
+      var exists = licences.some(function(l){ return l.name === s.name && l.holder === s.holder; });
+      if(!exists){ s.id = "lic" + Date.now() + Math.floor(Math.random()*100000) + added; licences.push(s); added++; }
     });
+    saveLicences(); renderAll();
+    showLicStatus(added ? "<strong>Sample data loaded:</strong> " + added + " Texas electrical licences added — two expire within 30 days, so the board shows real urgency colours." : "Sample licences are already loaded.", true);
+  });
+
+  /* ---------- CSV import ---------- */
+  var csvPanel = $("csvPanel");
+  $("csvToggle").addEventListener("click", function(){
+    var open = csvPanel.className.indexOf("open") >= 0;
+    csvPanel.className = "csv-panel" + (open ? "" : " open");
+    this.setAttribute("aria-expanded", open ? "false" : "true");
+  });
+  $("csvFile").addEventListener("change", function(){
+    var f = this.files && this.files[0];
+    if(!f) return;
+    var reader = new FileReader();
+    reader.onload = function(){ $("csvText").value = String(reader.result || ""); showLicStatus("File loaded into the box — hit <strong>Import these rows</strong> to add them.", true); };
+    reader.onerror = function(){ showLicStatus("That file could not be read — try pasting the rows instead.", false); };
+    reader.readAsText(f);
+  });
+  function splitCsvLine(line){
+    var out = [], cur = "", inQ = false;
+    for(var i=0;i<line.length;i++){
+      var c = line.charAt(i);
+      if(inQ){ if(c === '"'){ if(line.charAt(i+1) === '"'){ cur += '"'; i++; } else inQ = false; } else cur += c; }
+      else if(c === '"') inQ = true;
+      else if(c === ","){ out.push(cur.trim()); cur = ""; }
+      else cur += c;
+    }
+    out.push(cur.trim());
+    return out;
   }
+  $("csvImportBtn").addEventListener("click", function(){
+    if(trialState() !== "active") return;
+    var text = $("csvText").value.trim();
+    if(!text){ showLicStatus("Paste some CSV rows (or upload a file) first.", false); return; }
+    var lines = text.split(/\r?\n/), added = 0, skipped = 0;
+    lines.forEach(function(line, idx){
+      if(!line.trim()) return;
+      var cells = splitCsvLine(line);
+      if(idx === 0 && /name/i.test(cells[0]) && /type/i.test(cells[1] || "")) return;
+      if(cells.length < 5 || !/^\d{4}-\d{2}-\d{2}$/.test(cells[4])){ skipped++; return; }
+      licences.push({ id:"lic" + Date.now() + Math.floor(Math.random()*100000) + added, name:cells[0], type:cells[1], state:cells[2] || "TX", holder:cells[3], expiry:cells[4] });
+      added++;
+    });
+    saveLicences(); renderAll();
+    showLicStatus("<strong>Import done:</strong> " + added + " licence" + (added===1?"":"s") + " added" + (skipped ? ", " + skipped + " row" + (skipped===1?"":"s") + " skipped (needs 5 columns and a YYYY-MM-DD expiry)" : "") + ".", added > 0);
+  });
+
+  /* ---------- export / print / clear ---------- */
+  function licencesCsv(){
+    var rows = [["Licence name","Type","State","Holder","Expiry"]];
+    sortedLicences().forEach(function(l){ rows.push([l.name, l.type, l.state, l.holder, l.expiry]); });
+    return rows.map(function(r){ return r.map(function(c){ return '"' + String(c).replace(/"/g,'""') + '"'; }).join(","); }).join("\n");
+  }
+  $("csvDlBtn").addEventListener("click", function(){
+    var blob = new Blob([licencesCsv()], {type:"text/csv"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "renewguard-licences.csv";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  });
+  $("proofBtn").addEventListener("click", function(){
+    var list = sortedLicences();
+    var rows = list.map(function(l){
+      var d = daysLeft(l.expiry);
+      var status = d === null ? "No date" : (d < 0 ? "EXPIRED" : (d <= 30 ? "Expiring soon — " + d + " days" : "Current — " + d + " days"));
+      return "<tr><td>" + esc(l.name) + "</td><td>" + esc(l.type) + "</td><td>" + esc(l.state) + "</td><td>" + esc(l.holder) + "</td><td>" + fmtDate(l.expiry) + "</td><td>" + status + "</td></tr>";
+    }).join("");
+    $("proofPack").innerHTML = "<h1>RenewGuard — Licence Proof Pack</h1><p>Generated " + new Date().toLocaleDateString("en-US",{month:"long", day:"numeric", year:"numeric"}) + (account ? " · Trial account: " + esc(account.name) + " (" + esc(account.email) + ")" : "") + "</p>" +
+      (list.length ? "<table><thead><tr><th>Licence</th><th>Type</th><th>State</th><th>Holder</th><th>Expiry</th><th>Status</th></tr></thead><tbody>" + rows + "</tbody></table>" : "<p>No licences in the tracker yet.</p>") +
+      "<p>Trial reminders show in-app only — real email/SMS reminders are set up after you subscribe. Subscribe: " + PAYPAL + "</p>";
+    var blob = new Blob(["<!doctype html><html><head><meta charset=\"utf-8\"><title>RenewGuard Proof Pack</title><style>body{font-family:Arial,sans-serif;padding:24px;color:#000}table{width:100%;border-collapse:collapse;font-size:13px}th,td{border:1px solid #999;padding:6px 8px;text-align:left}</style></head><body>" + $("proofPack").innerHTML + "</body></html>"], {type:"text/html"});
+    var pa = document.createElement("a");
+    pa.href = URL.createObjectURL(blob); pa.download = "renewguard-proof-pack.html";
+    document.body.appendChild(pa); pa.click(); document.body.removeChild(pa);
+    setTimeout(function(){ URL.revokeObjectURL(pa.href); }, 2000);
+    showLicStatus("<strong>Proof pack downloaded.</strong> Open the file and print it — or save it as a PDF — to send to a GC.", true);
+  });
+  $("clearBtn").addEventListener("click", function(){
+    if(trialState() !== "active") return;
+    var btn = this;
+    if(btn.getAttribute("data-arm") === "1"){
+      licences = []; saveLicences(); resetLicForm(); renderAll();
+      btn.removeAttribute("data-arm"); btn.textContent = "Clear trial data";
+      showLicStatus("All trial licences cleared from this browser. Your trial account and countdown are untouched.", true);
+    } else {
+      btn.setAttribute("data-arm","1"); btn.textContent = "Click again to confirm — erase all trial licences";
+      setTimeout(function(){ btn.removeAttribute("data-arm"); btn.textContent = "Clear trial data"; }, 4000);
+    }
+  });
+
+  renderAccount();
+  renderAll();
+  setInterval(function(){ renderAccount(); }, 30000);
 })();
 </script>
 </body>
