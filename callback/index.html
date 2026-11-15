@@ -213,6 +213,7 @@
       .status-btn.on-booked { background: var(--good-soft); color: var(--good); border-color: var(--good); }
       .status-btn.on-resolved { background: var(--surface-2); color: var(--ink); border-color: var(--ink-3); }
       .status-btn.on-callback { background: #fdecea; color: #b3382e; border-color: #b3382e; }
+      .status-btn.del { color: #b3382e; border-color: #e0a49e; }
       @media (prefers-color-scheme: dark) { .status-btn.on-callback { background: #3a1d1a; color: #f0958a; } }
       .send-row { display: flex; gap: 9px; margin-top: 10px; }
       .send-row input { flex: 1; min-width: 0; font: inherit; font-size: .95rem; color: var(--ink); background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 13px; }
@@ -573,6 +574,7 @@
                 <button class="status-btn" type="button" data-setstatus="booked" id="tBtnBooked">✓ Booked</button>
                 <button class="status-btn" type="button" data-setstatus="resolved" id="tBtnResolved">Resolved</button>
                 <button class="status-btn" type="button" data-setstatus="callback" id="tBtnCallback">Needs callback</button>
+                <button class="status-btn del" type="button" id="tBtnDelete">Delete call</button>
               </div>
               <div class="thread-msgs" id="tThread">
                 <div class="thread-empty">The text-back conversation for the selected caller will appear here.</div>
@@ -1237,6 +1239,7 @@
         }
 
         var statusLabel = { booked: "✓ Booked", resolved: "Resolved", callback: "Needs callback" };
+        var deleteArmed = false;
         var tTemplates = {
           standard: "Hi {FirstName}, sorry we missed your call — this is {Business}. What can we help with? Reply here and we'll get you on the schedule.",
           afterhours: "Hi {FirstName}, thanks for calling {Business} — we're closed right now, but your message matters. Tell us what's going on and we'll text you back first thing in the morning.",
@@ -1288,6 +1291,9 @@
           var c = selectedCall();
           var thread = $("tThread");
           ["tBtnBooked", "tBtnResolved", "tBtnCallback"].forEach(function (id) { $(id).className = "status-btn"; });
+          deleteArmed = false;
+          $("tBtnDelete").textContent = "Delete call";
+          $("tBtnDelete").style.display = c ? "" : "none";
           if (!c) {
             $("tThreadName").textContent = "No call selected";
             $("tThreadMeta").textContent = "Pick a call from the inbox to open its thread.";
@@ -1325,7 +1331,7 @@
         function fmtCountdown() {
           var left = account.startedAt + TRIAL_MS - Date.now();
           if (left <= 0) return "Trial ended";
-          var mins = Math.floor(left / 60000);
+          var mins = Math.ceil(left / 60000);
           var d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
           if (d > 0) return "Trial: " + d + " day" + (d === 1 ? "" : "s") + " " + h + " hour" + (h === 1 ? "" : "s") + " left";
           if (h > 0) return "Trial: " + h + " hour" + (h === 1 ? "" : "s") + " " + m + " min left";
@@ -1411,6 +1417,18 @@
             c.status = btn.getAttribute("data-setstatus");
             saveTrial(); renderInbox(); renderThread();
           });
+        });
+
+        /* delete the selected call (2-click confirm) */
+        $("tBtnDelete").addEventListener("click", function () {
+          if (!canEdit()) return;
+          var c = selectedCall();
+          if (!c) return;
+          if (!deleteArmed) { deleteArmed = true; this.textContent = "Click again to delete"; return; }
+          deleteArmed = false;
+          trial.calls = trial.calls.filter(function (x) { return x.id !== c.id; });
+          if (trial.selectedId === c.id) trial.selectedId = trial.calls.length ? trial.calls[0].id : null;
+          saveTrial(); renderInbox(); renderThread(); fillTemplate();
         });
 
         /* template picker + sending */
