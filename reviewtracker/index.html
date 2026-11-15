@@ -16,7 +16,12 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="data:," />
 <title>ReviewTracker — Google Reviews for Trades, $37/mo</title>
-<meta name="description" content="ReviewTracker helps HVAC, plumbing, electrical and home-service shops ask for Google reviews, track who replied, and draft replies in the owner's voice. $37/mo — about half of NiceJob Starter at $75/mo." />
+<meta name="description" content="ReviewTracker helps HVAC, plumbing, electrical and home-service shops ask for Google reviews, track who replied, and draft replies in the owner's voice. $37/mo — about half of NiceJob Starter at $75/mo."
+<link rel="canonical" href="https://binh1994.github.io/landing-pages/reviewtracker/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="ReviewTracker — Google Reviews for Trades, $37/mo" />
+<meta property="og:description" content="ReviewTracker helps HVAC, plumbing, electrical and home-service shops ask for Google reviews, track who replied, and draft replies in the owner's voice. $37/mo — about half of NiceJob Starter at $75/mo." />
+<meta property="og:url" content="https://binh1994.github.io/landing-pages/reviewtracker/" /> />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
@@ -257,6 +262,20 @@ footer a{color:var(--ink-2)}
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
+
+/* conversion: sticky mobile CTA + cross-links (added 2026-11-15) */
+.sticky-cta{display:none}
+@media (max-width:760px){
+  body{padding-bottom:64px}
+  .sticky-cta{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;background:#fff;border-top:1px solid #e2e8f0;box-shadow:0 -8px 24px rgba(15,23,42,.10);padding:10px 14px calc(10px + env(safe-area-inset-bottom));gap:12px;align-items:center;justify-content:space-between}
+  .sticky-cta .sc-t{font-size:.9rem;font-weight:700;line-height:1.25}
+  .sticky-cta .sc-t span{display:block;font-size:.75rem;font-weight:600;color:#64748b}
+  .sticky-cta .sc-b{flex:none;background:#0f172a;color:#fff;font-weight:700;font-size:.95rem;text-decoration:none;border-radius:10px;padding:11px 16px;min-height:44px;display:inline-flex;align-items:center}
+}
+.xlinks{margin-top:28px;padding-top:20px;border-top:1px solid #e2e8f0}
+.xlinks h3{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:#64748b;margin:0 0 10px}
+.xlinks ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.xlinks a{font-size:.9rem;font-weight:600}
 </style>
 </head>
 <body>
@@ -669,6 +688,15 @@ footer a{color:var(--ink-2)}
     </ul>
     <p style="margin-top:16px">© 2026 ReviewTracker. Built for small shops, priced for small shops.</p>
   </div>
+<nav class="xlinks" aria-label="More tools from RenewGuard"><h3>More tools from RenewGuard</h3><ul>
+<li><a href="https://binh1994.github.io/landing-pages/renewguard/">RenewGuard — License tracking — $24/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/renewguard-hvac/">RenewGuard HVAC — A/C license tracking — $39/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/callback/">CallBack — Missed-call text-back — $14/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/callback-salon/">CallBack Salon — Salon text-back — $39/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/quotechaser/">QuoteChaser — Quote follow-up — $99/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/fixflow/">FixFlow — Landlord maintenance — $9/mo</a></li>
+<li><a href="https://binh1994.github.io/landing-pages/ai-video-ads/">AI Video Ads — Done-for-you video ads — $99/video</a></li>
+</ul></nav>
 </footer>
 
 <script>
@@ -1023,5 +1051,6 @@ footer a{color:var(--ink-2)}
 })();
 </script>
 
+<div class="sticky-cta" role="region" aria-label="Start your free trial"><div class="sc-t">$37/mo<span>3-day free trial · No card required</span></div><a class="sc-b" href="#trial" onclick="try{gtag('event','sticky_cta_click')}catch(e){}">Start free trial</a></div>
 </body>
 </html>
