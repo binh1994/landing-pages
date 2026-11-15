@@ -207,9 +207,6 @@
       .trial form{display:grid;gap:12px}
       .trial label{font-size:13.5px;font-weight:700;display:grid;gap:5px}
       .trial input,.trial select{border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;font:inherit;font-size:15.5px;background:var(--bg);color:var(--ink);min-height:46px;width:100%}
-      .req-out{display:none;border:1.5px dashed var(--green);border-radius:12px;padding:16px;margin-top:14px;background:var(--green-soft)}
-      .req-out.show{display:block}
-      .req-out pre{white-space:pre-wrap;font-family:"IBM Plex Mono",monospace;font-size:13.5px;margin:8px 0 12px}
       /* ---------- live trial app ---------- */
       .tryapp{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px}
       @media(max-width:640px){.tryapp{padding:20px 16px}}
@@ -784,38 +781,7 @@
         document.getElementById("units").addEventListener("input", renderCalc);
         renderCalc();
 
-        /* ---------- trial request ---------- */
-        var form = document.getElementById("trial-form");
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          var err = document.getElementById("form-err");
-          var name = form.querySelector('[name="name"]').value.trim(), email = form.querySelector('[name="email"]').value.trim(), units = form.querySelector('[name="units"]').value;
-          if (!name || !email || !units) { err.textContent = "Please add your name, email and unit count so the request is complete."; return; }
-          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "That email doesn't look right — check it and try again."; return; }
-          err.textContent = "";
-          var ref = "FF-" + Math.random().toString(36).slice(2, 7).toUpperCase();
-          var lines = [
-            "FixFlow — 3-day free trial request (" + ref + ")",
-            "Name: " + name,
-            "Email: " + email,
-            "Portfolio: " + units,
-            "Plan: FixFlow flat — $9/mo after 3-day free trial (vs Sirkonia $19/mo)"
-          ];
-          var pain = form.querySelector('[name="pain"]').value.trim();
-          if (pain) lines.push("Biggest headache: " + pain);
-          document.getElementById("req-text").textContent = lines.join("\n");
-          document.getElementById("req-out").classList.add("show");
-          document.getElementById("copy-note").textContent = "";
-        });
-        document.getElementById("copy-btn").addEventListener("click", function () {
-          var txt = document.getElementById("req-text").textContent;
-          var note = document.getElementById("copy-note");
-          function done() { note.textContent = "Copied."; }
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(txt).then(done, function () { note.textContent = "Copy blocked — select the text above instead."; });
-          } else { note.textContent = "Select the text above to copy it."; }
-        });
-      })();
+              })();
     </script>
     <script>
       (function () {
@@ -1032,7 +998,8 @@
         }
         function fmtLeft(ms) {
           if (ms <= 0) return "Trial: ended";
-          var d = Math.floor(ms / 86400000), h = Math.floor(ms % 86400000 / 3600000), m = Math.floor(ms % 3600000 / 60000);
+          var mins = Math.ceil(ms / 60000);
+          var d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
           if (d > 0) return "Trial: " + d + " day" + (d > 1 ? "s" : "") + " " + h + " hour" + (h === 1 ? "" : "s") + " left";
           if (h > 0) return "Trial: " + h + " hour" + (h === 1 ? "" : "s") + " " + m + " min left";
           return "Trial: " + Math.max(1, m) + " min left";
