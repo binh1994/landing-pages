@@ -712,8 +712,8 @@
   function fmtLeft(){
     var left = state.account.start + TRIAL_MS - Date.now();
     if (left <= 0) return 'Trial: ended';
-    var s = Math.floor(left / 1000);
-    var d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+    var totalMin = Math.ceil(left / 60000);
+    var d = Math.floor(totalMin / 1440), h = Math.floor((totalMin % 1440) / 60), m = totalMin % 60;
     if (d > 0) return 'Trial: ' + d + (d === 1 ? ' day ' : ' days ') + h + (h === 1 ? ' hour' : ' hours') + ' left';
     if (h > 0) return 'Trial: ' + h + (h === 1 ? ' hour ' : ' hours ') + m + ' min left';
     return 'Trial: ' + Math.max(m, 0) + ' min left';
@@ -739,6 +739,8 @@
     if (ts === 'active') {
       $('tr-acc-who').textContent = state.account.name + ' · ' + state.account.email;
       $('tr-countdown').textContent = fmtLeft();
+    } else if (ts === 'expired') {
+      $('tr-countdown').textContent = 'Trial: ended';
     }
     setAppEnabled(ts === 'active');
   }
