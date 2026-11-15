@@ -13,187 +13,232 @@ function trackTrialStarted(){ try { if (window.gtag) gtag('event', 'trial_starte
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="icon" href="data:,">
 <title>QuoteChaser — We chase your open quotes until they reply</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#f7f5f0; --bg2:#ffffff; --ink:#131a22; --muted:#5b6773; --line:#e2ddd2;
-  --amber:#d97706; --amber2:#f59e0b; --amber-bg:#fef3c7; --navy:#0f2439; --navy2:#162f4a;
-  --green:#15803d; --green-bg:#dcfce7; --red:#b91c1c; --card:#ffffff; --shadow:0 10px 30px rgba(19,26,34,.08);
-  --radius:14px;
-}
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#0d1319; --bg2:#121a23; --ink:#eef2f6; --muted:#9aa8b5; --line:#243140; --card:#151f2b; --amber-bg:#3a2a08; --green-bg:#123524; --shadow:0 10px 30px rgba(0,0,0,.35); }
-}
+/* QuoteChaser — premium redesign (Inter / JetBrains Mono, white, amber accent) */
 *{box-sizing:border-box}
+:root{
+  --bg:#ffffff; --bg-soft:#f8fafc; --surface:#ffffff;
+  --ink:#0f172a; --ink-2:#334155; --muted:#64748b;
+  --line:#e2e8f0; --line-strong:#cbd5e1;
+  --accent:#d97706; --accent-strong:#b45309; --accent-soft:#fffbeb; --accent-border:#fde68a; --accent-ink:#92400e;
+  --green:#15803d; --green-soft:#dcfce7;
+  --red:#b91c1c; --red-soft:#fee2e2;
+  --navy:#0f172a;
+  --radius:12px;
+  --shadow:0 1px 2px rgba(15,23,42,.05),0 4px 16px rgba(15,23,42,.06);
+  --shadow-lg:0 12px 32px rgba(15,23,42,.10);
+  --wrap:1160px;
+}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:"Barlow",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
 a{color:inherit}
+a{transition:color .15s ease}
 button,[role="button"],input,select,summary{min-height:44px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-.topbar{background:var(--navy);color:#fff}
-.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px;flex-wrap:wrap}
-.logo{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.02em;font-size:24px;line-height:1}
-.logo span{color:var(--amber2)}
-.logo small{display:block;font-family:"Barlow",sans-serif;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:#b9c7d6;margin-top:4px}
-.nav{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 12px;border-radius:999px;color:#dbe6f0}
-.nav a:hover{background:rgba(255,255,255,.1);color:#fff}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;border-radius:999px;padding:14px 24px;border:1px solid transparent;cursor:pointer;font-size:16px;line-height:1;font-family:inherit}
-.btn-amber{background:var(--amber);color:#fff}
-.btn-amber:hover{background:#b45309}
-.btn-outline{background:transparent;color:var(--ink);border-color:var(--line)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+section[id],header[id]{scroll-margin-top:84px}
+
+/* ---------- sticky nav ---------- */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.logo{font-weight:800;letter-spacing:-.02em;font-size:22px;line-height:1.1;text-decoration:none}
+.logo span{color:var(--accent)}
+.logo small{display:block;font-weight:600;letter-spacing:.12em;text-transform:uppercase;font-size:10px;color:var(--muted);margin-top:3px}
+.nav{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;padding:9px 12px;border-radius:8px;color:var(--ink-2)}
+.nav a:hover{background:var(--bg-soft);color:var(--ink)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:700;border-radius:var(--radius);padding:13px 22px;border:1px solid transparent;cursor:pointer;font-size:15.5px;line-height:1.2;font-family:inherit;transition:background .15s ease,border-color .15s ease,box-shadow .15s ease}
+.btn-amber{background:var(--accent);color:#fff;box-shadow:0 1px 2px rgba(217,119,6,.35)}
+.btn-amber:hover{background:var(--accent-strong)}
+.btn-outline{background:#fff;color:var(--ink);border-color:var(--line-strong)}
+.btn-outline:hover{border-color:var(--ink-2)}
 .btn-white{background:#fff;color:var(--navy)}
 .btn-ghostw{background:transparent;color:#fff;border-color:rgba(255,255,255,.35)}
 .btn[disabled]{opacity:.45;cursor:not-allowed}
-.btn-sm{padding:10px 16px;font-size:14.5px;min-height:42px}
+.btn-sm{padding:9px 16px;font-size:14px;min-height:40px}
 .btn-danger{background:transparent;color:var(--red);border-color:var(--red)}
 .btn-danger.armed{background:var(--red);color:#fff}
-.hero{background:var(--navy);color:#fff;padding:44px 0 64px;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:auto -120px -180px auto;width:520px;height:520px;background:radial-gradient(circle,rgba(245,158,11,.28),transparent 65%);pointer-events:none}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:start;position:relative}
-.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);padding:7px 11px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.02em}
-.eyebrow i{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block}
-h1{font-family:"Archivo",sans-serif;font-weight:900;line-height:.98;letter-spacing:-.03em;font-size:clamp(40px,5.6vw,62px);margin:20px 0 16px}
-h1 em{font-style:normal;color:var(--amber2)}
-.lead{font-size:19px;color:#d3dee9;max-width:600px;margin:0 0 24px}
-.price-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 24px}
-.price-line b{font-family:"Archivo",sans-serif;font-weight:900;font-size:34px;color:#fff}
-.price-line span{color:#b9c7d6;font-weight:600}
-.price-line s{color:#8fa3b8;text-decoration-color:#f87171;text-decoration-thickness:2px}
-.hero-note{font-size:14px;color:#9fb0c1;margin-top:14px;max-width:560px}
-.board{background:var(--card);color:var(--ink);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
-.board-head{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.board-head b{font-family:"Archivo",sans-serif}
-.badge{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:999px;background:var(--amber-bg);color:#92400e}
-@media (prefers-color-scheme: dark){.badge{color:#fcd34d}}
-.qrow{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:6px 12px}
+
+/* ---------- hero ---------- */
+.hero{background:var(--bg);padding:72px 0 64px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-220px;right:-140px;width:560px;height:560px;background:radial-gradient(circle,rgba(217,119,6,.10),transparent 65%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start;position:relative}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;background:var(--accent-soft);border:1px solid var(--accent-border);color:var(--accent-ink);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.01em}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block}
+h1{font-weight:800;line-height:1.04;letter-spacing:-.02em;font-size:clamp(40px,5.2vw,60px);margin:20px 0 16px}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:19px;color:var(--ink-2);max-width:600px;margin:0 0 8px}
+.price-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:20px 0 0}
+.price-line b{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:32px;letter-spacing:-.01em}
+.price-line span{color:var(--muted);font-weight:600}
+.price-line s{color:#94a3b8;text-decoration-color:#f87171;text-decoration-thickness:2px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-ctas .btn{font-size:16.5px;padding:15px 26px}
+.hero-note{font-size:14px;color:var(--muted);margin-top:16px;max-width:560px}
+.hero-note a{color:var(--ink);font-weight:700}
+.board{background:var(--surface);border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--line)}
+.board-head{padding:16px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.board-head b{font-weight:800;letter-spacing:-.01em}
+.badge{font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);border:1px solid var(--accent-border)}
+.qrow{padding:15px 20px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:6px 12px}
 .qrow:last-child{border-bottom:0}
 .qrow .who{font-weight:700}
 .qrow .meta{color:var(--muted);font-size:14px}
-.qrow .amt{font-family:"JetBrains Mono",monospace;font-weight:700;text-align:right}
-.status{font-size:12px;font-weight:800;padding:5px 8px;border-radius:999px;justify-self:end}
-.s-book{background:var(--green-bg);color:var(--green)}
-.s-wait{background:var(--amber-bg);color:#92400e}
-@media (prefers-color-scheme: dark){.s-wait{color:#fcd34d}}
+.qrow .amt{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;text-align:right}
+.status{font-size:12px;font-weight:800;padding:5px 9px;border-radius:999px;justify-self:end;white-space:nowrap}
+.s-book{background:var(--green-soft);color:var(--green)}
+.s-wait{background:var(--accent-soft);color:var(--accent-ink)}
 .s-new{background:#e0e7ff;color:#3730a3}
-.board-foot{padding:14px 18px;background:var(--bg);font-size:14px;color:var(--muted)}
-.trust{background:var(--bg2);border-bottom:1px solid var(--line)}
-.trust .wrap{display:flex;gap:12px 32px;flex-wrap:wrap;padding-top:18px;padding-bottom:18px}
-.trust span{font-weight:700;font-size:15px;display:inline-flex;gap:9px;align-items:center}
-.trust .tick{color:var(--green);font-weight:900;font-size:17px}
+.board-foot{padding:14px 20px;background:var(--bg-soft);font-size:13.5px;color:var(--muted)}
+
+/* ---------- stats strip ---------- */
+.trust{background:var(--bg-soft);border-bottom:1px solid var(--line)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding-top:0;padding-bottom:0}
+.trust .stat{padding:24px 22px;border-left:1px solid var(--line)}
+.trust .stat:first-child{border-left:0;padding-left:0}
+.trust .stat b{display:block;font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:26px;letter-spacing:-.01em;line-height:1.1}
+.trust .stat span{display:block;font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+
 section{padding:72px 0}
-h2{font-family:"Archivo",sans-serif;font-weight:900;letter-spacing:-.02em;line-height:1.05;font-size:clamp(30px,4vw,42px);margin:0 0 12px}
+h2{font-weight:800;letter-spacing:-.02em;line-height:1.08;font-size:clamp(30px,3.6vw,40px);margin:0 0 12px}
 .sub{color:var(--muted);font-size:17px;max-width:720px;margin:0 0 28px}
-.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.step{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:12px;padding:18px}
-.step b.day{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber)}
-.step h3{margin:8px 0 6px;font-size:17px}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.step{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+.step b.day{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--accent)}
+.step h3{margin:10px 0 6px;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .step p{margin:0;color:var(--muted);font-size:15px}
-.compare{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:14px;align-items:stretch}
-.comp{border:1px solid var(--line);border-radius:16px;padding:22px;background:var(--card)}
-.comp.hot{border:2px solid var(--amber);background:var(--card);position:relative}
-.comp .price{font-family:"Archivo",sans-serif;font-weight:900;font-size:38px;line-height:1;margin:10px 0 4px}
-.comp ul{margin:14px 0 0;padding-left:18px;color:var(--muted)}
-.comp li{margin:7px 0}
-.tag{position:absolute;top:-13px;left:18px;background:var(--amber);color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px}
-details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 18px;margin-bottom:10px}
-summary{cursor:pointer;font-weight:700;padding:12px 0}
-details p{color:var(--muted);margin:0 0 16px}
-.cta-band{background:var(--amber);color:#1a1200;border-radius:20px;padding:28px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
-.cta-band h2{margin-bottom:8px}
-.cta-band p{margin:0;opacity:.85}
-footer{padding:36px 0 48px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+.compare{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:16px;align-items:stretch}
+.comp{border:1px solid var(--line);border-radius:16px;padding:28px;background:var(--surface)}
+.comp.hot{border:2px solid var(--accent);position:relative;box-shadow:var(--shadow-lg)}
+.comp .price{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:42px;line-height:1;letter-spacing:-.02em;margin:12px 0 4px}
+.comp ul{margin:16px 0 0;padding:0;list-style:none;color:var(--muted);display:grid;gap:9px}
+.comp li{display:flex;gap:10px}
+.comp li::before{content:"✓";color:var(--green);font-weight:800;flex:none}
+.price-note{font-size:13.5px;color:var(--muted);text-align:center;margin:18px 0 0}
+.tag{position:absolute;top:-13px;left:24px;background:var(--accent);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:2px 20px;margin-bottom:12px}
+details summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";font-size:20px;color:var(--accent);font-weight:800;line-height:1}
+details[open ] summary::after{content:"–"}
+details p{color:var(--muted);margin:0 0 18px}
+.cta-band{background:var(--navy);color:#fff;border-radius:20px;padding:40px;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+.cta-band h2{margin-bottom:8px;color:#fff}
+.cta-band p{margin:0;color:#cbd5e1}
+footer{padding:48px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 footer a{text-decoration:underline}
+.foot-nav{display:flex;gap:8px 22px;flex-wrap:wrap;margin:16px 0}
+.foot-nav a{color:var(--ink-2);font-weight:600;text-decoration:none}
+.foot-nav a:hover{color:var(--accent)}
 .sources{font-size:13px;line-height:1.7}
-label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}
-input[type="number"],input[type="text"],input[type="email"],input[type="password"],input[type="date"],textarea,select{width:100%;padding:12px 13px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:inherit}
+label{font-weight:700;font-size:14px;display:block;margin-bottom:6px;color:var(--ink-2)}
+input[type="number"],input[type="text"],input[type="email"],input[type="password"],input[type="date"],textarea,select{width:100%;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);font:inherit}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(217,119,6,.15)}
 .field{margin-bottom:16px}
+
 /* --- Free trial app --- */
-.trial{background:var(--bg2);border-bottom:1px solid var(--line)}
-.trial-tag{display:inline-flex;gap:8px;align-items:center;background:var(--green-bg);color:var(--green);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.02em}
-.trial-note{background:var(--amber-bg);border:1px solid var(--amber);border-radius:12px;padding:14px 16px;font-weight:600;margin:0 0 26px}
-.step-tag{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--amber);margin-bottom:8px}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:18px}
-.panel h3{margin:0 0 6px;font-size:20px;font-family:"Archivo",sans-serif;letter-spacing:-.01em}
+.trial{background:var(--bg-soft);border-bottom:1px solid var(--line)}
+.trial-tag{display:inline-flex;gap:8px;align-items:center;background:var(--green-soft);color:var(--green);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.02em}
+.trial-note{background:var(--accent-soft);border:1px solid var(--accent-border);color:#78350f;border-radius:var(--radius);padding:14px 16px;font-weight:600;margin:0 0 26px}
+.step-tag{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--accent);margin-bottom:8px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:18px}
+.panel h3{margin:0 0 6px;font-size:20px;font-weight:800;letter-spacing:-.01em}
 .panel .hint{color:var(--muted);margin:0 0 16px;font-size:15px}
-.panel.acct{border:2px solid var(--amber)}
-.reggrid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end}
+.panel.acct{border:2px solid var(--accent)}
+.reggrid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end}
 .reggrid .field{margin-bottom:0}
 .fineprint{font-size:13.5px;color:var(--muted);margin:12px 0 0}
-.countdown{font-family:"Archivo",sans-serif;font-weight:900;font-size:clamp(24px,3.4vw,32px);line-height:1.1;margin:6px 0 4px}
-.acct-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.countdown{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:clamp(24px,3vw,30px);line-height:1.15;margin:8px 0 4px;letter-spacing:-.01em}
+.acct-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
 .tstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
-.tstat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
-.tstat b{display:block;font-family:"Archivo",sans-serif;font-weight:900;font-size:27px;line-height:1.05;overflow-wrap:anywhere}
-.tstat span{font-size:13px;color:var(--muted);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.tstat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-width:0;box-shadow:var(--shadow)}
+.tstat b{display:block;font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:26px;line-height:1.1;overflow-wrap:anywhere;letter-spacing:-.01em}
+.tstat span{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 .tstat.win b{color:var(--green)}
-.qform{display:grid;grid-template-columns:1.1fr 1.2fr .75fr .95fr auto;gap:10px;align-items:end}
+.qform{display:grid;grid-template-columns:1.1fr 1.2fr .75fr .95fr auto;gap:12px;align-items:end}
 .qform .field{margin-bottom:0}
 .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.qcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+.qcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px;box-shadow:var(--shadow)}
 .qcard-top{display:flex;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;align-items:baseline}
-.qcard .who{font-weight:700;font-size:17px}
+.qcard .who{font-weight:700;font-size:16.5px}
 .qcard .meta{color:var(--muted);font-size:14px}
-.qcard .amt{font-family:"JetBrains Mono",monospace;font-weight:700;font-size:17px}
-.qcard-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
-.stbtn{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 13px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;min-height:38px;font-family:inherit}
+.qcard .amt{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:700;font-size:16.5px}
+.qcard-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.stbtn{border:1.5px solid var(--line-strong);background:#fff;color:var(--ink);padding:8px 14px;border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;min-height:38px;font-family:inherit;transition:border-color .15s ease,background .15s ease}
+.stbtn:hover:not([disabled]){border-color:var(--ink-2)}
 .stbtn[disabled]{opacity:.45;cursor:not-allowed}
 .stbtn.on-open{background:var(--navy);color:#fff;border-color:var(--navy)}
 .stbtn.on-won{background:var(--green);color:#fff;border-color:var(--green)}
 .stbtn.on-lost{background:var(--red);color:#fff;border-color:var(--red)}
-.nextchip{font-size:12.5px;font-weight:800;padding:5px 9px;border-radius:999px;background:var(--amber-bg);color:#92400e}
-@media (prefers-color-scheme: dark){.nextchip{color:#fcd34d}}
-.wonchip{background:var(--green-bg);color:var(--green)}
-.lostchip{background:#fee2e2;color:var(--red)}
-@media (prefers-color-scheme: dark){.lostchip{background:#3d1512}}
-.linkbtn{background:none;border:0;color:var(--amber);font-weight:700;cursor:pointer;padding:8px 4px;font-size:14px;text-decoration:underline;min-height:38px;font-family:inherit}
+.nextchip{font-size:12.5px;font-weight:800;padding:5px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap}
+.wonchip{background:var(--green-soft);color:var(--green)}
+.lostchip{background:var(--red-soft);color:var(--red)}
+.linkbtn{background:none;border:0;color:var(--accent);font-weight:700;cursor:pointer;padding:8px 4px;font-size:14px;text-decoration:underline;min-height:38px;font-family:inherit}
 .linkbtn[disabled]{opacity:.45;cursor:not-allowed}
 .delbtn{margin-left:auto;background:none;border:0;color:var(--muted);font-weight:700;cursor:pointer;padding:8px 4px;font-size:14px;min-height:38px;font-family:inherit}
 .delbtn:hover{color:var(--red)}
 .delbtn[disabled]{opacity:.45;cursor:not-allowed}
-.empty{border:1.5px dashed var(--line);border-radius:12px;padding:26px;text-align:center;color:var(--muted)}
-.sched{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.sched-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--amber);border-radius:12px;padding:18px}
-.sched-card b.day{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber)}
-.sched-card h4{margin:6px 0 10px;font-size:16px}
+.empty{border:1.5px dashed var(--line-strong);border-radius:var(--radius);padding:28px;text-align:center;color:var(--muted);background:#fff}
+.sched{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sched-card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius);padding:20px}
+.sched-card b.day{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--accent)}
+.sched-card h4{margin:8px 0 12px;font-size:16px;font-weight:700}
 .sched-card textarea{min-height:180px;resize:vertical;font-size:14.5px;line-height:1.55}
 .sched-card .saved{font-size:12.5px;color:var(--green);font-weight:700;min-height:18px;display:block;margin-top:6px}
 .draftbox{background:var(--navy);color:#fff;border-radius:14px;padding:22px;margin-top:18px}
-.draftbox h4{margin:0 0 10px;font-family:"Archivo",sans-serif}
-.draftbox pre{white-space:pre-wrap;font-family:"Barlow",sans-serif;font-size:15.5px;line-height:1.6;margin:0;color:#e6edf4}
-.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.roi-row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.draftbox h4{margin:0 0 10px;font-weight:800;letter-spacing:-.01em}
+.draftbox pre{white-space:pre-wrap;font-family:"Inter",system-ui,sans-serif;font-size:15px;line-height:1.6;margin:0;color:#e2e8f0}
+.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.roi-row{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15.5px}
 .roi-row:last-child{border-bottom:0}
-.roi-row b{font-family:"JetBrains Mono",monospace;white-space:nowrap}
-.roi-row.total{font-size:17px}
+.roi-row b{font-family:"JetBrains Mono",ui-monospace,monospace;white-space:nowrap;font-weight:700}
+.roi-row.total{font-size:17px;font-weight:700}
 .roi-row.total b{color:var(--green)}
 .app-off{opacity:.55}
-#trialBar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--navy);color:#fff;display:none;box-shadow:0 -6px 24px rgba(0,0,0,.25)}
+#trialBar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);display:none;box-shadow:0 -8px 24px rgba(15,23,42,.08)}
 #trialBar.show{display:block}
-#trialBar .in{max-width:1080px;margin:0 auto;padding:10px 20px;display:flex;gap:10px 18px;align-items:center;flex-wrap:wrap}
-#trialBar .t{font-weight:800;font-size:15.5px}
-#trialBar a{color:#fff}
-@media (max-width:860px){
+#trialBar .in{max-width:var(--wrap);margin:0 auto;padding:12px 24px;display:flex;gap:10px 18px;align-items:center;flex-wrap:wrap}
+#trialBar .t{font-weight:800;font-size:15px}
+#trialBar a{color:var(--accent)}
+
+@media (max-width:900px){
   .hero-grid,.cta-band{grid-template-columns:1fr}
   .timeline{grid-template-columns:1fr 1fr}
   .compare{grid-template-columns:1fr}
   .tstats{grid-template-columns:1fr 1fr}
   .qform,.reggrid{grid-template-columns:1fr 1fr}
   .sched,.roi-grid{grid-template-columns:1fr}
-  section{padding:52px 0}
+  section{padding:56px 0}
+  .trust .wrap{grid-template-columns:1fr 1fr}
+  .trust .stat{padding:18px}
+  .trust .stat:nth-child(3){border-left:0;padding-left:0}
+  .trust .stat{border-top:1px solid var(--line)}
+  .trust .stat:nth-child(-n+2){border-top:0}
 }
-@media (max-width:520px){
+@media (max-width:560px){
   .timeline{grid-template-columns:1fr}
   .qform,.reggrid{grid-template-columns:1fr}
   .tstat b{font-size:23px}
-  h1{font-size:42px}
+  h1{font-size:40px}
   .topbar .wrap{justify-content:flex-start}
+  .hero{padding:56px 0 48px}
+  .cta-band{padding:28px 22px}
+  .panel{padding:20px 16px}
+  .nav a{padding:8px 10px;font-size:14px}
 }
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -201,7 +246,7 @@ input[type="number"],input[type="text"],input[type="email"],input[type="password
   <div class="wrap">
     <div class="logo">Quote<span>Chaser</span><small>For HVAC · Plumbing · Electrical</small></div>
     <nav class="nav" aria-label="Main">
-      <a href="#trial">Free trial</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      <a href="#how">How it works</a><a href="#trial">Trial</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
       <a class="btn btn-amber btn-sm" href="#trial" style="color:#fff">Start free trial</a>
     </nav>
   </div>
@@ -210,12 +255,15 @@ input[type="number"],input[type="text"],input[type="email"],input[type="password
 <div class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><i></i> Email-first quote follow-up for trades</span>
+      <span class="eyebrow"><i></i> 3-day free trial · No card required</span>
       <h1>You sent the quote.<br>Then <em>silence.</em></h1>
       <p class="lead">QuoteChaser chases your open estimates on Day 1, 3, 7 and 14 — by email, in your name — until the customer replies, books the job, or says no. You stop losing jobs you already quoted.</p>
       <div class="price-line"><b>$99/mo</b><span>after your free trial · no launch fee</span><s>$199/mo + $349 launch at Aplos</s></div>
-      <a class="btn btn-amber" href="#trial" style="font-size:17px;padding:16px 28px">Start 3-day free trial →</a>
-      <p class="hero-note">3-day free trial · No card required · Cancel anytime. Prefer to pay now? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;font-weight:700">Subscribe — $99/mo via PayPal</a> · <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;font-weight:700">paypal.me/RenewGuard</a></p>
+      <div class="hero-ctas">
+        <a class="btn btn-amber" href="#trial">Start free trial →</a>
+        <a class="btn btn-outline" href="#pricing">See pricing</a>
+      </div>
+      <p class="hero-note">No card required · Cancel anytime · Secure checkout via PayPal. Prefer to pay now? <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">Subscribe — $99/mo via PayPal</a> · <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">paypal.me/RenewGuard</a></p>
     </div>
     <div class="board" aria-label="Example open-quote tracker">
       <div class="board-head"><b>Open quotes — this week</b><span class="badge">Sample tracker view</span></div>
@@ -230,10 +278,10 @@ input[type="number"],input[type="text"],input[type="email"],input[type="password
 
 <div class="trust">
   <div class="wrap">
-    <span><span class="tick">✓</span> 3-day free trial</span>
-    <span><span class="tick">✓</span> No card required</span>
-    <span><span class="tick">✓</span> Cancel anytime</span>
-    <span><span class="tick">✓</span> Secure checkout via PayPal</span>
+    <div class="stat"><b>4</b><span>follow-up emails per quote — Day 1 / 3 / 7 / 14</span></div>
+    <div class="stat"><b>$99/mo</b><span>about 50% below Aplos at $199/mo + $349 launch fee</span></div>
+    <div class="stat"><b>3 days</b><span>free trial · no card required · cancel anytime</span></div>
+    <div class="stat"><b>14 days</b><span>sequence runs until the customer replies or says no</span></div>
   </div>
 </div>
 
@@ -369,7 +417,7 @@ input[type="number"],input[type="text"],input[type="email"],input[type="password
     <h2>Pricing — half the managed-service price, no launch fee</h2>
     <p class="sub">Priced to compete hard: $99/mo is about 50% below Aplos Follow-Up &amp; Estimate Recovery at $199/mo — and Aplos adds a $349 launch fee. QuoteChaser charges none.</p>
     <div class="compare">
-      <div class="comp hot"><span class="tag">QuoteChaser</span><div class="price">$99<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">No launch fee · Cancel anytime</div><ul><li>Open-quote tracker (customer, amount, date sent)</li><li>Day 1 / 3 / 7 / 14 email sequence in your name</li><li>Reply alerts to you the moment a customer answers</li><li>Status board: chasing / booked / closed</li><li>Works alongside QuickBooks, Jobber, or paper</li><li>Optional SMS later via your own Twilio</li></ul><a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="width:100%;margin-top:18px">Start with QuoteChaser — $99/mo via PayPal</a><p style="font-size:13.5px;color:var(--muted);margin-top:12px;text-align:center">Secure checkout on PayPal. Or use PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">https://www.paypal.com/paypalme/RenewGuard</a></p></div>
+      <div class="comp hot"><span class="tag">QuoteChaser</span><div class="price">$99<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">No launch fee · Cancel anytime</div><ul><li>Open-quote tracker (customer, amount, date sent)</li><li>Day 1 / 3 / 7 / 14 email sequence in your name</li><li>Reply alerts to you the moment a customer answers</li><li>Status board: chasing / booked / closed</li><li>Works alongside QuickBooks, Jobber, or paper</li><li>Optional SMS later via your own Twilio</li></ul><p class="price-note">Start with the 3-day free trial first — no card required.</p><a class="btn btn-amber" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener" style="width:100%;margin-top:12px">Start with QuoteChaser — $99/mo via PayPal</a><p style="font-size:13.5px;color:var(--muted);margin-top:12px;text-align:center">Secure checkout on PayPal. Or use PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:700">https://www.paypal.com/paypalme/RenewGuard</a></p></div>
       <div class="comp"><div style="font-weight:800">Aplos AI — Follow-Up</div><div class="price">$199<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">+ $349 launch fee</div><ul><li>Managed AI follow-up service</li><li>Launch fee before you start</li><li>Discloses 2 paying clients on its own pages (per research, Nov 2026)</li><li>SMS carrier costs on top</li></ul><p style="font-size:13px;color:var(--muted);margin-top:14px">Source: aplosai.com/quote-follow-up-automation (index check, Oct–Nov 2026). Re-check before quoting.</p></div>
       <div class="comp"><div style="font-weight:800">Jobber (bundled)</div><div class="price">$29+<span style="font-size:16px;font-weight:600">/mo</span></div><div style="color:var(--muted);font-weight:600">Core from $29/mo · follow-up is a feature, not the product</div><ul><li>Full field-service suite — powerful, but a bigger switch</li><li>Quote follow-up bundled on select plans</li><li>Best if you need scheduling, dispatch &amp; invoicing too</li><li>QuoteChaser is for shops that only need the chasing</li></ul></div>
     </div>
@@ -410,6 +458,9 @@ input[type="number"],input[type="text"],input[type="email"],input[type="password
 <footer>
   <div class="wrap">
     <p><strong style="color:var(--ink)">QuoteChaser</strong> — Quote &amp; estimate follow-up for HVAC, plumbing &amp; electrical contractors. $99/mo, no launch fee.</p>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="#how">How it works</a><a href="#trial">Free trial</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#start">Start</a>
+    </nav>
     <p>Pay with PayPal: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8ZDLD2EB7JHBW" target="_blank" rel="noopener">Subscribe — $99/month</a> · PayPal.me: <a href="https://www.paypal.com/paypalme/RenewGuard" target="_blank" rel="noopener">https://www.paypal.com/paypalme/RenewGuard</a></p>
     <p class="sources">Sources &amp; caveats (researched 2026-11-15; prices are Oct–Nov 2026 snapshots — re-check vendor pages before quoting): Aplos Follow-Up &amp; Estimate Recovery $199/mo + $349 launch — <a href="https://aplosai.com/quote-follow-up-automation" target="_blank" rel="noopener">aplosai.com/quote-follow-up-automation</a>. Trade counts: Census County Business Patterns 2023 via <a href="https://www.brix.so/research/trades-business-statistics" target="_blank" rel="noopener">brix.so/research/trades-business-statistics</a> (111,207 plumbing/HVAC establishments; 83,342 electrical) and <a href="https://hyrehvac.com/statistics/hvac-industry/" target="_blank" rel="noopener">hyrehvac.com/statistics/hvac-industry</a> (76.8% of HVAC firms under 10 employees). SMS carrier cost note (“typically under $15–$30/mo paid directly to your carrier”) via Aplos, as cited in the research. No verified standalone market-size figure exists for quote-follow-up software — demand is inferred from trade counts. Board data above is illustrative example data.</p>
   </div>
