@@ -690,7 +690,7 @@
           return { state: 'active', account: acct, msLeft: left };
         }
         function fmtLeft(ms) {
-          var mins = Math.max(0, Math.floor(ms / 60000));
+          var mins = Math.max(0, Math.ceil(ms / 60000));
           var d = Math.floor(mins / 1440), h = Math.floor((mins % 1440) / 60), m = mins % 60;
           if (d > 0) return 'Trial: ' + d + (d === 1 ? ' day ' : ' days ') + h + (h === 1 ? ' hour left' : ' hours left');
           if (h > 0) return 'Trial: ' + h + (h === 1 ? ' hour ' : ' hours ') + m + ' min left';
